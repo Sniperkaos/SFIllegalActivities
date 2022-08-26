@@ -1,7 +1,7 @@
 # SF Drugs
 Allows you to create drugs in Minecraft using Slimefun.
 
-#FAQ
+# FAQ
 ## How to create Methamphetamine?
 You must first use the Centrifuge to gather the ingredients. You then combine it together in an
 Enhanced Crafting Table, and put the resulting Compound into a Dryer with a Cooking Tray.

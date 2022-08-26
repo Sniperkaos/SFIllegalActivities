@@ -17,7 +17,7 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     	Logger x = getLogger();
     	x.log(Level.INFO, "============================================");
     	x.log(Level.INFO, "====         SF DRUGS ENABLED            ===");
-    	x.log(Level.INFO, "============================================");
+    	x.log(Level.INFO, "====                                     ====");
     	x.log(Level.INFO, "============================================");
     }
     @Override

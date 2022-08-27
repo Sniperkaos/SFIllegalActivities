@@ -45,9 +45,15 @@ public class SFHookerEvent implements Listener {
         }.runTaskLater(plugin, 20L);
     	PlayerInventory I = p.getInventory();
     	if (event.getRightClicked().hasMetadata("SFDRUGS_IS_HOOKER")) {
-    		if(SlimefunItem.getByItem(I.getItem(I.getHeldItemSlot())).isItem(Items.METH)) {
+    		if(SlimefunItem.getByItem(I.getItem(I.getHeldItemSlot())) != null & SlimefunItem.getByItem(I.getItem(I.getHeldItemSlot())).isItem(Items.METH)) {
     			int Amount = I.getItem(I.getHeldItemSlot()).getAmount();
-    			if(Amount <= 32 & Amount >= 16) {
+    			if (Amount == 21) {
+	    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dThanks, uh... Have this stupid paper thing.");
+                	ItemStack Meth = I.getItem(I.getHeldItemSlot());
+                	Meth.setAmount(0);
+                	I.addItem(Items.BATON_BLUEPRINT);
+    			}
+    			else if(Amount <= 32 & Amount >= 16) {
 	    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dYou really don't have that much meth...");
 	    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dI can give you this, though!");
                 	ItemStack Meth = I.getItem(I.first(Items.METH));
@@ -69,7 +75,7 @@ public class SFHookerEvent implements Listener {
     			} else {
                 	Speak(p,"&d&l[ Hooker Zombie ]: &r&dOoh, wow. You have a ton of meth. Okay, I guess I can trade");
                 	Speak(p,"&d&l[ Hooker Zombie ]: &r&dmy prized possession with you.");
-                	ItemStack Meth = I.getItem(I.first(Items.METH));
+                	ItemStack Meth = I.getItem(I.getHeldItemSlot());
                 	Meth.setAmount(0);
                 	I.addItem(Items.GAY_PANTS);
                 	return;

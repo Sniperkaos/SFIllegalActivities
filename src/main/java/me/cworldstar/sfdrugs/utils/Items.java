@@ -23,7 +23,9 @@ import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.Centrifuge;
 import me.cworldstar.sfdrugs.implementations.Dryer;
+import me.cworldstar.sfdrugs.implementations.items.DrugBaton;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
+import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
 import me.cworldstar.sfdrugs.implementations.items.Snaids;
 import net.md_5.bungee.api.ChatColor;
 
@@ -39,6 +41,12 @@ public class Items {
 	public static final SlimefunItemStack METH_COMPOUND = new SlimefunItemStack("SFDRUGS_METH_COMPOUND",Material.DIAMOND,"&9Methamphetamine Compound", "" , "&9 - Pre-dried meth.");
 	public static final SlimefunItemStack DRIED_PLANT = new SlimefunItemStack("SFDRUGS_DRIED_PLANT",Material.OAK_LEAVES,"&2Dried Plants", "" , "&2 - You can use these in the Centrifuge.");
 	public static final SlimefunItemStack MONEY = new SlimefunItemStack("SFDRUGS_MONEY",Material.PAPER,"&a 100 Corporation Currency", "" , "&2 - You can use these for trading with the Corporation.");
+	
+	public static final SlimefunItemStack IRRADIATED_SIRTHIUM_RAW = new SlimefunItemStack("SFDRUGS_SIRTHIUM_RAW",Material.SLIME_BLOCK,"&aRaw Sirthium", "",LoreBuilder.radioactive(Radioactivity.MODERATE),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack IRRADIATED_SIRTHIUM_PROCESSED = new SlimefunItemStack("SFDRUGS_SIRTHIUM",Material.EMERALD,"&aSirthium Crystal", "",LoreBuilder.radioactive(Radioactivity.HIGH),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final ItemStack SIRTHIUM_ALLOY_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkwNzkzZjU2NjE2ZjEwMTUwMmRlMWQzNGViMjU0NGY2MDdkOTg5MDBlMzY5OTM2OTI5NTMxOWU2MzBkY2Y2ZCJ9fX0=");
+	public static final SlimefunItemStack IRRADIATED_SIRTHIUM_ALLOY = new SlimefunItemStack("SFDRUGS_SIRTHIUM_ALLOY",SIRTHIUM_ALLOY_HEAD,"&aSirthium Alloy", "",LoreBuilder.radioactive(Radioactivity.VERY_HIGH),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+
 	
 	// Drugs
 	public static final SlimefunItemStack SNAIDS = new SlimefunItemStack("SFDRUGS_SNAIDS",Material.HONEY_BOTTLE,"&d&lSnaids","","&d - You might blow up.");
@@ -58,6 +66,9 @@ public class Items {
 	public static final ItemStack HOOKER_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjM2ZjE1NDgwZWU0MTRmYWI1ZjU4NWQ1MjUwY2RlYjc1ZTg3M2U3NmYwNzYxYWZmYmRkY2M1MzZjMjkwYWFjNCJ9fX0=");
 	public static final ItemStack CORPORATE_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZlZTAzYmE4NTBlYmJhMjE3MjFjYjMzN2Y3ZWRlYWI5YjBmYTYxNWE4NjJjNjg3MGNjOWM0ZDA1ZDRkMzJmYSJ9fX0=");
 
+	
+	public static final SlimefunItemStack BATON_BLUEPRINT = new SlimefunItemStack("SFDRUGS_BATON_BLUEPRINT",Material.MAP,"&7&lCorporate Baton Blueprint");
+	
 	// Armor
 	
 	public static final SlimefunItemStack DRUG_CHESTPLATE = new SlimefunItemStack("SFDRUGS_DRUG_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Hazmat Suit Top&r &a&l&k|||&r", "", LoreBuilder.material("Super-Compressed Carbon"), "",LoreBuilder.powerCharged(0, 1200), "", "&7Full Set Effects:","&e- Radiation immunity");
@@ -69,9 +80,9 @@ public class Items {
 	
 	static {
 		HOOKER_HEAD.getItemMeta().setDisplayName(ChatColor.translateAlternateColorCodes('&', "&d&lHooker Zombie"));
-	}
-	static {
 		CORPORATE_HEAD.getItemMeta().setDisplayName(ChatColor.translateAlternateColorCodes('&', "&7&lCorporate Transaction"));
+		SIRTHIUM_ALLOY_HEAD.getItemMeta().setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSirthium Alloy"));
+
 	}
 	public static final SlimefunItemStack HOOKER_GROUP = new SlimefunItemStack("HOOKER_GROUP",HOOKER_HEAD,"&d&lHooker Zombie");
 	public static final SlimefunItemStack CORPORATE_GROUP = new SlimefunItemStack("CORPORATE_GROUP",CORPORATE_HEAD,"&7&lCorporation Trading");
@@ -107,7 +118,39 @@ public class Items {
 		RecipeType RECIPE_CENTRIFUGE = new RecipeType(new NamespacedKey(this.plugin,"Centrifuge"),Items.CENTRIFUGE);
 		RecipeType RECIPE_DRYER = new RecipeType(new NamespacedKey(this.plugin,"Dryer"),Items.DRYER);
 		RecipeType HOOKER_TRADE = new RecipeType(new NamespacedKey(this.plugin,"Hooker"),Items.HOOKER_GROUP);
-		RecipeType CORPORATION_TRADE = new RecipeType(new NamespacedKey(this.plugin,"Corporation"),Items.CORPORATE_HEAD);
+		RecipeType CORPORATION_TRADE = new RecipeType(new NamespacedKey(this.plugin,"Corporation"),Items.CORPORATE_GROUP);
+		
+		
+		
+		
+
+		
+		
+		IrradiatedItem NIRRADIATED_SIRTHIUM_RAW = new IrradiatedItem(this.group,Items.IRRADIATED_SIRTHIUM_RAW,CORPORATION_TRADE,new ItemStack[] {
+			new CustomItemStack(Items.MONEY,20)	
+		},Radioactivity.MODERATE);
+		NIRRADIATED_SIRTHIUM_RAW.register(this.plugin);
+		
+		IrradiatedItem NIRRADIATED_SIRTHIUM_PROCESSED = new IrradiatedItem(this.group,Items.IRRADIATED_SIRTHIUM_PROCESSED,RECIPE_DRYER,new ItemStack[] {
+				new CustomItemStack(Items.IRRADIATED_SIRTHIUM_RAW,16),Items.TRAY	
+			},Radioactivity.HIGH);
+		NIRRADIATED_SIRTHIUM_PROCESSED.register(this.plugin);
+		
+		IrradiatedItem NIRRADIATED_SIRTHIUM_ALLOY = new IrradiatedItem(this.group,Items.IRRADIATED_SIRTHIUM_ALLOY,RecipeType.SMELTERY,new ItemStack[] {
+				new CustomItemStack(Items.IRRADIATED_SIRTHIUM_PROCESSED,8),new CustomItemStack(SlimefunItems.BLISTERING_INGOT_3,4), new ItemStack(Material.DRAGON_BREATH,32)
+			},Radioactivity.VERY_HIGH);
+		NIRRADIATED_SIRTHIUM_ALLOY.register(this.plugin);
+		
+		
+		SlimefunItem NBATON_BLUEPRINT = new SlimefunItem(this.group,Items.BATON_BLUEPRINT,HOOKER_TRADE,new ItemStack[] {
+				new CustomItemStack(Items.METH,21)
+		});
+		NBATON_BLUEPRINT.register(this.plugin);
+		
+		DrugBaton NDRUG_BATON = new DrugBaton(this.group,Items.DRUG_BATON,CORPORATION_TRADE,new ItemStack[] {
+				new CustomItemStack(Items.MONEY,18),Items.BATON_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
+		});
+		NDRUG_BATON.register(this.plugin);
 		DrugSuit NDRUG_HELMET = new DrugSuit(plugin, group, Items.DRUG_HELMET,CORPORATION_TRADE, new ItemStack[] {
 				
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.WATER_BREATHING,1200,0)});

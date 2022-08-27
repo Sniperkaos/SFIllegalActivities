@@ -23,7 +23,7 @@ public class DrugSuitWearerDamaged implements Listener {
 		if (SlimefunItem.getByItem(item) != null) {
 			if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
 				DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
-				T.PlayerDamaged(e,p,item,new Double(e.getFinalDamage()).intValue());
+				T.PlayerDamaged(e,p,item,new Double(e.getFinalDamage()).intValue() * 15);
 			}
 		}
 	}

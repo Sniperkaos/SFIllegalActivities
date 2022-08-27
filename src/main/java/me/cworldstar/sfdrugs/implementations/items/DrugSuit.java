@@ -51,11 +51,12 @@ public class DrugSuit extends SlimefunArmorPiece implements ProtectiveArmor, Rec
 		return 1200F;
 	}
 
-	public void Damage(PlayerItemDamageEvent e, ItemStack Item, int dmg) {
+	public Boolean Damage(PlayerItemDamageEvent e, ItemStack Item, int dmg) {
 		if (this.getItemCharge(Item) > 0 & !this.removeItemCharge(Item, dmg)) {
-
+			return true;
 		} else {
 			e.setCancelled(true);
+			return false;
 		}
 	}
 

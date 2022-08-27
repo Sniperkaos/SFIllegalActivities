@@ -67,8 +67,9 @@ public class Items {
 	public static final ItemStack CORPORATE_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZlZTAzYmE4NTBlYmJhMjE3MjFjYjMzN2Y3ZWRlYWI5YjBmYTYxNWE4NjJjNjg3MGNjOWM0ZDA1ZDRkMzJmYSJ9fX0=");
 
 	
-	public static final SlimefunItemStack BATON_BLUEPRINT = new SlimefunItemStack("SFDRUGS_BATON_BLUEPRINT",Material.MAP,"&7&lCorporate Baton Blueprint");
-	
+	public static final SlimefunItemStack BATON_BLUEPRINT = new SlimefunItemStack("SFDRUGS_BATON_BLUEPRINT",Material.FILLED_MAP,"&7Corporate Baton Blueprint");
+	public static final SlimefunItemStack PICKAXE_BLUEPRINT = new SlimefunItemStack("SFDRUGS_PICKAXE_BLUEPRINT",Material.FILLED_MAP,"&7Corporate Pickaxe Blueprint");
+
 	// Armor
 	
 	public static final SlimefunItemStack DRUG_CHESTPLATE = new SlimefunItemStack("SFDRUGS_DRUG_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Hazmat Suit Top&r &a&l&k|||&r", "", LoreBuilder.material("Super-Compressed Carbon"), "",LoreBuilder.powerCharged(0, 1200), "", "&7Full Set Effects:","&e- Radiation immunity");
@@ -97,6 +98,13 @@ public class Items {
 		GAY_PANTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR_TOUGHNESS",3,Operation.ADD_NUMBER));
 		GAY_PANTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR",6,Operation.ADD_NUMBER));
 		GAY_PANTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("SFDRUGS_GAY_PANTS_MAX_HEALTH",2,Operation.ADD_NUMBER));
+		
+		
+		DRUG_CHESTPLATE.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_HELMET.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_BOOTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_LEGGINGS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+
 		((LeatherArmorMeta) GAY_PANTS.getItemMeta()).setColor(Color.RED);
 		GAY_PANTS.addUnsafeEnchantment(Enchantment.VANISHING_CURSE,10);
 		GAY_PANTS.addUnsafeEnchantment(Enchantment.DURABILITY,10);
@@ -147,6 +155,12 @@ public class Items {
 		});
 		NBATON_BLUEPRINT.register(this.plugin);
 		
+		SlimefunItem NPICKAXE_BLUEPRINT = new SlimefunItem(this.group,Items.PICKAXE_BLUEPRINT,HOOKER_TRADE,new ItemStack[] {
+				new CustomItemStack(Items.METH,42)
+		});
+		NPICKAXE_BLUEPRINT.register(this.plugin);
+		
+		
 		DrugBaton NDRUG_BATON = new DrugBaton(this.group,Items.DRUG_BATON,CORPORATION_TRADE,new ItemStack[] {
 				new CustomItemStack(Items.MONEY,18),Items.BATON_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		});
@@ -184,10 +198,8 @@ public class Items {
 		SlimefunItem NGAY_PANTS = new SlimefunItem(this.group,Items.GAY_PANTS,HOOKER_TRADE,new ItemStack[] { new CustomItemStack(Items.METH,64) });
 		NGAY_PANTS.register(this.plugin);
 		NHOE.register(this.plugin);
-		WorldEater NWORLDEATER = new WorldEater(this.group,Items.WORLDEATER,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
-				Items.CYANIDE,new ItemStack(Material.NETHERITE_PICKAXE),Items.CYANIDE,
-				null,SlimefunItems.BLISTERING_INGOT_3,null,
-				null,SlimefunItems.BLISTERING_INGOT_3,null
+		WorldEater NWORLDEATER = new WorldEater(this.group,Items.WORLDEATER,CORPORATION_TRADE,new ItemStack[] {
+				new CustomItemStack(Items.MONEY,18),Items.PICKAXE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
 			});
 		NWORLDEATER.register(this.plugin);
 		Drug NCYANIDE = new Drug(this.group,Items.CYANIDE,RECIPE_DRYER,new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,64),Items.TRAY },new PotionEffect[] { new PotionEffect(PotionEffectType.HARM,240,100) });

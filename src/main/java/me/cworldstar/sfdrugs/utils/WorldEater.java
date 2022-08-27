@@ -44,6 +44,8 @@ public class WorldEater extends SimpleSlimefunItem<ToolUseHandler> implements Ra
             		e.setCancelled(true);
             	}
 
+            } else {
+            	e.setCancelled(true);
             }
         };
     }

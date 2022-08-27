@@ -1,5 +1,9 @@
 package me.cworldstar.sfdrugs.events;
 
+
+import org.bukkit.Effect;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;
@@ -21,7 +25,16 @@ public class DrugSuitDamaged implements Listener {
 		if (SlimefunItem.getByItem(item) != null) {
 			if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
 				DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
-				T.Damage(e,item, e.getDamage());
+				if(T.Damage(e,item, e.getDamage())) {
+					 for(Entity enemies : e.getPlayer().getNearbyEntities(3.0, 3.0, 3.0)) {
+						 if(enemies instanceof LivingEntity) {
+							 enemies.getWorld().playEffect(enemies.getLocation(), Effect.BONE_MEAL_USE, 12);
+							 ((LivingEntity) enemies).damage(new Double(e.getDamage() / 2),e.getPlayer());
+						 }
+					 }
+				}
+
+					
 			}
 		}
 	}

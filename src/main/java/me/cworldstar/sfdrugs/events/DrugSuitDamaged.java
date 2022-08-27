@@ -25,16 +25,7 @@ public class DrugSuitDamaged implements Listener {
 		if (SlimefunItem.getByItem(item) != null) {
 			if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
 				DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
-				if(T.Damage(e,item, e.getDamage())) {
-					 for(Entity enemies : e.getPlayer().getNearbyEntities(3.0, 3.0, 3.0)) {
-						 if(enemies instanceof LivingEntity) {
-							 enemies.getWorld().playEffect(enemies.getLocation(), Effect.BONE_MEAL_USE, 12);
-							 ((LivingEntity) enemies).damage(new Double(e.getDamage() / 2),e.getPlayer());
-						 }
-					 }
-				}
-
-					
+				T.Damage(e,item,e.getDamage());		
 			}
 		}
 	}

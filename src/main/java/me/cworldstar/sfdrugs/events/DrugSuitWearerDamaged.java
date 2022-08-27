@@ -1,5 +1,8 @@
 package me.cworldstar.sfdrugs.events;
 
+import org.bukkit.Effect;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,13 +21,22 @@ public class DrugSuitWearerDamaged implements Listener {
     }
 	@EventHandler
 	private void onEntityDamage(EntityDamageByEntityEvent e) {
-		Player p = (Player) e.getEntity();
-		ItemStack item = p.getInventory().getChestplate();
-		if (SlimefunItem.getByItem(item) != null) {
-			if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
-				DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
-				T.PlayerDamaged(e,p,item,new Double(e.getFinalDamage()).intValue() * 15);
+		if (e.getEntity() instanceof Player) {
+			Player p = (Player) e.getEntity();
+			ItemStack item = p.getInventory().getChestplate();
+			if (SlimefunItem.getByItem(item) != null) {
+				if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
+					DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
+					T.PlayerDamaged(e,p,item,new Double(e.getFinalDamage() * 10));
+					 for(Entity enemies : p.getNearbyEntities(3.0, 3.0, 3.0)) {
+						 if(enemies instanceof LivingEntity) {
+							 enemies.getWorld().playEffect(enemies.getLocation(), Effect.BONE_MEAL_USE, 12);
+							 ((LivingEntity) enemies).damage(new Double(e.getDamage() / 2),p);
+						 }
+					 }
+				}
 			}
 		}
+
 	}
 }

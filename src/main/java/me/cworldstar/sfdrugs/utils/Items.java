@@ -217,12 +217,16 @@ public class Items {
     	SlimefunItem NDRIED_PLANT = new SlimefunItem(this.group,Items.DRIED_PLANT,RECIPE_DRYER,new ItemStack[] { new ItemStack(Material.OAK_SAPLING,64), Items.TRAY });
     	NDRIED_PLANT.register(this.plugin);
 		SlimefunItem NRED_PHOSPHORUS = new SlimefunItem(this.group,Items.RED_PHOSPHORUS,RECIPE_CENTRIFUGE,new ItemStack[] {
-				
+				new ItemStack(Material.BEEF,8),new CustomItemStack(Items.RED_PHOSPHORUS)
 		});
 		NRED_PHOSPHORUS.register(this.plugin);
-		SlimefunItem NPSEUDOEPHEDRINE = new SlimefunItem(this.group,Items.PSEUDOEPHEDRINE,RECIPE_CENTRIFUGE,null);
+		SlimefunItem NPSEUDOEPHEDRINE = new SlimefunItem(this.group,Items.PSEUDOEPHEDRINE,RECIPE_CENTRIFUGE,new ItemStack[] {
+				new CustomItemStack(Items.DRIED_PLANT,32),new CustomItemStack(Items.PSEUDOEPHEDRINE)
+		});
 		NPSEUDOEPHEDRINE.register(this.plugin);
-		SlimefunItem NTWELVE = new SlimefunItem(this.group,Items.TWELVE,RECIPE_CENTRIFUGE,null);
+		SlimefunItem NTWELVE = new SlimefunItem(this.group,Items.TWELVE,RECIPE_CENTRIFUGE,new ItemStack[] {
+				new ItemStack(Material.FIRE_CHARGE,12),new CustomItemStack(Items.TWELVE)
+		});
 		NTWELVE.register(this.plugin);
 		SlimefunItem NTRAY = new SlimefunItem(this.group,Items.TRAY,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 				null,null,null,null,null,null,new ItemStack(SlimefunItems.STEEL_INGOT),new ItemStack(SlimefunItems.STEEL_INGOT),new ItemStack(SlimefunItems.STEEL_INGOT)

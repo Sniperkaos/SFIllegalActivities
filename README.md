@@ -1,20 +1,22 @@
-# Slimefun4 Addon
-This is an example Repository for a generic Slimefun4 Addon.
-In the top left is a button "Use this template", click this to create your own Addon for Slimefun4 using this basic template.
+# SFDrugs
+This is a Slimefun addon, for 1.19.2. It allows you
+to create drugs, and other wacky, stupid things.
 
-## How to create your own addon.
-This is a template repository that you can use to create your own Slimefun4 Addon.<br>
-We have also written an extensive step-by-step tutorial which you can find here:<br>
-https://github.com/Slimefun/Slimefun4/wiki/Developer-Guide
+## FAQ
+# How do I get started?
+A: Create a Compounder. Everything you need
+to create drugs come from the compounder.
 
-## Changing some important things
-Navigate to `src/main/java` and rename the package and the .java File to your liking.<br>
-Suggestion: "me.yourname.yourproject" (all lower case) and "ProjectName.java"<br>
-Example: "me.thebusybiscuit.cooladdon" and "CoolAddon.java"
+# How do I get the Corporate gear?
+A: Currently you cannot. In the future,
+There will be a boss fight in the future who
+drops an interfacing terminal.
 
-Navigate to `src/main/resources/plugin.yml` and change the "author" and "main" attributes.
-You may also want to change the description to something meaningful.
+# How do I progress past making Methamphetamine?
+A: Create cyanide, then make the wooden hoe.
+Right click, then it spawns a rudementary trader, which you can
+get items from. 
 
-Navigate to `pom.xml` and change the group id to "me.%Your name%" and change the artifact id to the name of your Project.
-
-After that you are good to go, you can now start developing your own Addon for Slimefun4.
+# Where can I go to suggest new additions?
+A: Either create a pull request, or
+go to my discord at https://discord.gg/R4TPSvs2ZP.

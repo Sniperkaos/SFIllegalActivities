@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotHopperable;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
@@ -16,13 +17,13 @@ public class MoneyPrinter extends AContainer implements NotHopperable,RecipeDisp
 	public MoneyPrinter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
 		super(itemGroup, item, recipeType, recipe);
 		// TODO Auto-generated constructor stub
-		this.setCapacity(480);
-		this.setEnergyConsumption(120);
+		this.setCapacity(12800);
+		this.setEnergyConsumption(1280);
 		this.setProcessingSpeed(20);
 	}
     @Override
     public void registerDefaultRecipes() {
-    	addRecipe(20,new ItemStack[] { new ItemStack(Material.BEEF,8) },  new ItemStack[] { new CustomItemStack(Items.RED_PHOSPHORUS) });
+    	addRecipe(12000,new ItemStack[] { new CustomItemStack(SlimefunItems.ADVANCED_CIRCUIT_BOARD,8), Items.MONEY_STAMP },  new ItemStack[] { Items.MONEY, Items.MONEY_STAMP});
     }
     @Override
     public String getMachineIdentifier() {
@@ -34,6 +35,6 @@ public class MoneyPrinter extends AContainer implements NotHopperable,RecipeDisp
 
     @Override
     public ItemStack getProgressBar() {
-        return new ItemStack(Material.FIRE);
+        return new ItemStack(Material.PAPER);
     }
 }

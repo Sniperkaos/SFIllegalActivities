@@ -11,6 +11,7 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import net.md_5.bungee.api.ChatColor;
 
 public class Dryer extends AContainer implements NotHopperable,RecipeDisplayItem  {
 	public Dryer(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -22,10 +23,7 @@ public class Dryer extends AContainer implements NotHopperable,RecipeDisplayItem
 	}
     @Override
     public void registerDefaultRecipes() {
-    	addRecipe(20,new ItemStack[] { Items.METH_COMPOUND, Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.METH,8),Items.TRAY });
-    	addRecipe(20,new ItemStack[] { new ItemStack(Material.OAK_SAPLING,64), Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,1),Items.TRAY });
-    	addRecipe(20,new ItemStack[] { new ItemStack(Material.APPLE,20), Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,1),Items.TRAY });
-
+    	addRecipe(20,new ItemStack[] { new ItemStack(Material.PAPER), Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.METH,8),Items.TRAY });
     }
     @Override
     public String getMachineIdentifier() {
@@ -36,6 +34,8 @@ public class Dryer extends AContainer implements NotHopperable,RecipeDisplayItem
     }
     @Override
     public ItemStack getProgressBar() {
-        return new ItemStack(Material.CAMPFIRE);
+		ItemStack ProgressBar = new ItemStack(Material.ANVIL);
+		ProgressBar.getItemMeta().setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lPrinting..."));
+        return new ItemStack(Material.PAPER);
     }
 }

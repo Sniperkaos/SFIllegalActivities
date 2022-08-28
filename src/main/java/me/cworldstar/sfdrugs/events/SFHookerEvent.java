@@ -1,5 +1,4 @@
 package me.cworldstar.sfdrugs.events;
-import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,7 +8,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -52,6 +50,12 @@ public class SFHookerEvent implements Listener {
                 	ItemStack Meth = I.getItem(I.getHeldItemSlot());
                 	Meth.setAmount(0);
                 	I.addItem(Items.BATON_BLUEPRINT);
+    			}
+    			else if (Amount == 42) {
+	    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dThanks, uh... Have this stupid paper thing.");
+                	ItemStack Meth = I.getItem(I.getHeldItemSlot());
+                	Meth.setAmount(0);
+                	I.addItem(Items.PICKAXE_BLUEPRINT);
     			}
     			else if(Amount <= 32 & Amount >= 16) {
 	    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dYou really don't have that much meth...");

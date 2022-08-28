@@ -1,9 +1,4 @@
 package me.cworldstar.sfdrugs.events;
-
-
-import org.bukkit.Effect;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemDamageEvent;

@@ -37,8 +37,8 @@ public class Snaids extends SimpleSlimefunItem<ItemUseHandler> {
 	            	nEntity.setCustomNameVisible(false);
 	            	nEntity.setVisible(false);
 	            	nEntity.setGravity(false);
-	            	nEntity.setCustomName(ChatColor.translateAlternateColorCodes('&', "&d&lSnaids"));
-	            	p.setHealth(0.0);
+	            	nEntity.setCustomName(ChatColor.translateAlternateColorCodes('&', "&6Snaids"));
+	            	p.damage(999, nEntity);
 	            	nEntity.remove();
 	           }
 	        }.runTaskLater(plugin, 600L);

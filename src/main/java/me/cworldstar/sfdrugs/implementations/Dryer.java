@@ -24,6 +24,8 @@ public class Dryer extends AContainer implements NotHopperable,RecipeDisplayItem
     public void registerDefaultRecipes() {
     	addRecipe(20,new ItemStack[] { Items.METH_COMPOUND, Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.METH,8),Items.TRAY });
     	addRecipe(20,new ItemStack[] { new ItemStack(Material.OAK_SAPLING,64), Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,1),Items.TRAY });
+    	addRecipe(20,new ItemStack[] { new ItemStack(Material.APPLE,20), Items.TRAY },  new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,1),Items.TRAY });
+
     }
     @Override
     public String getMachineIdentifier() {

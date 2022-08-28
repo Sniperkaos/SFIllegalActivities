@@ -33,20 +33,15 @@ public class WorldEater extends SimpleSlimefunItem<ToolUseHandler> implements Ra
     public ToolUseHandler getItemHandler() {
         return (e, tool, fortune, drops) -> {
             Player p = e.getPlayer();
-            if (!p.isSneaking()) {
             	if(this.removeItemCharge(tool,2F)) {
                     Block b = e.getBlock();
-                    b.getWorld().spawnParticle(Particle.VILLAGER_HAPPY,b.getLocation(),5);
-                    b.getWorld().playSound(b.getLocation(), Sound.BLOCK_SCULK_SENSOR_PLACE, 0.2F, 1F);
+                    b.getWorld().spawnParticle(Particle.VILLAGER_HAPPY,b.getLocation(),8);
+                    b.getWorld().playSound(b.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.2F, 1F);
                     b.breakNaturally(tool);
             	} else {
             		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f&l[ SFDrugs ]: &dYour mining drill has run out of power!"));
             		e.setCancelled(true);
             	}
-
-            } else {
-            	e.setCancelled(true);
-            }
         };
     }
 	@Override

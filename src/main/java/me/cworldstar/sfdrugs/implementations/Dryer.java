@@ -34,8 +34,7 @@ public class Dryer extends AContainer implements NotHopperable,RecipeDisplayItem
     }
     @Override
     public ItemStack getProgressBar() {
-		ItemStack ProgressBar = new ItemStack(Material.ANVIL);
-		ProgressBar.getItemMeta().setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lPrinting..."));
-        return new ItemStack(Material.PAPER);
+
+        return new ItemStack(Material.CAMPFIRE);
     }
 }

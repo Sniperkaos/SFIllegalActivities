@@ -20,6 +20,9 @@ public class CircuitFabricator extends AContainer implements NotHopperable,Recip
 	public CircuitFabricator(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
 			ItemStack[] recipe) {
 		super(itemGroup, item, recipeType, recipe);
+		this.setCapacity(480);
+		this.setEnergyConsumption(120);
+		this.setProcessingSpeed(20);
 		// TODO Auto-generated constructor stub
 	}
     @Override
@@ -40,7 +43,7 @@ public class CircuitFabricator extends AContainer implements NotHopperable,Recip
 	@Override
 	public String getMachineIdentifier() {
 		// TODO Auto-generated method stub
-		return "SFDRUGS_CIRCUITFABRICATOR";
+		return "SFDRUGS_CIRCUIT_FABRICATOR";
 	}
 	@Override
 	public Radioactivity getRadioactivity() {

@@ -10,6 +10,7 @@ import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
 import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
 import me.cworldstar.sfdrugs.events.SFHookerEvent;
 import me.cworldstar.sfdrugs.utils.Items;
+import me.cworldstar.sfdrugs.utils.Trading;
 
 public class SFDrugs extends JavaPlugin implements SlimefunAddon {
 	@SuppressWarnings("unused")
@@ -17,10 +18,12 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         // Give your Category a unique id.
     	Items ItemRegistry = new Items(this);
-    	SFHookerEvent HookerEvent = new SFHookerEvent(this);
     	DrugSuitDamaged DamageEvent = new DrugSuitDamaged(this);
     	DrugSuitWearerDamaged DamageEvent2 = new DrugSuitWearerDamaged(this);
     	ItemRegistry.register();
+    	Trading TradingRegistry = new Trading(this);
+    	TradingRegistry.register();
+    	SFHookerEvent HookerEvent = new SFHookerEvent(this,TradingRegistry);
     	Logger x = getLogger();
     	x.log(Level.INFO, "============================================");
     	x.log(Level.INFO, "====                                     ===");

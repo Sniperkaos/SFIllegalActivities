@@ -1,5 +1,8 @@
 package me.cworldstar.sfdrugs.utils;
 
+
+import java.util.List;
+
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
@@ -37,9 +40,18 @@ public class WorldEater extends SimpleSlimefunItem<ToolUseHandler> implements Ra
                     Block b = e.getBlock();
                     b.getWorld().spawnParticle(Particle.VILLAGER_HAPPY,b.getLocation(),8);
                     b.getWorld().playSound(b.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.2F, 1F);
+                    /*if(p.isSneaking()) {
+                    	int currentItemStack = 0;
+                    	for(ItemStack i : drops) {
+                    		if(i.getItemMeta().getDisplayName().contains("Ore")) {
+                    			drops.set(i,i.)
+                    		}
+                    		currentItemStack += 1;
+                    	}
+                    }*/
                     b.breakNaturally(tool);
             	} else {
-            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f&l[ SFDrugs ]: &dYour mining drill has run out of power!"));
+            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f&l[ SFDrugs ]: &dYour tool has run out of power!"));
             		e.setCancelled(true);
             	}
         };

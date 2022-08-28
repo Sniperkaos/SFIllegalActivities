@@ -12,6 +12,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import net.md_5.bungee.api.ChatColor;
 
 public class MoneyPrinter extends AContainer implements NotHopperable,RecipeDisplayItem  {
 	public MoneyPrinter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -35,6 +36,8 @@ public class MoneyPrinter extends AContainer implements NotHopperable,RecipeDisp
 
     @Override
     public ItemStack getProgressBar() {
-        return new ItemStack(Material.PAPER);
+		ItemStack ProgressBar = new ItemStack(Material.ANVIL);
+		ProgressBar.getItemMeta().setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lPrinting..."));
+		return ProgressBar;
     }
 }

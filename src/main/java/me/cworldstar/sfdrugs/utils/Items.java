@@ -1,10 +1,12 @@
 package me.cworldstar.sfdrugs.utils;
 import java.time.Month;
+import java.util.UUID;
 
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.attribute.Attribute;
@@ -38,6 +40,7 @@ import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
 import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
 import me.cworldstar.sfdrugs.implementations.items.MoneyStamp;
 import me.cworldstar.sfdrugs.implementations.items.RobotArmor;
+import me.cworldstar.sfdrugs.implementations.items.RobotArmorSet;
 import me.cworldstar.sfdrugs.implementations.items.Snaids;
 import net.md_5.bungee.api.ChatColor;
 
@@ -103,11 +106,11 @@ public class Items {
 	// Unobtainable Armor
 	public static final ItemStack MYSTERIOUS_TRADER_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjJlMzdjNjM2ZmZjYzA1ZjUxOGFiOTdiZjcxMTFjNmQzY2E5NWM1MzAwYzUyZTU2MGMzZGMzNTYzNzZlZWJkYiJ9fX0=");
 	public static final ItemStack ROBOT_HELMET_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNhOWMyZmI3NTVmNzA4ZjdkYjJkZDI5MGFlYzRlYzlmMjM5ZDVlZTYyZGI1ZDQzNDRlYzdlODgyMTg3OGY4MiJ9fX0=");
-	public static final SlimefunItemStack CORPORATION_ROBOT_HELMET = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_HELMET",ROBOT_HELMET_HEAD,"&a&l&k|||&r &7&lCorporate Security Robot Head&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(19000, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_ROBOT_CHESTPLATE = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Security Robot Chest&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(19000, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_ROBOT_LEGGINGS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_LEGGINGS",Material.NETHERITE_LEGGINGS,"&a&l&k|||&r &7&lCorporate Security Robot Legs&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(19000, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_ROBOT_BOOTS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_BOOTS",Material.NETHERITE_BOOTS,"&a&l&k|||&r &7&lCorporate Security Robot Feet&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(19000, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_LASER_SWORD = new SlimefunItemStack("SFDRUGS_CORPORATION_LASER_SWORD",Material.GOLDEN_SWORD,"&a&l&k|||&r &7&lCorporate Laser Sword&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(2800, 2800),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_HELMET = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_HELMET",ROBOT_HELMET_HEAD,"&a&l&k|||&r &7&lCorporate Security Robot Head&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_CHESTPLATE = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Security Robot Chest&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_LEGGINGS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_LEGGINGS",Material.NETHERITE_LEGGINGS,"&a&l&k|||&r &7&lCorporate Security Robot Legs&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_BOOTS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_BOOTS",Material.NETHERITE_BOOTS,"&a&l&k|||&r &7&lCorporate Security Robot Feet&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_LASER_SWORD = new SlimefunItemStack("SFDRUGS_CORPORATION_LASER_SWORD",Material.GOLDEN_SWORD,"&a&l&k|||&r &7&lCorporate Laser Sword&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 2800),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	
 	
 	
@@ -145,24 +148,64 @@ public class Items {
 		DRUG_LEGGINGS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
 		
 		
+		ItemMeta ROBOT_HELMET_META = CORPORATION_ROBOT_HELMET.getItemMeta();
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",9,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		CORPORATION_ROBOT_HELMET.setItemMeta(ROBOT_HELMET_META);
+		
+		ItemMeta ROBOT_CHESTPLATE_META = CORPORATION_ROBOT_CHESTPLATE.getItemMeta();
+		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",18,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		CORPORATION_ROBOT_CHESTPLATE.setItemMeta(ROBOT_CHESTPLATE_META);
+		
+		ItemMeta ROBOT_LEGGINGS_META = CORPORATION_ROBOT_LEGGINGS.getItemMeta();
+		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",13,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		CORPORATION_ROBOT_LEGGINGS.setItemMeta(ROBOT_LEGGINGS_META);
+		
+		ItemMeta ROBOT_BOOTS_META = CORPORATION_ROBOT_BOOTS.getItemMeta();
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",9,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		CORPORATION_ROBOT_BOOTS.setItemMeta(ROBOT_BOOTS_META);
+		
+		
 		ItemMeta DRUG_CHESTPLATE_META = DRUG_CHESTPLATE.getItemMeta();
-		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",12,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
 		DRUG_CHESTPLATE.setItemMeta(DRUG_CHESTPLATE_META);
 		ItemMeta DRUG_HELMET_META = DRUG_HELMET.getItemMeta();
-		DRUG_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_HELMET.setItemMeta(DRUG_CHESTPLATE_META);
+		DRUG_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",7,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		DRUG_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		DRUG_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		DRUG_HELMET_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		DRUG_HELMET.setItemMeta(DRUG_HELMET_META);
 		ItemMeta DRUG_BOOTS_META = DRUG_BOOTS.getItemMeta();
-		DRUG_BOOTS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_BOOTS.setItemMeta(DRUG_CHESTPLATE_META);
+		DRUG_BOOTS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",7,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		DRUG_BOOTS_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		DRUG_BOOTS_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		DRUG_BOOTS_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		DRUG_BOOTS.setItemMeta(DRUG_BOOTS_META);
 		ItemMeta DRUG_LEGGINGS_META = DRUG_LEGGINGS.getItemMeta();
-		DRUG_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_LEGGINGS.setItemMeta(DRUG_CHESTPLATE_META);
+		DRUG_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",10,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		DRUG_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		DRUG_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		DRUG_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		DRUG_LEGGINGS.setItemMeta(DRUG_LEGGINGS_META);
 		
 		LeatherArmorMeta NewGStringItemMeta = (LeatherArmorMeta) GAY_PANTS.getItemMeta();
-		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR_TOUGHNESS",3,Operation.ADD_NUMBER));
-		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR",6,Operation.ADD_NUMBER));
-		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("SFDRUGS_GAY_PANTS_MAX_HEALTH",2,Operation.ADD_NUMBER));
+		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_GAY_PANTS_ARMOR_TOUGHNESS",3,Operation.ADD_NUMBER));
+		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_GAY_PANTS_ARMOR",6,Operation.ADD_NUMBER));
+		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_GAY_PANTS_MAX_HEALTH",2,Operation.ADD_NUMBER));
 		NewGStringItemMeta.setColor(Color.RED);
 		GAY_PANTS.setItemMeta(NewGStringItemMeta);
 		
@@ -207,18 +250,13 @@ public class Items {
 		new SlimefunItem(this.group,Items.DRUG_PIPE,HOOKER_TRADE,new ItemStack[] {
 				new CustomItemStack(Items.METH,10)
 		}).register(this.plugin);
-		new RobotArmor(this.plugin,this.invisibleItems,Items.CORPORATION_ROBOT_HELMET,SECURITY_ROBOT_DROP,new ItemStack[] {
-		        null, null, null, null,Items.ROBOT_HEAD, null, null, null, null
-		},new PotionEffect[] {}).register(this.plugin);
-		new RobotArmor(this.plugin,this.invisibleItems,Items.CORPORATION_ROBOT_CHESTPLATE,SECURITY_ROBOT_DROP,new ItemStack[] {
-		        null, null, null, null,Items.ROBOT_HEAD, null, null, null, null
-		},new PotionEffect[] {}).register(this.plugin);
-		new RobotArmor(this.plugin,this.invisibleItems,Items.CORPORATION_ROBOT_LEGGINGS,SECURITY_ROBOT_DROP,new ItemStack[] {
-		        null, null, null, null,Items.ROBOT_HEAD, null, null, null, null
-		},new PotionEffect[] {}).register(this.plugin);
-		new RobotArmor(this.plugin,this.invisibleItems,Items.CORPORATION_ROBOT_BOOTS,SECURITY_ROBOT_DROP,new ItemStack[] {
-		        null, null, null, null,Items.ROBOT_HEAD, null, null, null, null
-		},new PotionEffect[] {}).register(this.plugin);
+		
+		new RobotArmorSet(this.plugin,this.group,new SlimefunItemStack[] {
+				Items.CORPORATION_ROBOT_HELMET,
+				Items.CORPORATION_ROBOT_CHESTPLATE,
+				Items.CORPORATION_ROBOT_LEGGINGS,
+				Items.CORPORATION_ROBOT_BOOTS
+		},SECURITY_ROBOT_DROP);
 		
 		MysteriousTraderSummoner NMYSTERIOUS_TRADER_SUMMONER = new MysteriousTraderSummoner(this.group,Items.MYSTERIOUS_TRADER_SUMMONER,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 				null,SlimefunItems.ANDROID_MEMORY_CORE,null,

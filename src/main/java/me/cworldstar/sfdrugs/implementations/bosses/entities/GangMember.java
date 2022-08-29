@@ -17,6 +17,7 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.LlamaSpit;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.entity.Zombie;
@@ -39,10 +40,9 @@ import net.md_5.bungee.api.ChatColor;
 public class GangMember {
 	public GangMember(SFDrugs plugin,Zombie z) {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&c&l&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r"));
-		z.setMaxHealth(1200.0);
+		z.setMaxHealth(750.0);
+		z.setHealth(750.0);
 		z.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,999999,5));
-		z.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,999999,0));	
-		z.setAbsorptionAmount(300.0);
 		z.setLootTable(new CorporationEnemyLootTable(plugin));
 		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&c&l&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r"),BarColor.RED, BarStyle.SEGMENTED_12);
 		EnemyBossBar.setVisible(true);
@@ -138,20 +138,19 @@ public class GangMember {
 						case 2:
 							new Speak(z,z.getNearbyEntities(15.0, 15.0, 15.0),"&c&l[&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r&c&l]:&r &cJust die!");
 							for(int i=0;i<4;i++) {
-								Snowball LaserProjectile = z.launchProjectile(Snowball.class);
-								LaserProjectile.setItem(new ItemStack(Material.SKELETON_SKULL));
-								Vector source = z.getLocation().getDirection().normalize().multiply(5);
+								LlamaSpit LaserProjectile = z.launchProjectile(LlamaSpit.class);
+								Vector source = z.getLocation().getDirection().normalize().multiply(10);
 								Vector v = z.getTarget().getLocation().toVector().subtract(source);
 								BukkitTask LaserProjectileVelocityTask = new BukkitRunnable() {
 									@Override
 									public void run() {
 										LaserProjectile.setVelocity(v);
-										LaserProjectile.getWorld().spawnParticle(Particle.VILLAGER_ANGRY,LaserProjectile.getLocation(),4);
+										LaserProjectile.getWorld().spawnParticle(Particle.DRAGON_BREATH,LaserProjectile.getLocation(),2);
 										if(LaserProjectile.isDead()) {
 											this.cancel();
 										}
 									}
-								}.runTaskTimer(plugin, 0L, 5L);
+								}.runTaskTimer(plugin, 0L, 1L);
 								new BukkitRunnable() {
 									@Override
 									public void run() {

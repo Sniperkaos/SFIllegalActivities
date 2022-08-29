@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.material.MaterialData;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
@@ -138,7 +139,7 @@ public class Items {
 	public static final SlimefunItemStack CORPORATE_TRADING_TERMINAL = new SlimefunItemStack("SFDRUGS_CORPORATION_TRADING_TERMINAL",CORPORATE_HEAD,"&7Corporation Trading Terminal","",LoreBuilder.powerPerSecond(1280),"",LoreBuilder.radioactive(Radioactivity.MODERATE),LoreBuilder.HAZMAT_SUIT_REQUIRED,"",LoreBuilder.RIGHT_CLICK_TO_OPEN);
 	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from re&5&ka&r&5l &5&kdark&r &5m&5&katt&r&5er!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
 	public static final MachineRecipeType CORPORATION_TRADE = new MachineRecipeType("CORPORATION_TRADER",Items.CORPORATE_GROUP);
-
+	public static final SlimefunItemStack ELECTRIC_SHEARS = new SlimefunItemStack("SFDRUGS_ELECTRIC_SHEARS",Material.SHEARS,"&7Electric Shears","",LoreBuilder.powerCharged(0, 1280),"",LoreBuilder.radioactive(Radioactivity.LOW));
 	
 	public static final SlimefunItemStack MYSTEROUS_TRADER = new SlimefunItemStack("MYSTERIOUS_TRADER_GROUJP",MYSTEROUS_TRADER_HEAD,"&cMysterious Trader");
 	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Boss Drops");;
@@ -171,7 +172,7 @@ public class Items {
 		CORPORATION_LASER_SWORD_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
 		
 		CORPORATION_LASER_SWORD.setItemMeta(CORPORATION_LASER_SWORD_META);
-		
+	
 		ItemMeta ROBOT_HELMET_META = CORPORATION_ROBOT_HELMET.getItemMeta();
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",9,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
@@ -278,6 +279,10 @@ public class Items {
 		RecipeType HOOKER_TRADE = new RecipeType(new NamespacedKey(this.plugin,"HOOKER_TRADER"),Items.HOOKER_GROUP);
 		RecipeType MYSTERIOUS_TRADER = new RecipeType(new NamespacedKey(this.plugin,"MYSTERIOUS_TRADER"),Items.MYSTEROUS_TRADER);
 		RecipeType SECURITY_ROBOT_DROP = new RecipeType(new NamespacedKey(this.plugin,"SECURITY_ROBOT_DROP"),Items.ROBOT_HEAD);
+		
+		new SlimefunItem(this.group,Items.ELECTRIC_SHEARS,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
+				new ItemStack(Material.SHEARS),new CustomItemStack(SlimefunItems.BATTERY)
+		}).register(this.plugin);
 		
 		new SlimefunItem(this.group,Items.DRUG_HELMET_BLUEPRINT,MYSTERIOUS_TRADER,new ItemStack[] {
 				new CustomItemStack(Items.MONEY,22)

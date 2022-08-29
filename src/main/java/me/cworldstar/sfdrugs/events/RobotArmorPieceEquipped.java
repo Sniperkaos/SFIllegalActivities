@@ -30,7 +30,7 @@ public class RobotArmorPieceEquipped implements Listener {
 		this.plugin.getLogger().log(Level.INFO,e.toString());
 		this.plugin.getLogger().log(Level.INFO, "==================");
 		Player p = e.getPlayer();
-		if(e.getNewArmorPiece() != null & RobotArmorSet.WearingMostArmorSet(p) & e.getNewArmorPiece().getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
+		if(e.getNewArmorPiece() != null & e.getNewArmorPiece().getItemMeta() != null & RobotArmorSet.WearingMostArmorSet(p) & e.getNewArmorPiece().getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
 			p.getWorld().playEffect(p.getLocation(), Effect.ENDERDRAGON_GROWL,1);
 			p.getWorld().spawnParticle(Particle.EXPLOSION_HUGE,p.getLocation(),1);
 			for(PotionEffect potion : p.getActivePotionEffects()) {
@@ -47,7 +47,7 @@ public class RobotArmorPieceEquipped implements Listener {
 						} else {
 							RobotArmorSet.applyRobotArmorSetEffects(p);
 							p.getWorld().spawnParticle(Particle.PORTAL, p.getLocation(), 30, 0.2, 0.2, 0.2);
-							ParticleUtils.SpawnInCircleWithOffset(p.getLocation().add(0.0, 1, 0.0), Particle.SOUL_FIRE_FLAME, 0.5, 30, 2,1);
+							ParticleUtils.SpawnInCircleWithOffset(p.getLocation().add(0.0, 1, 0.0), Particle.SOUL_FIRE_FLAME, 0.6, 4,1,1);
 						}
 					}
 					

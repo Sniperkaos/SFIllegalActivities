@@ -5,8 +5,10 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.attribute.AttributeModifier;
@@ -71,9 +73,9 @@ public class Items {
 	
 	// Tools and the like
 	
-	public static final SlimefunItemStack DRUG_PICKAXE = new SlimefunItemStack("SFDRUGS_DRUG_PICKAXE",Material.NETHERITE_PICKAXE,"&a&l&k|||&r &7&lCorporate Mining Drill&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7 - Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack DRUG_SHOVEL = new SlimefunItemStack("SFDRUGS_DRUG_SHOVEL",Material.NETHERITE_SHOVEL,"&a&l&k|||&r &7&lCorporate Ground Smasher&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7 - Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack DRUG_AXE = new SlimefunItemStack("SFDRUGS_DRUG_AXE",Material.NETHERITE_AXE,"&a&l&k|||&r &7&lCorporate Chainsaw&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7 - Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack DRUG_PICKAXE = new SlimefunItemStack("SFDRUGS_DRUG_PICKAXE",Material.NETHERITE_PICKAXE,"&a&l&k|||&r &7&lCorporate Mining Drill&r &a&l&k|||&r","&7Efficiency XV","&7Fortune XV","&7Unbreaking XX","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack DRUG_SHOVEL = new SlimefunItemStack("SFDRUGS_DRUG_SHOVEL",Material.NETHERITE_SHOVEL,"&a&l&k|||&r &7&lCorporate Ground Smasher&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack DRUG_AXE = new SlimefunItemStack("SFDRUGS_DRUG_AXE",Material.NETHERITE_AXE,"&a&l&k|||&r &7&lCorporate Chainsaw&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 
 	public static final SlimefunItemStack HOE = new SlimefunItemStack("SFDRUGS_HOE",Material.WOODEN_HOE,"&dSmall Town Hoe", "","&d&lSPAWNER");
 	public static final SlimefunItemStack MYSTERIOUS_TRADER_SUMMONER  = new SlimefunItemStack("SFDRUGS_MYSTERIOUS_TRADER_SUMMONER",Material.CRYING_OBSIDIAN,"&cMysterious Trader's Callsign","",LoreBuilder.RIGHT_CLICK_TO_USE);
@@ -137,23 +139,44 @@ public class Items {
 		DRUG_LEGGINGS.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
 		DRUG_BATON.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
 		
-		GAY_PANTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR_TOUGHNESS",3,Operation.ADD_NUMBER));
-		GAY_PANTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR",6,Operation.ADD_NUMBER));
-		GAY_PANTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("SFDRUGS_GAY_PANTS_MAX_HEALTH",2,Operation.ADD_NUMBER));
+		DRUG_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
+		DRUG_HELMET.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
+		DRUG_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
+		DRUG_LEGGINGS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
 		
 		
-		DRUG_CHESTPLATE.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_HELMET.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_BOOTS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-		DRUG_LEGGINGS.getItemMeta().addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
-
-		((LeatherArmorMeta) GAY_PANTS.getItemMeta()).setColor(Color.RED);
+		ItemMeta DRUG_CHESTPLATE_META = DRUG_CHESTPLATE.getItemMeta();
+		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_CHESTPLATE.setItemMeta(DRUG_CHESTPLATE_META);
+		ItemMeta DRUG_HELMET_META = DRUG_HELMET.getItemMeta();
+		DRUG_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_HELMET.setItemMeta(DRUG_CHESTPLATE_META);
+		ItemMeta DRUG_BOOTS_META = DRUG_BOOTS.getItemMeta();
+		DRUG_BOOTS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_BOOTS.setItemMeta(DRUG_CHESTPLATE_META);
+		ItemMeta DRUG_LEGGINGS_META = DRUG_LEGGINGS.getItemMeta();
+		DRUG_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER));
+		DRUG_LEGGINGS.setItemMeta(DRUG_CHESTPLATE_META);
+		
+		LeatherArmorMeta NewGStringItemMeta = (LeatherArmorMeta) GAY_PANTS.getItemMeta();
+		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR_TOUGHNESS",3,Operation.ADD_NUMBER));
+		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier("SFDRUGS_GAY_PANTS_ARMOR",6,Operation.ADD_NUMBER));
+		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier("SFDRUGS_GAY_PANTS_MAX_HEALTH",2,Operation.ADD_NUMBER));
+		NewGStringItemMeta.setColor(Color.RED);
+		GAY_PANTS.setItemMeta(NewGStringItemMeta);
+		
+		
 		GAY_PANTS.addUnsafeEnchantment(Enchantment.VANISHING_CURSE,10);
 		GAY_PANTS.addUnsafeEnchantment(Enchantment.DURABILITY,10);
 		GAY_PANTS.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL,10);
-		DRUG_PICKAXE.addUnsafeEnchantment(Enchantment.DIG_SPEED, 10);
-		DRUG_PICKAXE.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 10);
-		DRUG_PICKAXE.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+		DRUG_PICKAXE.addUnsafeEnchantment(Enchantment.DIG_SPEED, 15);
+		DRUG_PICKAXE.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 15);
+		DRUG_PICKAXE.addUnsafeEnchantment(Enchantment.DURABILITY, 20);
+		ItemMeta NewPickaxeItemMeta = DRUG_PICKAXE.getItemMeta();
+		NewPickaxeItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		DRUG_PICKAXE.setItemMeta(NewPickaxeItemMeta);
+		
 		DRUG_SHOVEL.addUnsafeEnchantment(Enchantment.DIG_SPEED, 10);
 		DRUG_SHOVEL.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
 		DRUG_AXE.addUnsafeEnchantment(Enchantment.DIG_SPEED, 10);

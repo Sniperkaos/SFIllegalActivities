@@ -29,13 +29,13 @@ public class DrugBaton extends SimpleSlimefunItem<WeaponUseHandler> implements R
 	public WeaponUseHandler getItemHandler() {
 		return (e,p,i) -> {
 			if(e.getFinalDamage() > 0 & this.getItemCharge(i) > 0) {
-				if(this.removeItemCharge(i, new Float(e.getDamage()/2))) {
-					e.setDamage(e.getFinalDamage() * 3);
+				if(this.removeItemCharge(i, new Float(e.getFinalDamage() * 2))) {
+					e.setDamage(e.getFinalDamage() * 4);
                     p.getWorld().spawnParticle(Particle.VILLAGER_HAPPY,e.getEntity().getLocation(),12);
 					p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ZOMBIE_VILLAGER_HURT, 0.5F, 1.0F);
 				} 
 			} else if(e.getFinalDamage() > 0){
-				e.setDamage(e.getFinalDamage()/3);
+				e.setDamage(e.getFinalDamage()/4);
 				new Speak(p,"&7Your baton has run out of power.");
 			}
 		

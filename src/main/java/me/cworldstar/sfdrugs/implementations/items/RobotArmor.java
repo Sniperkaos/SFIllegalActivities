@@ -19,11 +19,13 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DamageableItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectionType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectiveArmor;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import me.cworldstar.sfdrugs.utils.Speak;
 
-public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor, Rechargeable,DamageableItem  {
+public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Radioactive,Rechargeable,DamageableItem  {
 	public JavaPlugin plugin;
 
 	public RobotArmor(JavaPlugin plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
@@ -89,5 +91,11 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor, R
 	public boolean isDamageable() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Radioactivity getRadioactivity() {
+		// TODO Auto-generated method stub
+		return Radioactivity.VERY_DEADLY;
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -14,12 +15,14 @@ import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import me.cworldstar.sfdrugs.implementations.loot.CorporationEnemyLootTable;
 import me.cworldstar.sfdrugs.utils.Items;
@@ -30,8 +33,8 @@ public class CorporationEnemy {
 	public CorporationEnemy(JavaPlugin Plugin,Zombie z) {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&7&lCorporate Security Robot"));
 		z.setCanPickupItems(false);
-		z.setMaxHealth(500.0);
-		z.setHealth(500.0);
+		z.setMaxHealth(250.0);
+		z.setHealth(250.0);
 		z.setGlowing(true);
 		z.setLootTable(new CorporationEnemyLootTable(Plugin));
 		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&a&lCorporate Security Robot"),BarColor.WHITE, BarStyle.SEGMENTED_12,BarFlag.DARKEN_SKY,BarFlag.CREATE_FOG);
@@ -66,7 +69,7 @@ public class CorporationEnemy {
 							z.getTarget().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[ Corporate Security Robot ]:&r &7Target Confirmed."));
 							z.getWorld().playSound(z.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 1F, 0.5F);
 							z.getWorld().spawnParticle(Particle.DRAGON_BREATH, z.getLocation(),30, 6, 2, 6);
-							z.getWorld().createExplosion(z.getTarget().getLocation(), 3L, false,false);
+							z.getWorld().createExplosion(z.getTarget().getLocation().add(new Location(z.getWorld(),z.getTarget().getLocation().getX(),z.getTarget().getLocation().getY()+2,z.getTarget().getLocation().getZ())), 2L, false,false);
 							break;
 						case 2:
 							z.getTarget().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[ Corporate Security Robot ]:&r &7Damage Detected. Beginning self repair."));
@@ -77,13 +80,37 @@ public class CorporationEnemy {
 								public void run() {
 									// TODO Auto-generated method stub
 									z.setAI(true);
+									z.setInvulnerable(true);
 									z.getWorld().playSound(z.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1F, 0.5F);
 									z.getWorld().spawnParticle(Particle.EXPLOSION_HUGE, z.getLocation(),30, 6, 2, 6);
-									z.getWorld().createExplosion(z.getTarget().getLocation(), 10L, true,false);
+									z.getWorld().createExplosion(z.getLocation(), 8L, false,false);
+									z.setInvulnerable(false);
 								}
 								
 							}.runTaskLater(Plugin, 100L);
-
+							break;
+						case 3:
+							z.getTarget().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[ Corporate Security Robot ]:&r &7Enemy located. Subjugating..."));
+							Snowball LaserProjectile = z.launchProjectile(Snowball.class);
+							LaserProjectile.setItem(new ItemStack(Material.DIAMOND_SWORD));
+							Vector Direction = z.getTarget().getLocation().toVector().subtract(z.getLocation().toVector()).normalize();
+							new BukkitRunnable() {
+								@Override
+								public void run() {
+									LaserProjectile.setVelocity(Direction.multiply(8));
+									LaserProjectile.getWorld().spawnParticle(Particle.VILLAGER_ANGRY,LaserProjectile.getLocation(),4);
+									if(LaserProjectile.isDead()) {
+										this.cancel();
+									}
+								}
+							}.runTaskTimer(Plugin, 0L, 5L);
+							new BukkitRunnable() {
+								@Override
+								public void run() {
+									LaserProjectile.remove();
+								}
+							}.runTaskLater(Plugin, 100L); // Remove after 10 seconds
+							break;
 					}
 					
 

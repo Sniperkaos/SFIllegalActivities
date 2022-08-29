@@ -4,6 +4,7 @@ import org.bukkit.Axis;
 import org.bukkit.Effect;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -77,7 +78,7 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 			}
 		}
 	}
-	public void EntityDamaged(EntityDamageByEntityEvent e,Zombie p,ItemStack item, double dmg) {
+	public void EntityDamaged(EntityDamageByEntityEvent e,Mob p,ItemStack item, double dmg) {
 		if(dmg > 0 & this.getItemCharge(item) - new Float(dmg) > 0) {
 			if(this.removeItemCharge(item, new Float(dmg))) {
 				p.getWorld().playEffect(p.getLocation(), Effect.ELECTRIC_SPARK,Axis.Y);

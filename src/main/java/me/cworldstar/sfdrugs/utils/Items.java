@@ -106,11 +106,11 @@ public class Items {
 	// Unobtainable Armor
 	public static final ItemStack MYSTERIOUS_TRADER_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjJlMzdjNjM2ZmZjYzA1ZjUxOGFiOTdiZjcxMTFjNmQzY2E5NWM1MzAwYzUyZTU2MGMzZGMzNTYzNzZlZWJkYiJ9fX0=");
 	public static final ItemStack ROBOT_HELMET_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNhOWMyZmI3NTVmNzA4ZjdkYjJkZDI5MGFlYzRlYzlmMjM5ZDVlZTYyZGI1ZDQzNDRlYzdlODgyMTg3OGY4MiJ9fX0=");
-	public static final SlimefunItemStack CORPORATION_ROBOT_HELMET = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_HELMET",ROBOT_HELMET_HEAD,"&a&l&k|||&r &7&lCorporate Security Robot Head&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_ROBOT_CHESTPLATE = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Security Robot Chest&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_ROBOT_LEGGINGS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_LEGGINGS",Material.NETHERITE_LEGGINGS,"&a&l&k|||&r &7&lCorporate Security Robot Legs&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_ROBOT_BOOTS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_BOOTS",Material.NETHERITE_BOOTS,"&a&l&k|||&r &7&lCorporate Security Robot Feet&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_LASER_SWORD = new SlimefunItemStack("SFDRUGS_CORPORATION_LASER_SWORD",Material.GOLDEN_SWORD,"&a&l&k|||&r &7&lCorporate Laser Sword&r &a&l&k|||&r","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 2800),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_HELMET = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_HELMET",ROBOT_HELMET_HEAD,"&a&l&k|||&r &7&lCorporate Security Robot Head&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_CHESTPLATE = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Security Robot Chest&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_LEGGINGS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_LEGGINGS",Material.NETHERITE_LEGGINGS,"&a&l&k|||&r &7&lCorporate Security Robot Legs&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_ROBOT_BOOTS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_BOOTS",Material.NETHERITE_BOOTS,"&a&l&k|||&r &7&lCorporate Security Robot Feet&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_LASER_SWORD = new SlimefunItemStack("SFDRUGS_CORPORATION_LASER_SWORD",Material.GOLDEN_SWORD,"&a&l&k|||&r &7&lCorporate Laser Sword&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 2800),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	
 	
 	
@@ -129,10 +129,14 @@ public class Items {
 	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Security Robot Drop");;
 	static {
 		
-		CORPORATION_ROBOT_HELMET.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-		CORPORATION_ROBOT_CHESTPLATE.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-		CORPORATION_ROBOT_LEGGINGS.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-		CORPORATION_ROBOT_BOOTS.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+		CORPORATION_ROBOT_HELMET.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
+		CORPORATION_ROBOT_CHESTPLATE.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
+		CORPORATION_ROBOT_LEGGINGS.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
+		CORPORATION_ROBOT_BOOTS.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
+		CORPORATION_ROBOT_HELMET.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 100);
+		CORPORATION_ROBOT_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 100);
+		CORPORATION_ROBOT_LEGGINGS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 100);
+		CORPORATION_ROBOT_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 100);
 		CORPORATION_LASER_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
 
 		
@@ -170,10 +174,11 @@ public class Items {
 		CORPORATION_ROBOT_LEGGINGS.setItemMeta(ROBOT_LEGGINGS_META);
 		
 		ItemMeta ROBOT_BOOTS_META = CORPORATION_ROBOT_BOOTS.getItemMeta();
-		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",9,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
-		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
-		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
-		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_BOOTS_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",9,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_BOOTS_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_BOOTS_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_BOOTS_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_BOOTS_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
 		CORPORATION_ROBOT_BOOTS.setItemMeta(ROBOT_BOOTS_META);
 		
 		

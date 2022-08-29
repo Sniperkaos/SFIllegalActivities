@@ -2,6 +2,7 @@ package me.cworldstar.sfdrugs.implementations.bosses.entities;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -14,6 +15,7 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.entity.Zombie;
@@ -26,6 +28,7 @@ import org.bukkit.util.Vector;
 
 import me.cworldstar.sfdrugs.implementations.loot.CorporationEnemyLootTable;
 import me.cworldstar.sfdrugs.utils.Items;
+import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
 public class CorporationEnemy {
@@ -33,16 +36,14 @@ public class CorporationEnemy {
 	public CorporationEnemy(JavaPlugin Plugin,Zombie z) {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&7&lCorporate Security Robot"));
 		z.setCanPickupItems(false);
-		z.setMaxHealth(250.0);
-		z.setHealth(250.0);
-		z.setGlowing(true);
+		z.setMaxHealth(300.0);
+		z.setHealth(300.0);
+		z.setAbsorptionAmount(200);
 		z.setLootTable(new CorporationEnemyLootTable(Plugin));
 		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&a&lCorporate Security Robot"),BarColor.WHITE, BarStyle.SEGMENTED_12,BarFlag.DARKEN_SKY,BarFlag.CREATE_FOG);
 		EnemyBossBar.setVisible(true);
 		EnemyBossBar.setProgress(1.0);
-		for(Player player : z.getWorld().getPlayers()) {
-			EnemyBossBar.addPlayer(player);
-		}
+		List<Player> Players = new ArrayList<Player>();
 		new BukkitRunnable() {
 			@Override
 			public void run() {
@@ -52,6 +53,19 @@ public class CorporationEnemy {
 				} else {
 					double Health = Double.parseDouble(new DecimalFormat("#.###").format(z.getHealth() / z.getMaxHealth()));
 					EnemyBossBar.setProgress(Health);
+					for(Entity e : z.getNearbyEntities(20.0, 20.0, 20.0)) {
+						if (e instanceof Player) {
+							if(!Players.contains((Player) e)) {
+								Players.add((Player) e);
+								EnemyBossBar.addPlayer((Player) e);
+							}
+						}
+					}
+					for(Player p : EnemyBossBar.getPlayers()) {
+						if(!Players.contains(p)) {
+							EnemyBossBar.removePlayer(p);
+						}
+					}
 				}
 			}
 		}.runTaskTimer(Plugin, 0L, 20L);
@@ -66,13 +80,13 @@ public class CorporationEnemy {
 						case 0:
 							break;
 						case 1:
-							z.getTarget().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[ Corporate Security Robot ]:&r &7Target Confirmed."));
+							new Speak(z,z.getNearbyEntities(10.0, 10.0, 10.0),"&7&l[ Corporate Security Robot ]:&r &7Target Confirmed.");
 							z.getWorld().playSound(z.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_CHIME, 1F, 0.5F);
 							z.getWorld().spawnParticle(Particle.DRAGON_BREATH, z.getLocation(),30, 6, 2, 6);
 							z.getWorld().createExplosion(z.getTarget().getLocation().add(new Location(z.getWorld(),z.getTarget().getLocation().getX(),z.getTarget().getLocation().getY()+2,z.getTarget().getLocation().getZ())), 2L, false,false);
 							break;
 						case 2:
-							z.getTarget().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[ Corporate Security Robot ]:&r &7Damage Detected. Beginning self repair."));
+							new Speak(z,z.getNearbyEntities(10.0, 10.0, 10.0),"&7&l[ Corporate Security Robot ]:&r &7Damage Detected. Beginning self repair.");
 							z.setAI(false);
 							z.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION,100,2));
 							new BukkitRunnable() {
@@ -90,7 +104,7 @@ public class CorporationEnemy {
 							}.runTaskLater(Plugin, 100L);
 							break;
 						case 3:
-							z.getTarget().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l[ Corporate Security Robot ]:&r &7Enemy located. Subjugating..."));
+							new Speak(z,z.getNearbyEntities(10.0, 10.0, 10.0),"&7&l[ Corporate Security Robot ]:&r &7Enemy located. Subjugating...");
 							Snowball LaserProjectile = z.launchProjectile(Snowball.class);
 							LaserProjectile.setItem(new ItemStack(Material.DIAMOND_SWORD));
 							Vector Direction = z.getTarget().getLocation().toVector().subtract(z.getLocation().toVector()).normalize();

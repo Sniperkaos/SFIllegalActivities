@@ -1,5 +1,6 @@
 package me.cworldstar.sfdrugs;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,10 +12,13 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.cworldstar.sfdrugs.events.CorporationTraderEvent;
 import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
 import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
+import me.cworldstar.sfdrugs.events.LaserProjectileHit;
 import me.cworldstar.sfdrugs.events.MysteriousTraderEvent;
 import me.cworldstar.sfdrugs.events.RobotArmorDamaged;
+import me.cworldstar.sfdrugs.events.RobotArmorPieceEquipped;
 import me.cworldstar.sfdrugs.events.SFHookerEvent;
 import me.cworldstar.sfdrugs.implementations.commands.TestCorporationEnemy;
+import me.cworldstar.sfdrugs.implementations.events.ArmorListener;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.cworldstar.sfdrugs.utils.Trading;
 
@@ -33,7 +37,10 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     	CorporationTraderEvent TraderEvent = new CorporationTraderEvent(this,TradingRegistry);
     	MysteriousTraderEvent TraderEvent2 = new MysteriousTraderEvent(this,TradingRegistry);
     	RobotArmorDamaged RobotArmorEvent = new RobotArmorDamaged(this);
+    	RobotArmorPieceEquipped RobotArmorPieceEquipped = new RobotArmorPieceEquipped(this);
+    	LaserProjectileHit LaserProjectileHitEvent = new LaserProjectileHit(this);
     	TestCorporationEnemy Command = new TestCorporationEnemy(this);
+		getServer().getPluginManager().registerEvents(new ArmorListener(new ArrayList<String>()), this);
     	this.getCommand("test").setExecutor(Command);
     	Logger x = getLogger();
     	x.log(Level.INFO, "============================================");

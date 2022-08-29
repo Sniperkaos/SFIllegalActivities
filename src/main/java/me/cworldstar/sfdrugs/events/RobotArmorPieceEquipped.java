@@ -1,5 +1,7 @@
 package me.cworldstar.sfdrugs.events;
 
+import java.util.logging.Level;
+
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +19,10 @@ public class RobotArmorPieceEquipped implements Listener {
 	}
 	@EventHandler
 	public void onEntityEquip(ArmorEquipEvent e) {
+		this.plugin.getLogger().log(Level.INFO, "==================");
+		this.plugin.getLogger().log(Level.INFO, "=Armor Equip Event=");
+		this.plugin.getLogger().log(Level.INFO,e.toString());
+		this.plugin.getLogger().log(Level.INFO, "==================");
 		Player p = e.getPlayer();
 		if(RobotArmorSet.WearingFullArmorSet(p)) {
 			new BukkitRunnable() {

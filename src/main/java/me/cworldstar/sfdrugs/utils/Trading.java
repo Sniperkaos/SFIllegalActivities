@@ -25,7 +25,7 @@ public class Trading {
 		Trader.RegisterTradingRecipe(BatonBlueprintRecipe);
 		TradingRecipe ShovelBlueprintRecipe = new TradingRecipe(Items.MONEY,24,Items.SHOVEL_BLUEPRINT,1);
 		Trader.RegisterTradingRecipe(ShovelBlueprintRecipe);
-		TradingRecipe AxeBlueprintRecipe = new TradingRecipe(Items.MONEY,30,Items.AXE_BLUEPRINT,1);
+		TradingRecipe AxeBlueprintRecipe = new TradingRecipe(Items.MONEY,32,Items.AXE_BLUEPRINT,1);
 		Trader.RegisterTradingRecipe(AxeBlueprintRecipe);
 		TradingRecipe PickaxeBlueprintRecipe = new TradingRecipe(Items.MONEY,42,Items.PICKAXE_BLUEPRINT,1);
 		Trader.RegisterTradingRecipe(PickaxeBlueprintRecipe);

@@ -23,3 +23,9 @@ api-version: 1.19
 ## This is required and marks Slimefun as a plugin dependency.
 depend:
 - Slimefun
+
+commands:
+   test:
+      description: Test boss fights.
+      usage: /<command>
+      permission: sfdrugs.dev.test

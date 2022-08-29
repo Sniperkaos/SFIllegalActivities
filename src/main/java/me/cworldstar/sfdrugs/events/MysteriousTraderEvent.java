@@ -63,7 +63,7 @@ public class MysteriousTraderEvent implements Listener {
         		if(T != null) {
         			I.getItemInMainHand().setAmount(0);
             		I.addItem(T.getFor());
-            		if(new Random().nextInt(10) == 1) {
+            		if(new Random().nextInt(4) == 1) {
             			Speak(p,"&c&l[ Mysterious Trader ]: &r&cOh no... They found us.. Run!");
             			p.getWorld().playEffect(event.getRightClicked().getLocation(), Effect.ENDERDRAGON_GROWL, 1);
             			p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,40,100));

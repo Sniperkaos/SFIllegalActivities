@@ -49,7 +49,7 @@ public class CorporationTraderEvent implements Listener {
         	PlayerInventory I = p.getInventory();
         	if(I.getItemInMainHand() != null & CorporationTrader.ItemIsRecipe(I.getItemInMainHand(),I.getItemInMainHand().getAmount()) == true) {
         		Speak(p,"&7&l[ Corporation Trader ]: &r&7Pleasure doing business with you.");
-        		TradingRecipe T = HookerZombie.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
+        		TradingRecipe T = CorporationTrader.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
         		if(T != null) {
         			I.getItemInMainHand().setAmount(0);
             		I.addItem(T.getFor());

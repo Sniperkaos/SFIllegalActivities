@@ -3,6 +3,8 @@ package me.cworldstar.sfdrugs;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
@@ -11,6 +13,7 @@ import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
 import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
 import me.cworldstar.sfdrugs.events.MysteriousTraderEvent;
 import me.cworldstar.sfdrugs.events.SFHookerEvent;
+import me.cworldstar.sfdrugs.implementations.commands.TestCorporationEnemy;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.cworldstar.sfdrugs.utils.Trading;
 
@@ -28,6 +31,9 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     	SFHookerEvent HookerEvent = new SFHookerEvent(this,TradingRegistry);
     	CorporationTraderEvent TraderEvent = new CorporationTraderEvent(this,TradingRegistry);
     	MysteriousTraderEvent TraderEvent2 = new MysteriousTraderEvent(this,TradingRegistry);
+    	CommandMap SFDrugsCommands = new SimpleCommandMap(this.getServer());
+    	TestCorporationEnemy Command = new TestCorporationEnemy(this,"test");
+    	Command.register(SFDrugsCommands);
     	Logger x = getLogger();
     	x.log(Level.INFO, "============================================");
     	x.log(Level.INFO, "====                                     ===");

@@ -14,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -57,13 +59,14 @@ public class MysteriousTraderEvent implements Listener {
             }.runTaskLater(plugin, 20L);
         	PlayerInventory I = p.getInventory();
         	if(I.getItemInMainHand() != null & MysteriousTrader.ItemIsRecipe(I.getItemInMainHand(),I.getItemInMainHand().getAmount()) == true) {
-        		TradingRecipe T = HookerZombie.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
+        		TradingRecipe T = MysteriousTrader.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
         		if(T != null) {
         			I.getItemInMainHand().setAmount(0);
             		I.addItem(T.getFor());
             		if(new Random().nextInt(10) == 1) {
             			Speak(p,"&c&l[ Mysterious Trader ]: &r&cOh no... They found us.. Run!");
             			p.getWorld().playEffect(event.getRightClicked().getLocation(), Effect.ENDERDRAGON_GROWL, 1);
+            			p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS,40,100));
             			event.getRightClicked().remove();
             			new CorporationMobZone(this.plugin,p.getWorld(),p.getLocation());
             		} else {

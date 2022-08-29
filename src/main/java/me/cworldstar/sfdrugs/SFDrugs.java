@@ -12,6 +12,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.cworldstar.sfdrugs.events.CorporationTraderEvent;
 import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
 import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
+import me.cworldstar.sfdrugs.events.GangMemberSpawnEvent;
 import me.cworldstar.sfdrugs.events.LaserProjectileHit;
 import me.cworldstar.sfdrugs.events.MysteriousTraderEvent;
 import me.cworldstar.sfdrugs.events.RobotArmorDamaged;
@@ -47,6 +48,7 @@ public class SFDrugs extends AbstractAddon implements SlimefunAddon {
     	RobotArmorDamaged RobotArmorEvent = new RobotArmorDamaged(this);
     	RobotArmorPieceEquipped RobotArmorPieceEquipped = new RobotArmorPieceEquipped(this);
     	LaserProjectileHit LaserProjectileHitEvent = new LaserProjectileHit(this);
+    	GangMemberSpawnEvent GangMemberSpawn = new GangMemberSpawnEvent(this);
     	TestCorporationEnemy Command = new TestCorporationEnemy(this);
     	this.getCommand("test").setExecutor(Command);
     	Logger x = getLogger();

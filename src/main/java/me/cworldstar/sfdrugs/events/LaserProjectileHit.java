@@ -1,10 +1,10 @@
 package me.cworldstar.sfdrugs.events;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
-import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.dot.Decay;
@@ -17,9 +17,7 @@ public class LaserProjectileHit implements Listener {
     }
 	@EventHandler
 	private void onProjectileHit(EntityDamageByEntityEvent e) {
-        if(e.getDamager() instanceof Projectile & e.getDamager() instanceof Snowball) {
-            Snowball projectile = (Snowball) e.getDamager();
-            e.getEntity().getWorld().createExplosion(projectile.getLocation(), 4F);
+        if(e.getDamager() instanceof Projectile & e.getDamager().hasMetadata("SFDRUGS_IS_LASER_PROJECTILE")) {
             if(e.getEntity() instanceof LivingEntity) {
             	LivingEntity Entity = (LivingEntity) e.getEntity();
             	Entity.damage(10, e.getDamager());
@@ -27,4 +25,11 @@ public class LaserProjectileHit implements Listener {
             }
         }
 	}
+    @EventHandler
+    public void onProjectileHitBlock(ProjectileHitEvent e) {
+        if (e.getEntity().hasMetadata("SFDRUGS_IS_LASER_PROJECTILE")) {
+            e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 4F, true, false);
+            e.getEntity().remove();
+        }
+    }
 }

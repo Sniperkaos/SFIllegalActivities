@@ -23,13 +23,12 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.ProtectiveArmor;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
-import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import me.cworldstar.sfdrugs.SFDrugs;
-public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Radioactive,Rechargeable,DamageableItem  {
+public class RobotArmor extends CustomArmorPiece implements ProtectiveArmor,Radioactive,Rechargeable,DamageableItem  {
 	public SFDrugs plugin;
 	public RobotArmor(SFDrugs plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
 			ItemStack[] recipe, PotionEffect[] effects) {
-		super(itemGroup, item, recipeType, recipe, effects);
+		super(plugin,itemGroup, item, recipeType, recipe, effects);
 		this.plugin = plugin;
 	}
 
@@ -79,7 +78,7 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 					public void run() {
 						p.removeMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR", plugin);
 					}
-				}.runTaskLater(this.plugin, 1L);
+				}.runTaskLater(this.plugin, 20L);
 			}
 		}
 	}
@@ -95,7 +94,7 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 					public void run() {
 						p.removeMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR", plugin);
 					}
-				}.runTaskLater(this.plugin, 1L);
+				}.runTaskLater(this.plugin, 20L);
 
 			}
 		}

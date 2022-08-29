@@ -16,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
 import me.cworldstar.sfdrugs.implementations.items.RobotArmor;
+import me.cworldstar.sfdrugs.implementations.items.RobotArmorSet;
 
 public class RobotArmorDamaged implements Listener {
 	private SFDrugs plugin;
@@ -43,16 +44,12 @@ public class RobotArmorDamaged implements Listener {
     }
     private void HandlePlayer(EntityDamageByEntityEvent e,Player p) {
     	if(p.getEquipment().getChestplate() != null) {
-			ItemStack item = p.getInventory().getChestplate();
-			if (SlimefunItem.getByItem(item) != null) {
-				if(item.getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
-					RobotArmor T = (RobotArmor) SlimefunItem.getByItem(item);
-					T.PlayerDamaged(e,p,item,new Double(e.getFinalDamage() * 10));
-					 for(Entity enemies : p.getNearbyEntities(3.0, 3.0, 3.0)) {
-						 if(enemies instanceof LivingEntity) {
-							 enemies.getWorld().playEffect(enemies.getLocation(), Effect.BONE_MEAL_USE, 12);
-							 ((LivingEntity) enemies).damage(new Double(e.getDamage() / 2),p);
-						 }
+			if (RobotArmorSet.WearingMostArmorSet(p)) {
+				RobotArmorSet.RemoveSetItemCharge(RobotArmorSet.ToRobotArmor(p.getInventory().getArmorContents()),e.getDamage(),e);
+				for(Entity enemies : p.getNearbyEntities(3.0, 3.0, 3.0)) {
+					if(enemies instanceof LivingEntity) {
+						enemies.getWorld().playEffect(enemies.getLocation(), Effect.BONE_MEAL_USE, 12);
+						((LivingEntity) enemies).damage(new Double(e.getDamage() / 2),p);
 					 }
 				}
 			}

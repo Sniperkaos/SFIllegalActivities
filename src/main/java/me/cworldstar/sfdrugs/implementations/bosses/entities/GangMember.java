@@ -135,11 +135,18 @@ public class GangMember {
 							z.setInvulnerable(true);
 							z.getWorld().createExplosion(z.getLocation(), 3,true,false);
 							z.setInvulnerable(false);
+							for(Entity entities : z.getNearbyEntities(3, 3, 3)) {
+								z.swingMainHand();
+								z.getTarget().setVelocity(z.getTarget().getLocation().toVector().normalize().multiply(-1).multiply(20));
+								if(entities instanceof LivingEntity) {
+									((LivingEntity) entities).damage(new Random().nextDouble() * 20,z);
+								}
+							}
 						case 2:
 							new Speak(z,z.getNearbyEntities(15.0, 15.0, 15.0),"&c&l[&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r&c&l]:&r &cJust die!");
 							for(int i=0;i<4;i++) {
 								LlamaSpit LaserProjectile = z.launchProjectile(LlamaSpit.class);
-								Vector source = z.getLocation().getDirection().normalize().multiply(10);
+								Vector source = z.getLocation().getDirection().normalize().multiply(50);
 								Vector v = z.getTarget().getLocation().toVector().subtract(source);
 								BukkitTask LaserProjectileVelocityTask = new BukkitRunnable() {
 									@Override

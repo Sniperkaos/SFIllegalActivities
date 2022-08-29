@@ -37,9 +37,11 @@ import me.cworldstar.sfdrugs.implementations.CircuitFabricator;
 import me.cworldstar.sfdrugs.implementations.CorporationTradingTerminal;
 import me.cworldstar.sfdrugs.implementations.Dryer;
 import me.cworldstar.sfdrugs.implementations.MoneyPrinter;
+import me.cworldstar.sfdrugs.implementations.items.ArmorSet;
 import me.cworldstar.sfdrugs.implementations.items.Blueprint;
 import me.cworldstar.sfdrugs.implementations.items.DrugBaton;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
+import me.cworldstar.sfdrugs.implementations.items.Hook;
 import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
 import me.cworldstar.sfdrugs.implementations.items.LaserSword;
 import me.cworldstar.sfdrugs.implementations.items.MoneyStamp;
@@ -99,6 +101,50 @@ public class Items {
 	public static final SlimefunItemStack DRUG_PIPE = new SlimefunItemStack("SFDRUGS_DRUG_PIPE",Material.STICK,"&cDrug Pipe","","&c- Drag and drop a","&c- drug onto this item","&c- to take drugs without","&c- a side effect.");
 	
 	// Armor
+		public static final SlimefunItemStack GANGSTER_BOOTS = new SlimefunItemStack("SFDRUGS_GANGSTER_BOOTS",Material.LEATHER_BOOTS,"&cRed Wolves' Boots","",LoreBuilder.material("Woven Micro Sirthium Alloy"));
+	static {
+		LeatherArmorMeta BootsMeta = (LeatherArmorMeta) GANGSTER_BOOTS.getItemMeta();
+		BootsMeta.setColor(Color.RED);
+		BootsMeta.setUnbreakable(true);
+		BootsMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",7,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		BootsMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		BootsMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		BootsMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.FEET));
+		BootsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS,ItemFlag.HIDE_ATTRIBUTES);
+		GANGSTER_BOOTS.setItemMeta(BootsMeta);
+	}	
+	public static final SlimefunItemStack GANGSTER_LEGGINGS = new SlimefunItemStack("SFDRUGS_GANGSTER_LEGGINGS",Material.LEATHER_LEGGINGS,"&c Red Wolves' Jeans","",LoreBuilder.material("Woven Micro-Sirthium"));
+	
+	static {
+		LeatherArmorMeta LeggingsMeta = (LeatherArmorMeta) GANGSTER_LEGGINGS.getItemMeta();
+		LeggingsMeta.setColor(Color.RED);
+		LeggingsMeta.setUnbreakable(true);
+		LeggingsMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",10,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		LeggingsMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",8,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		LeggingsMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		LeggingsMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_DRUG_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		LeggingsMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS,ItemFlag.HIDE_ATTRIBUTES);
+		GANGSTER_LEGGINGS.setItemMeta(LeggingsMeta);
+	}
+
+	
+	public static final SlimefunItemStack GANGSTER_CHESTPLATE = new SlimefunItemStack("SFDRUGS_GANGSTER_BOOTS",Material.LEATHER_CHESTPLATE,"&cRed Wolves' Vest","",LoreBuilder.material("Woven Micro Sirthium Alloy"));
+	static {
+		GANGSTER_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10);
+		LeatherArmorMeta ChestplateMeta = (LeatherArmorMeta) GANGSTER_CHESTPLATE.getItemMeta();
+		ChestplateMeta.setColor(Color.RED);
+		ChestplateMeta.setAttributeModifiers(null);
+		ChestplateMeta.setUnbreakable(true);
+		ChestplateMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_GANGSTER_ARMOR",12,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ChestplateMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",8,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ChestplateMeta.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",4,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ChestplateMeta.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ChestplateMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
+		GANGSTER_CHESTPLATE.setItemMeta(ChestplateMeta);
+	}
+	
+	
+	
 	
 	public static final SlimefunItemStack DRUG_CHESTPLATE = new SlimefunItemStack("SFDRUGS_DRUG_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Hazmat Suit Top&r &a&l&k|||&r", "", LoreBuilder.material("Super-Compressed Carbon"), "",LoreBuilder.powerCharged(0, 1200), "", "&7Full Set Effects:","&e- Radiation immunity");
 	public static final SlimefunItemStack DRUG_HELMET = new SlimefunItemStack("SFDRUGS_DRUG_HELMET",Material.NETHERITE_HELMET,"&a&l&k|||&r &7&lCorporate Hazmat Gas Mask&r &a&l&k|||&r", "", LoreBuilder.material("Super-Compressed Carbon"), "",LoreBuilder.powerCharged(0, 1200), "", "&7Full Set Effects:","&e- Radiation immunity");
@@ -121,7 +167,7 @@ public class Items {
 	public static final SlimefunItemStack CORPORATION_ROBOT_CHESTPLATE = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_CHESTPLATE",Material.NETHERITE_CHESTPLATE,"&a&l&k|||&r &7&lCorporate Security Robot Chest&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	public static final SlimefunItemStack CORPORATION_ROBOT_LEGGINGS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_LEGGINGS",Material.NETHERITE_LEGGINGS,"&a&l&k|||&r &7&lCorporate Security Robot Legs&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	public static final SlimefunItemStack CORPORATION_ROBOT_BOOTS = new SlimefunItemStack("SFDRUGS_CORPORATION_ROBOT_BOOTS",Material.NETHERITE_BOOTS,"&a&l&k|||&r &7&lCorporate Security Robot Feet&r &a&l&k|||&r","&7Blast Protection C","&7Unbreaking C","",LoreBuilder.material("Sirthium-Infused Alloy"),LoreBuilder.powerCharged(0, 19000),"",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack CORPORATION_LASER_SWORD = new SlimefunItemStack("SFDRUGS_CORPORATION_LASER_SWORD",Material.GOLDEN_SWORD,"&a&l&k|||&r &7&lCorporate Laser Sword&r &a&l&k|||&r","&7Decay C","&7Unbreaking C","","&7 => This item is unusable when not charged.","",LoreBuilder.material("Dark Energy Projector"),LoreBuilder.powerCharged(0, 12800),"",LoreBuilder.radioactive(Radioactivity.MODERATE),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack CORPORATION_LASER_SWORD = new SlimefunItemStack("SFDRUGS_CORPORATION_LASER_SWORD",Material.STONE_SWORD,"&a&l&k|||&r &7&lCorporate Particle Sword&r &a&l&k|||&r","&7Decay C","&7Unbreaking C","","&7 => This item is unusable when not charged.","",LoreBuilder.material("Dark Energy Projector"),LoreBuilder.powerCharged(0, 12800),"",LoreBuilder.radioactive(Radioactivity.MODERATE),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	
 	
 	
@@ -137,7 +183,7 @@ public class Items {
 	public static final SlimefunItemStack HOOKER_GROUP = new SlimefunItemStack("HOOKER_GROUP",HOOKER_HEAD,"&dHooker Zombie");
 	public static final SlimefunItemStack CORPORATE_GROUP = new SlimefunItemStack("CORPORATE_GROUP",CORPORATE_HEAD,"&7Corporation Trading");
 	public static final SlimefunItemStack CORPORATE_TRADING_TERMINAL = new SlimefunItemStack("SFDRUGS_CORPORATION_TRADING_TERMINAL",CORPORATE_HEAD,"&7Corporation Trading Terminal","",LoreBuilder.powerPerSecond(1280),"",LoreBuilder.radioactive(Radioactivity.MODERATE),LoreBuilder.HAZMAT_SUIT_REQUIRED,"",LoreBuilder.RIGHT_CLICK_TO_OPEN);
-	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from re&5&ka&r&5l &5&kdark&r &5m&5&katt&r&5er!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
+	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from re&5&ka&r&5l &5&kdark&r &5m&5&katter&r!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
 	public static final MachineRecipeType CORPORATION_TRADE = new MachineRecipeType("CORPORATION_TRADER",Items.CORPORATE_GROUP);
 	public static final SlimefunItemStack ELECTRIC_SHEARS = new SlimefunItemStack("SFDRUGS_ELECTRIC_SHEARS",Material.SHEARS,"&7Electric Shears","",LoreBuilder.powerCharged(0, 1280),"",LoreBuilder.radioactive(Radioactivity.LOW));
 	
@@ -154,7 +200,7 @@ public class Items {
 		CORPORATION_ROBOT_LEGGINGS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 100);
 		CORPORATION_ROBOT_BOOTS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 100);
 		CORPORATION_LASER_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
-
+		CORPORATION_LASER_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
 		
 		DRUG_CHESTPLATE.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
 		DRUG_HELMET.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
@@ -168,7 +214,7 @@ public class Items {
 		DRUG_LEGGINGS.addUnsafeEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 10);
 		
 		ItemMeta CORPORATION_LASER_SWORD_META = CORPORATION_LASER_SWORD.getItemMeta();
-		CORPORATION_LASER_SWORD_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_LASER_SWORD",10,Operation.ADD_NUMBER,EquipmentSlot.HAND));
+		CORPORATION_LASER_SWORD_META.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_LASER_SWORD",18,Operation.ADD_NUMBER,EquipmentSlot.HAND));
 		CORPORATION_LASER_SWORD_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
 		
 		CORPORATION_LASER_SWORD.setItemMeta(CORPORATION_LASER_SWORD_META);
@@ -280,6 +326,20 @@ public class Items {
 		RecipeType MYSTERIOUS_TRADER = new RecipeType(new NamespacedKey(this.plugin,"MYSTERIOUS_TRADER"),Items.MYSTEROUS_TRADER);
 		RecipeType SECURITY_ROBOT_DROP = new RecipeType(new NamespacedKey(this.plugin,"SECURITY_ROBOT_DROP"),Items.ROBOT_HEAD);
 		
+		new ArmorSet(this.plugin,this.invisibleItems,new SlimefunItemStack[] {
+				Items.GANGSTER_CHESTPLATE,
+				Items.GANGSTER_LEGGINGS,
+				Items.GANGSTER_BOOTS
+		},SECURITY_ROBOT_DROP,new PotionEffect[] {
+				new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,60,1),
+				new PotionEffect(PotionEffectType.FIRE_RESISTANCE,60,0),
+				new PotionEffect(PotionEffectType.FAST_DIGGING,60,0),
+				new PotionEffect(PotionEffectType.INCREASE_DAMAGE,60,1),
+				new PotionEffect(PotionEffectType.SATURATION,60,0),
+				new PotionEffect(PotionEffectType.JUMP,60,1)
+		});
+		
+		new Hook(this.plugin,this.group,new SlimefunItemStack("SFDRUGS_GANGSTER_HOOK",Material.CHAIN,"&cRed Wolves' Hook & Chain","",LoreBuilder.RIGHT_CLICK_TO_USE),SECURITY_ROBOT_DROP,new ItemStack[] {}).register(this.plugin);
 		new SlimefunItem(this.group,Items.ELECTRIC_SHEARS,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 				new ItemStack(Material.SHEARS),new CustomItemStack(SlimefunItems.BATTERY)
 		}).register(this.plugin);

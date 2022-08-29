@@ -21,7 +21,7 @@ public class Drug extends SlimefunItem {
         addItemHandler(itemUseHandler);
 	}
     private void onItemUseRightClick(PlayerRightClickEvent event) {
-    	if(event.getPlayer().hasMetadata("SFDRUGS_PLAYER_IS_RIGHTCLICKING_HOOKER")) {
+    	if(event.getPlayer().hasMetadata("SFDRUGS_PLAYER_IS_RIGHTCLICKING_TRADER")) {
     		event.cancel();
     		return;
     	}

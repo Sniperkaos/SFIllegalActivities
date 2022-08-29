@@ -15,14 +15,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.cworldstar.sfdrugs.implementations.TradingRecipe;
+import me.cworldstar.sfdrugs.implementations.traders.CorporationTrader;
 import me.cworldstar.sfdrugs.implementations.traders.HookerZombie;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.cworldstar.sfdrugs.utils.Trading;
 import net.md_5.bungee.api.ChatColor;
 
-public class SFHookerEvent implements Listener {
+public class CorporationTraderEvent implements Listener {
 	private JavaPlugin plugin;
-    public SFHookerEvent(JavaPlugin plugin, Trading tradingRegistry) {
+    public CorporationTraderEvent(JavaPlugin plugin, Trading tradingRegistry) {
     	this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -34,10 +35,10 @@ public class SFHookerEvent implements Listener {
 	@EventHandler(priority = EventPriority.HIGH)
     private void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
     	Player p = event.getPlayer();
-    	if(!event.getRightClicked().hasMetadata("SFDRUGS_IS_HOOKER") & !(event.getHand() == EquipmentSlot.HAND)) {
+    	if(!event.getRightClicked().hasMetadata("SFDRUGS_IS_CORPORATION_TRADER") & !(event.getHand() == EquipmentSlot.HAND)) {
     		event.setCancelled(true);
     		return;
-    	} else if(event.getRightClicked().hasMetadata("SFDRUGS_IS_HOOKER")) {
+    	} else if(event.getRightClicked().hasMetadata("SFDRUGS_IS_CORPORATION_TRADER")) {
         	p.setMetadata("SFDRUGS_PLAYER_IS_RIGHTCLICKING_TRADER",new FixedMetadataValue(this.plugin,true));
             new BukkitRunnable() {
                 @Override
@@ -46,18 +47,19 @@ public class SFHookerEvent implements Listener {
                }
             }.runTaskLater(plugin, 20L);
         	PlayerInventory I = p.getInventory();
-        	if(I.getItemInMainHand() != null & HookerZombie.ItemIsRecipe(I.getItemInMainHand(),I.getItemInMainHand().getAmount()) == true) {
-        		Speak(p,"&d&l[ Hooker Zombie ]: &r&dOh here, take this.");
+        	if(I.getItemInMainHand() != null & CorporationTrader.ItemIsRecipe(I.getItemInMainHand(),I.getItemInMainHand().getAmount()) == true) {
+        		Speak(p,"&7&l[ Corporation Trader ]: &r&7Pleasure doing business with you.");
         		TradingRecipe T = HookerZombie.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
         		if(T != null) {
         			I.getItemInMainHand().setAmount(0);
             		I.addItem(T.getFor());
         		}
         	} else if(I.getItem(I.getHeldItemSlot()) != null) {
-    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dWhat makes you think I'd like that? Go away, loser.");
+    			Speak(p,"&7&l[ Corporation Trader ]: &r&7That item has no value to us.");
             } else {
-                Speak(p,"&d&l[ Hooker Zombie ]: &r&dWhat are you trying to do? Handshake me? What a weirdo.");
+                Speak(p,"&7&l[ Corporation Trader]: &r&7Can I help you with something?");
             }
     	}
+
     }
 }

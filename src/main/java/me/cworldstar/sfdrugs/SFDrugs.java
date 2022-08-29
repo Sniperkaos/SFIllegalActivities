@@ -28,6 +28,7 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         // Give your Category a unique id.
     	Items ItemRegistry = new Items(this);
+		getServer().getPluginManager().registerEvents(new ArmorListener(new ArrayList<String>()), this);
     	DrugSuitDamaged DamageEvent = new DrugSuitDamaged(this);
     	DrugSuitWearerDamaged DamageEvent2 = new DrugSuitWearerDamaged(this);
     	ItemRegistry.register();
@@ -40,7 +41,6 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     	RobotArmorPieceEquipped RobotArmorPieceEquipped = new RobotArmorPieceEquipped(this);
     	LaserProjectileHit LaserProjectileHitEvent = new LaserProjectileHit(this);
     	TestCorporationEnemy Command = new TestCorporationEnemy(this);
-		getServer().getPluginManager().registerEvents(new ArmorListener(new ArrayList<String>()), this);
     	this.getCommand("test").setExecutor(Command);
     	Logger x = getLogger();
     	x.log(Level.INFO, "============================================");

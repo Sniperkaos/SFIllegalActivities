@@ -45,7 +45,7 @@ public class RobotArmorDamaged implements Listener {
 			ItemStack item = p.getInventory().getChestplate();
 			if (SlimefunItem.getByItem(item) != null) {
 				if(item.getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
-					DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
+					RobotArmor T = (RobotArmor) SlimefunItem.getByItem(item);
 					T.PlayerDamaged(e,p,item,new Double(e.getFinalDamage() * 10));
 					 for(Entity enemies : p.getNearbyEntities(3.0, 3.0, 3.0)) {
 						 if(enemies instanceof LivingEntity) {
@@ -59,7 +59,7 @@ public class RobotArmorDamaged implements Listener {
     }
 	@EventHandler
 	private void onEntityDamage(EntityDamageByEntityEvent e) {
-		if (e.getEntity() instanceof Player || e.getEntity() instanceof Mob) {
+		if (!e.getEntity().hasMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR") & (e.getEntity() instanceof Player || e.getEntity() instanceof Mob)) {
 			if(e.getEntity() instanceof Player) {
 				Player p = (Player) e.getEntity(); 
 				this.HandlePlayer(e, p);

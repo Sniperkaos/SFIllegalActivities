@@ -8,11 +8,16 @@ import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.metadata.MetadataValueAdapter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -28,7 +33,6 @@ import me.cworldstar.sfdrugs.utils.Speak;
 
 public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Radioactive,Rechargeable,DamageableItem  {
 	public JavaPlugin plugin;
-
 	public RobotArmor(JavaPlugin plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
 			ItemStack[] recipe, PotionEffect[] effects) {
 		super(itemGroup, item, recipeType, recipe, effects);
@@ -75,6 +79,13 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 				p.getWorld().playEffect(p.getLocation(), Effect.ELECTRIC_SPARK,Axis.Y);
 				p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 0.4F, 0.5F);
 				e.setDamage(dmg / 4);
+				p.setMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR",new FixedMetadataValue(this.plugin,true));
+				new BukkitRunnable() {
+					@Override 
+					public void run() {
+						p.removeMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR", plugin);
+					}
+				}.runTaskLater(this.plugin, 1L);
 			}
 		}
 	}
@@ -84,6 +95,14 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 				p.getWorld().playEffect(p.getLocation(), Effect.ELECTRIC_SPARK,Axis.Y);
 				p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 0.4F, 0.5F);
 				e.setDamage(dmg / 4);
+				p.setMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR",new FixedMetadataValue(this.plugin,true));
+				new BukkitRunnable() {
+					@Override 
+					public void run() {
+						p.removeMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR", plugin);
+					}
+				}.runTaskLater(this.plugin, 1L);
+
 			}
 		}
 	}

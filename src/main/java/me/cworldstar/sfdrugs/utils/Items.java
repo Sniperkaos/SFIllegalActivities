@@ -157,6 +157,8 @@ public class Items {
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
+		ROBOT_HELMET_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
+
 		CORPORATION_ROBOT_HELMET.setItemMeta(ROBOT_HELMET_META);
 		
 		ItemMeta ROBOT_CHESTPLATE_META = CORPORATION_ROBOT_CHESTPLATE.getItemMeta();
@@ -164,6 +166,8 @@ public class Items {
 		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
 		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
 		ROBOT_CHESTPLATE_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.CHEST));
+		ROBOT_CHESTPLATE_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
+
 		CORPORATION_ROBOT_CHESTPLATE.setItemMeta(ROBOT_CHESTPLATE_META);
 		
 		ItemMeta ROBOT_LEGGINGS_META = CORPORATION_ROBOT_LEGGINGS.getItemMeta();
@@ -171,6 +175,8 @@ public class Items {
 		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
 		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
 		ROBOT_LEGGINGS_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.LEGS));
+		ROBOT_LEGGINGS_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
+
 		CORPORATION_ROBOT_LEGGINGS.setItemMeta(ROBOT_LEGGINGS_META);
 		
 		ItemMeta ROBOT_BOOTS_META = CORPORATION_ROBOT_BOOTS.getItemMeta();
@@ -212,6 +218,8 @@ public class Items {
 		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_GAY_PANTS_ARMOR",6,Operation.ADD_NUMBER));
 		NewGStringItemMeta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_GAY_PANTS_MAX_HEALTH",2,Operation.ADD_NUMBER));
 		NewGStringItemMeta.setColor(Color.RED);
+		NewGStringItemMeta.setUnbreakable(true);
+		NewGStringItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS,ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_UNBREAKABLE);
 		GAY_PANTS.setItemMeta(NewGStringItemMeta);
 		
 		
@@ -256,12 +264,19 @@ public class Items {
 				new CustomItemStack(Items.METH,10)
 		}).register(this.plugin);
 		
-		new RobotArmorSet(this.plugin,this.group,new SlimefunItemStack[] {
+		new RobotArmorSet(this.plugin,this.invisibleItems,new SlimefunItemStack[] {
 				Items.CORPORATION_ROBOT_HELMET,
 				Items.CORPORATION_ROBOT_CHESTPLATE,
 				Items.CORPORATION_ROBOT_LEGGINGS,
 				Items.CORPORATION_ROBOT_BOOTS
-		},SECURITY_ROBOT_DROP);
+		},SECURITY_ROBOT_DROP,new PotionEffect[] {
+				new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,60,1),
+				new PotionEffect(PotionEffectType.FIRE_RESISTANCE,60,0),
+				new PotionEffect(PotionEffectType.FAST_DIGGING,60,0),
+				new PotionEffect(PotionEffectType.INCREASE_DAMAGE,60,1),
+				new PotionEffect(PotionEffectType.SATURATION,60,0),
+				new PotionEffect(PotionEffectType.JUMP,60,1)
+		});
 		
 		MysteriousTraderSummoner NMYSTERIOUS_TRADER_SUMMONER = new MysteriousTraderSummoner(this.group,Items.MYSTERIOUS_TRADER_SUMMONER,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 				null,SlimefunItems.ANDROID_MEMORY_CORE,null,

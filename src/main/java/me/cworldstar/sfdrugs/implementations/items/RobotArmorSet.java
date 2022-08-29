@@ -41,11 +41,14 @@ public class RobotArmorSet {
 		}
 	}
 	
-	public RobotArmorSet(SFDrugs plugin, ItemGroup group, SlimefunItemStack[] ArmorPieces, RecipeType SecurityRobotDrop) {
+	public RobotArmorSet(SFDrugs plugin, ItemGroup group, SlimefunItemStack[] ArmorPieces, RecipeType SecurityRobotDrop,PotionEffect[] PotionEffects) {
 		for(SlimefunItemStack ArmorPiece : ArmorPieces) {
 			RobotArmor NewRobotArmor = new RobotArmor(plugin, group, ArmorPiece, SecurityRobotDrop,new ItemStack[] {}, null);
 			NewRobotArmor.register(plugin);
 			RobotArmorSet.ArmorPieces.add(NewRobotArmor);
+		}
+		for(PotionEffect effect : PotionEffects) {
+			RobotArmorSet.PotionEffects.add(effect);
 		}
 	}
 	public static void removeRobotArmorSetEffects(Entity e) {

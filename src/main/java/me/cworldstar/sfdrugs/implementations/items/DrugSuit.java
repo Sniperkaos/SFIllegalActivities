@@ -10,8 +10,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
+
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.utils.Speak;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -22,9 +23,9 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 
 public class DrugSuit extends SlimefunArmorPiece implements ProtectiveArmor, Rechargeable {
-	public JavaPlugin plugin;
+	public SFDrugs plugin;
 
-		public DrugSuit(JavaPlugin plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
+		public DrugSuit(SFDrugs plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
 				ItemStack[] recipe, PotionEffect[] effects) {
 			super(itemGroup, item, recipeType, recipe, effects);
 			this.plugin = plugin;

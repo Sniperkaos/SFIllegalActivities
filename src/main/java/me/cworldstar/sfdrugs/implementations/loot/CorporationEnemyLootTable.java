@@ -9,17 +9,17 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.loot.LootContext;
 import org.bukkit.loot.LootTable;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.utils.Items;
 
 public class CorporationEnemyLootTable implements LootTable {
 	
-	private JavaPlugin plugin;
+	private SFDrugs plugin;
 	private Collection<ItemStack> lootTable = new ArrayList<ItemStack>();
 
-	public CorporationEnemyLootTable(JavaPlugin plugin) {
+	public CorporationEnemyLootTable(SFDrugs plugin) {
 		this.plugin = plugin;
 		this.lootTable.add(new CustomItemStack(Items.MONEY,8));
 		this.lootTable.add(new CustomItemStack(Items.MONEY,2));

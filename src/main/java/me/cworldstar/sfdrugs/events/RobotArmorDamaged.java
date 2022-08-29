@@ -13,12 +13,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
 import me.cworldstar.sfdrugs.implementations.items.RobotArmor;
 
 public class RobotArmorDamaged implements Listener {
-	private JavaPlugin plugin;
-    public RobotArmorDamaged(JavaPlugin plugin) {
+	private SFDrugs plugin;
+    public RobotArmorDamaged(SFDrugs plugin) {
     	this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

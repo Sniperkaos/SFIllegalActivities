@@ -4,13 +4,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.bosses.CorporationMobZone;
 
 public class TestCorporationEnemy implements CommandExecutor  {
-	private JavaPlugin plugin;
-	public TestCorporationEnemy(JavaPlugin plugin) {
+	private SFDrugs plugin;
+	public TestCorporationEnemy(SFDrugs plugin) {
 		this.plugin = plugin;
 	}
 	@Override

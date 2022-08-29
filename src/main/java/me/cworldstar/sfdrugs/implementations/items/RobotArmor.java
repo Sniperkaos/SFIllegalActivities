@@ -6,16 +6,10 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.MetadataValue;
-import org.bukkit.metadata.MetadataValueAdapter;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -29,11 +23,10 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
-import me.cworldstar.sfdrugs.utils.Speak;
-
+import me.cworldstar.sfdrugs.SFDrugs;
 public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Radioactive,Rechargeable,DamageableItem  {
-	public JavaPlugin plugin;
-	public RobotArmor(JavaPlugin plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
+	public SFDrugs plugin;
+	public RobotArmor(SFDrugs plugin, ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
 			ItemStack[] recipe, PotionEffect[] effects) {
 		super(itemGroup, item, recipeType, recipe, effects);
 		this.plugin = plugin;

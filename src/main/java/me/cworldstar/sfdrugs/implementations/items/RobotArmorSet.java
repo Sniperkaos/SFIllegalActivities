@@ -33,6 +33,21 @@ public class RobotArmorSet {
 		}
 		return false;
 	}
+	public static boolean WearingMostArmorSet(Entity e) {
+		if(e instanceof Player) {
+			int count = 0;
+			for(ItemStack ArmorPiece : ((Player) e).getInventory().getArmorContents()) {
+				if(ArmorPieces.contains(SlimefunItem.getByItem(ArmorPiece))) {
+					count++;
+				}
+			}
+			return (count >=3);
+		} else if(e instanceof Zombie) {
+			// ASSUME YES
+			return true;
+		}
+		return false;
+	}
 	public static void applyRobotArmorSetEffects(Entity e) {
 		if (e instanceof Player) {
 			for(PotionEffect effect : PotionEffects) {

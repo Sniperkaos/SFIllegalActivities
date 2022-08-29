@@ -20,12 +20,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.loot.CorporationEnemyLootTable;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.cworldstar.sfdrugs.utils.Speak;
@@ -33,7 +33,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class CorporationEnemy {
 	private static Zombie Zombie;
-	public CorporationEnemy(JavaPlugin Plugin,Zombie z) {
+	public CorporationEnemy(SFDrugs Plugin,Zombie z) {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&7&lCorporate Security Robot"));
 		z.setCanPickupItems(false);
 		z.setMaxHealth(300.0);

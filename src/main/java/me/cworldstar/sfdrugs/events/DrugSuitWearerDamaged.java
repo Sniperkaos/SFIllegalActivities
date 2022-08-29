@@ -11,11 +11,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
 
 public class DrugSuitWearerDamaged implements Listener {
-	private JavaPlugin plugin;
-    public DrugSuitWearerDamaged(JavaPlugin plugin) {
+	private SFDrugs plugin;
+    public DrugSuitWearerDamaged(SFDrugs plugin) {
     	this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

@@ -1,13 +1,13 @@
 package me.cworldstar.sfdrugs;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPluginLoader;
 
-import org.bukkit.command.CommandMap;
-import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.plugin.java.JavaPlugin;
-
+import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.cworldstar.sfdrugs.events.CorporationTraderEvent;
 import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
@@ -22,10 +22,17 @@ import me.cworldstar.sfdrugs.implementations.events.ArmorListener;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.cworldstar.sfdrugs.utils.Trading;
 
-public class SFDrugs extends JavaPlugin implements SlimefunAddon {
+public class SFDrugs extends AbstractAddon implements SlimefunAddon {
+    public SFDrugs(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
+        super(loader, description, dataFolder, file,
+                "cworldstar", "SFDrugs", "master", "auto-update");
+	}
+    public SFDrugs() {
+    	super("cworldstar","SFDrugs","master","auto-update");
+    }
 	@SuppressWarnings("unused")
 	@Override
-    public void onEnable() {
+	protected void enable() {
         // Give your Category a unique id.
     	Items ItemRegistry = new Items(this);
 		getServer().getPluginManager().registerEvents(new ArmorListener(new ArrayList<String>()), this);
@@ -52,20 +59,6 @@ public class SFDrugs extends JavaPlugin implements SlimefunAddon {
     	x.log(Level.INFO, "============================================");
     }
     @Override
-    public void onDisable() {}
- 
-    @Override
-    public String getBugTrackerURL() {
-        // You can return a link to your Bug Tracker instead of null here
-        return null;
-    }
-    @Override
-    public JavaPlugin getJavaPlugin() {
-        /*
-         * You will need to return a reference to your Plugin here.
-         * If you are using your main class for this, simply return "this".
-         */
-        return this;
-    }
+    public void disable() {}
 
 }

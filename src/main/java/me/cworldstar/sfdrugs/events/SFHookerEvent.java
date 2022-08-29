@@ -14,6 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.TradingRecipe;
 import me.cworldstar.sfdrugs.implementations.traders.HookerZombie;
 import me.cworldstar.sfdrugs.utils.Items;
@@ -21,8 +22,8 @@ import me.cworldstar.sfdrugs.utils.Trading;
 import net.md_5.bungee.api.ChatColor;
 
 public class SFHookerEvent implements Listener {
-	private JavaPlugin plugin;
-    public SFHookerEvent(JavaPlugin plugin, Trading tradingRegistry) {
+	private SFDrugs plugin;
+    public SFHookerEvent(SFDrugs plugin, Trading tradingRegistry) {
     	this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

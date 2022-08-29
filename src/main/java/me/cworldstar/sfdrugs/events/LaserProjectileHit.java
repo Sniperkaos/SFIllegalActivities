@@ -6,9 +6,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.cworldstar.sfdrugs.SFDrugs;
+
 public class LaserProjectileHit implements Listener {
-	private JavaPlugin plugin;
-    public LaserProjectileHit(JavaPlugin plugin) {
+	private SFDrugs plugin;
+    public LaserProjectileHit(SFDrugs plugin) {
     	this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }

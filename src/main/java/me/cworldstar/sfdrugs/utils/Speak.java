@@ -6,6 +6,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import net.md_5.bungee.api.ChatColor;
 
@@ -23,5 +24,8 @@ public class Speak {
     public Speak(LivingEntity e, String text) {
     	e.getWorld().playSound(e.getLocation(), Sound.ENTITY_VILLAGER_TRADE, 0.6F, 0.2F);
     	e.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
+    }
+    public Speak(ItemMeta i, String text) {
+    	i.setDisplayName(text);
     }
 }

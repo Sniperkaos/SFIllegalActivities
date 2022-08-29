@@ -28,6 +28,16 @@ public class Trading {
 		TradingRecipe AxeBlueprintRecipe = new TradingRecipe(Items.MONEY,32,Items.AXE_BLUEPRINT,1);
 		Trader.RegisterTradingRecipe(AxeBlueprintRecipe);
 		TradingRecipe PickaxeBlueprintRecipe = new TradingRecipe(Items.MONEY,42,Items.PICKAXE_BLUEPRINT,1);
+		
+		TradingRecipe DrugHelmetRecipe = new TradingRecipe(Items.MONEY,22,Items.DRUG_HELMET_BLUEPRINT,1);
+		Trader.RegisterTradingRecipe(DrugHelmetRecipe);
+		TradingRecipe DrugChestplateRecipe = new TradingRecipe(Items.MONEY,24,Items.DRUG_CHESTPLATE_BLUEPRINT,1);
+		Trader.RegisterTradingRecipe(DrugChestplateRecipe);
+		TradingRecipe DrugLeggingsRecipe = new TradingRecipe(Items.MONEY,18,Items.DRUG_LEGGINGS_BLUEPRINT,1);
+		Trader.RegisterTradingRecipe(DrugLeggingsRecipe);
+		TradingRecipe DrugBootsRecipe = new TradingRecipe(Items.MONEY,16,Items.DRUG_BOOTS_BLUEPRINT,1);
+		Trader.RegisterTradingRecipe(DrugBootsRecipe);
+		
 		Trader.RegisterTradingRecipe(PickaxeBlueprintRecipe);
 		TradingRecipe GStringRecipe = new TradingRecipe(Items.METH,64,Items.GAY_PANTS,1);
 		Hooker.RegisterTradingRecipe(GStringRecipe);

@@ -21,10 +21,7 @@ public class CorporationEnemyLootTable implements LootTable {
 
 	public CorporationEnemyLootTable(SFDrugs plugin) {
 		this.plugin = plugin;
-		this.lootTable.add(new CustomItemStack(Items.MONEY,8));
-		this.lootTable.add(new CustomItemStack(Items.MONEY,2));
-		this.lootTable.add(new CustomItemStack(Items.MONEY,3));
-		this.lootTable.add(new CustomItemStack(Items.MONEY,5));
+
 	}
 	
 	@Override
@@ -36,6 +33,10 @@ public class CorporationEnemyLootTable implements LootTable {
 	@Override
 	public Collection<ItemStack> populateLoot(Random random, LootContext context) {
 		// TODO Auto-generated method stub
+		this.lootTable.add(new CustomItemStack(Items.MONEY,8));
+		this.lootTable.add(new CustomItemStack(Items.MONEY,2));
+		this.lootTable.add(new CustomItemStack(Items.MONEY,3));
+		this.lootTable.add(new CustomItemStack(Items.MONEY,5));
 		if(random.nextInt(5) == 3) {
 			this.lootTable.add(new CustomItemStack(Items.CORPORATION_ROBOT_CHESTPLATE));
 		}

@@ -36,6 +36,7 @@ import me.cworldstar.sfdrugs.implementations.CircuitFabricator;
 import me.cworldstar.sfdrugs.implementations.CorporationTradingTerminal;
 import me.cworldstar.sfdrugs.implementations.Dryer;
 import me.cworldstar.sfdrugs.implementations.MoneyPrinter;
+import me.cworldstar.sfdrugs.implementations.items.Blueprint;
 import me.cworldstar.sfdrugs.implementations.items.DrugBaton;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
 import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
@@ -104,6 +105,13 @@ public class Items {
 	public static final SlimefunItemStack DRUG_LEGGINGS = new SlimefunItemStack("SFDRUGS_DRUG_LEGGINGS",Material.NETHERITE_LEGGINGS,"&a&l&k|||&r &7&lCorporate Hazmat Suit Bottom&r &a&l&k|||&r", "", LoreBuilder.material("Super-Compressed Carbon"), "",LoreBuilder.powerCharged(0, 1200), "", "&7Full Set Effects:","&e- Radiation immunity");
 	public static final SlimefunItemStack DRUG_BATON = new SlimefunItemStack("SFDRUGS_DRUG_BATON",Material.NETHERITE_SWORD,"&a&l&k|||&r &7&lCorporate Electric Baton&r &a&l&k|||&r", "", LoreBuilder.material("Irradiated Sirthium"), "",LoreBuilder.powerCharged(0, 4800), "", LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	
+	public static final SlimefunItemStack DRUG_HELMET_BLUEPRINT = new Blueprint("Corporate Hazmat Gas Mask").getBlueprint();
+	public static final SlimefunItemStack DRUG_CHESTPLATE_BLUEPRINT = new Blueprint("Corporate Hazmat Suit Top").getBlueprint();
+	public static final SlimefunItemStack DRUG_LEGGINGS_BLUEPRINT = new Blueprint("Corporate Hazmat Suit Bottom").getBlueprint();
+	public static final SlimefunItemStack DRUG_BOOTS_BLUEPRINT = new Blueprint("Corporate Hazmat Suit Boots").getBlueprint();
+
+	
+	
 	// Unobtainable Armor
 	public static final ItemStack MYSTERIOUS_TRADER_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjJlMzdjNjM2ZmZjYzA1ZjUxOGFiOTdiZjcxMTFjNmQzY2E5NWM1MzAwYzUyZTU2MGMzZGMzNTYzNzZlZWJkYiJ9fX0=");
 	public static final ItemStack ROBOT_HELMET_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjNhOWMyZmI3NTVmNzA4ZjdkYjJkZDI5MGFlYzRlYzlmMjM5ZDVlZTYyZGI1ZDQzNDRlYzdlODgyMTg3OGY4MiJ9fX0=");
@@ -128,12 +136,12 @@ public class Items {
 	public static final SlimefunItemStack HOOKER_GROUP = new SlimefunItemStack("HOOKER_GROUP",HOOKER_HEAD,"&dHooker Zombie");
 	public static final SlimefunItemStack CORPORATE_GROUP = new SlimefunItemStack("CORPORATE_GROUP",CORPORATE_HEAD,"&7Corporation Trading");
 	public static final SlimefunItemStack CORPORATE_TRADING_TERMINAL = new SlimefunItemStack("SFDRUGS_CORPORATION_TRADING_TERMINAL",CORPORATE_HEAD,"&7Corporation Trading Terminal","",LoreBuilder.powerPerSecond(1280),"",LoreBuilder.radioactive(Radioactivity.MODERATE),LoreBuilder.HAZMAT_SUIT_REQUIRED,"",LoreBuilder.RIGHT_CLICK_TO_OPEN);
-	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from r&5&ka&r&5l &5&kdark&r &5mat&5&k&r&5er!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
+	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from re&5&ka&r&5l &5&kdark&r &5m&5&katt&r&5er!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
 	public static final MachineRecipeType CORPORATION_TRADE = new MachineRecipeType("CORPORATION_TRADER",Items.CORPORATE_GROUP);
 
 	
 	public static final SlimefunItemStack MYSTEROUS_TRADER = new SlimefunItemStack("MYSTERIOUS_TRADER_GROUJP",MYSTEROUS_TRADER_HEAD,"&cMysterious Trader");
-	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Security Robot Drop");;
+	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Boss Drops");;
 	static {
 		
 		CORPORATION_ROBOT_HELMET.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
@@ -271,6 +279,21 @@ public class Items {
 		RecipeType MYSTERIOUS_TRADER = new RecipeType(new NamespacedKey(this.plugin,"MYSTERIOUS_TRADER"),Items.MYSTEROUS_TRADER);
 		RecipeType SECURITY_ROBOT_DROP = new RecipeType(new NamespacedKey(this.plugin,"SECURITY_ROBOT_DROP"),Items.ROBOT_HEAD);
 		
+		new SlimefunItem(this.group,Items.DRUG_HELMET_BLUEPRINT,MYSTERIOUS_TRADER,new ItemStack[] {
+				new CustomItemStack(Items.MONEY,22)
+		}).register(this.plugin);
+		
+		new SlimefunItem(this.group,Items.DRUG_CHESTPLATE_BLUEPRINT,MYSTERIOUS_TRADER,new ItemStack[] {
+				new CustomItemStack(Items.MONEY,24)
+		}).register(this.plugin);
+		
+		new SlimefunItem(this.group,Items.DRUG_LEGGINGS_BLUEPRINT,MYSTERIOUS_TRADER,new ItemStack[] {
+				new CustomItemStack(Items.MONEY,18)
+		}).register(this.plugin);
+		
+		new SlimefunItem(this.group,Items.DRUG_BOOTS_BLUEPRINT,MYSTERIOUS_TRADER,new ItemStack[] {
+				new CustomItemStack(Items.MONEY,16)
+		}).register(this.plugin);
 		
 		new LaserSword(this.group,Items.CORPORATION_LASER_SWORD,Items.CORPORATION_TRADE,new ItemStack[] {
 				
@@ -281,7 +304,7 @@ public class Items {
 		},this.plugin).register(this.plugin);
 		
 		
-		new SlimefunItem(this.group,Items.CORPORATE_ANDROID_CORE,SECURITY_ROBOT_DROP,new ItemStack[] {
+		new SlimefunItem(this.invisibleItems,Items.CORPORATE_ANDROID_CORE,SECURITY_ROBOT_DROP,new ItemStack[] {
 				
 		}).register(this.plugin);
 		new SlimefunItem(this.group,Items.DRUG_PIPE,HOOKER_TRADE,new ItemStack[] {
@@ -375,29 +398,29 @@ public class Items {
 		});
 		NDRUG_BATON.register(this.plugin);
 		DrugSuit NDRUG_HELMET = new DrugSuit(plugin, group, Items.DRUG_HELMET,CORPORATION_TRADE, new ItemStack[] {
-				
+				new CustomItemStack(Items.MONEY,8),Items.DRUG_HELMET_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.WATER_BREATHING,1200,0)});
 		NDRUG_HELMET.register(this.plugin);		
 
 		DrugSuit NDRUG_CHESTPLATE = new DrugSuit(plugin, group, Items.DRUG_CHESTPLATE,CORPORATION_TRADE, new ItemStack[] {
-				
+				new CustomItemStack(Items.MONEY,8),Items.DRUG_CHESTPLATE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.FIRE_RESISTANCE,1200,0)});
 		NDRUG_CHESTPLATE.register(this.plugin);	
 		
 		DrugSuit NDRUG_LEGGINGS = new DrugSuit(plugin, group, Items.DRUG_LEGGINGS,CORPORATION_TRADE, new ItemStack[] {
-				
+				new CustomItemStack(Items.MONEY,8),Items.DRUG_LEGGINGS_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,1200,0), new PotionEffect(PotionEffectType.JUMP,1200,0)});
 		NDRUG_LEGGINGS.register(this.plugin);	
 		
 		DrugSuit NDRUG_BOOTS = new DrugSuit(plugin, group, Items.DRUG_BOOTS,CORPORATION_TRADE, new ItemStack[] {
-			
+				new CustomItemStack(Items.MONEY,8),Items.DRUG_BOOTS_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.SPEED,1200,1)});
 		NDRUG_BOOTS.register(this.plugin);	
 		
 		Snaids NSNAIDS = new Snaids(this.plugin,this.group,Items.SNAIDS,RECIPE_DRYER,new ItemStack[] { new ItemStack(Material.STICK,64),Items.TRAY});
 		NSNAIDS.register(this.plugin);
 		
-		SlimefunItem NMONEY = new SlimefunItem(this.group,Items.MONEY,RecipeType.NULL,new ItemStack[] {});
+		SlimefunItem NMONEY = new SlimefunItem(this.group,Items.MONEY,RecipeType.MOB_DROP,new ItemStack[] {});
 		NMONEY.register(this.plugin);
 		SFDrugsHoe NHOE = new SFDrugsHoe(this.group,Items.HOE,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 			null,null,null,

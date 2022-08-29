@@ -7,6 +7,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
@@ -39,7 +40,7 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 	
 	@Override
 	public boolean isFullSetRequired() {
-		return true;
+		return false;
 	}
 	
 	public boolean PlayerIsWearingFullSet(Player p) {
@@ -62,7 +63,7 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 	@Override
 	public float getMaxItemCharge(ItemStack item) {
 		// TODO Auto-generated method stub
-		return 12000F;
+		return 19000F;
 	}
 	
 	
@@ -99,7 +100,13 @@ public class RobotArmor extends SlimefunArmorPiece implements ProtectiveArmor,Ra
 			}
 		}
 	}
-	
+	public void ArmorDamaged(PlayerItemDamageEvent e, ItemStack item, int durabilityDamage) {
+		if(durabilityDamage > 0 & (this.getItemCharge(item) - new Float(durabilityDamage) > 0)) {
+			if(this.removeItemCharge(item, new Float(durabilityDamage))) {
+				e.setCancelled(true);
+			}
+		}
+	}
 	@Override
 	public boolean isDamageable() {
 		// TODO Auto-generated method stub

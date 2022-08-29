@@ -1,7 +1,5 @@
 package me.cworldstar.sfdrugs.implementations;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.bukkit.Effect;
 import org.bukkit.Material;
@@ -18,7 +16,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactive;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
-import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
@@ -26,7 +23,7 @@ import me.cworldstar.sfdrugs.utils.Items;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 
-public class CorporationTradingTerminal extends CraftingBlock implements RecipeDisplayItem,Radioactive,EnergyNetComponent {
+public class CorporationTradingTerminal extends CraftingBlock implements Radioactive,EnergyNetComponent {
 	public CorporationTradingTerminal(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
 			ItemStack[] recipe) {
 		super(itemGroup, item, recipeType, recipe);
@@ -76,7 +73,7 @@ public class CorporationTradingTerminal extends CraftingBlock implements RecipeD
     public void onSuccessfulCraft(BlockMenu menu, ItemStack output) {
     	this.removeCharge(menu.getLocation(), 1280);
     	menu.getLocation().getWorld().playEffect(menu.getLocation(), Effect.DRAGON_BREATH, 10);
-    	menu.getLocation().getWorld().playSound(menu.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 1.0F, 0.5F);
+    	menu.getLocation().getWorld().playSound(menu.getLocation(), Sound.ENTITY_DRAGON_FIREBALL_EXPLODE, 0.5F, 0.5F);
     	menu.getLocation().getWorld().createExplosion(menu.getLocation(), 1L, false, false);
     }
 	
@@ -84,12 +81,6 @@ public class CorporationTradingTerminal extends CraftingBlock implements RecipeD
 	public Radioactivity getRadioactivity() {
 		// TODO Auto-generated method stub
 		return Radioactivity.MODERATE;
-	}
-	@Override
-	public List<ItemStack> getDisplayRecipes() {
-		// TODO Auto-generated method stub
-		List<ItemStack> Recipe = new ArrayList<ItemStack>();
-		return Recipe;
 	}
 	@Override
 	public EnergyNetComponentType getEnergyComponentType() {

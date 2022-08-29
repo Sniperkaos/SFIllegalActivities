@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
+import me.cworldstar.sfdrugs.implementations.items.RobotArmor;
 
 public class DrugSuitDamaged implements Listener {
 	private SFDrugs plugin;
@@ -22,7 +23,10 @@ public class DrugSuitDamaged implements Listener {
 			if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
 				DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
 				T.Damage(e,item,e.getDamage());		
+			} else if(item.getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
+				RobotArmor T = (RobotArmor) SlimefunItem.getByItem(item);
+				T.ArmorDamaged(e,item,e.getDamage());
 			}
-		}
+		} 
 	}
 }

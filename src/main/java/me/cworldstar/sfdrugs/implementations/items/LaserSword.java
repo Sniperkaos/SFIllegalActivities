@@ -1,7 +1,4 @@
 package me.cworldstar.sfdrugs.implementations.items;
-
-import org.bukkit.Particle;
-import org.bukkit.Sound;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
@@ -46,13 +43,14 @@ public class LaserSword extends SimpleSlimefunItem<WeaponUseHandler> implements 
 			if(e.getFinalDamage() > 0 & this.getItemCharge(i) > 0) {
 				if(this.removeItemCharge(i, new Float(e.getFinalDamage() * 2))) {
 					if(e.getEntity() instanceof LivingEntity) {
-						new Decay((LivingEntity) e,this.plugin);
-						e.setDamage(e.getFinalDamage() * 5);
+						new Decay((LivingEntity) e.getEntity(),this.plugin);
+						e.setDamage(e.getFinalDamage() * 8);
 					}
 				} 
 			} else if(e.getFinalDamage() > 0){
-				e.setCancelled(true);
 				new Speak(p,"&7You attempt to swing with a sheathed hilt. It does not work.");
+				e.setDamage(0);
+				e.setCancelled(true);
 			}
 		};
 	}

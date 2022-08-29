@@ -25,10 +25,10 @@ import me.cworldstar.sfdrugs.utils.Trading;
 public class SFDrugs extends AbstractAddon implements SlimefunAddon {
     public SFDrugs(JavaPluginLoader loader, PluginDescriptionFile description, File dataFolder, File file) {
         super(loader, description, dataFolder, file,
-                "cworldstar", "SFDrugs", "master", "auto-update");
+                "Sniperkaos", "SFIllegalActivities", "master", "auto-update");
 	}
     public SFDrugs() {
-    	super("cworldstar","SFDrugs","master","auto-update");
+    	super("Sniperkaos","SFIllegalActivities","master","auto-update");
     }
 	@SuppressWarnings("unused")
 	@Override

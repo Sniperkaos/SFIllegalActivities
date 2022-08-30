@@ -4,6 +4,8 @@ import org.bukkit.Axis;
 import org.bukkit.Effect;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -116,5 +118,9 @@ public class RobotArmor extends CustomArmorPiece implements ProtectiveArmor,Radi
 	public Radioactivity getRadioactivity() {
 		// TODO Auto-generated method stub
 		return Radioactivity.VERY_DEADLY;
+	}
+
+	public static boolean IsNotAffected(LivingEntity Enemy) {
+		return (!Enemy.hasMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR"));
 	}
 }

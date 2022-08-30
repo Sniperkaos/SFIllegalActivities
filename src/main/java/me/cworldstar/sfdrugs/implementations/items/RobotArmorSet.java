@@ -64,7 +64,7 @@ public class RobotArmorSet {
 		List<RobotArmor> ValidatedPieces = new ArrayList<RobotArmor>();
 		for(ItemStack ArmorPiece : ArmorPieces) {
 			if (SlimefunItem.getByItem(ArmorPiece) != null) {
-				if (SlimefunItem.getByItem(ArmorPiece) instanceof RobotArmor) {
+				if (SlimefunItem.getByItem(ArmorPiece).getId().contains("SFDRUGS_CORPORATION_ROBOT")) {
 					ValidatedPieces.add((RobotArmor)SlimefunItem.getByItem(ArmorPiece));
 				}
 			}
@@ -80,7 +80,6 @@ public class RobotArmorSet {
 		return true;
 	}
 	public static boolean RemoveSetItemCharge(RobotArmor[] ArmorPieces, double charge,EntityDamageByEntityEvent e) {
-		
 		if(e.getEntity() instanceof Mob) {
 			for(RobotArmor Piece : ArmorPieces) {
 				Piece.EntityDamaged(e,(Mob) e.getEntity(),Piece.getItem(), charge / ArmorPieces.length);

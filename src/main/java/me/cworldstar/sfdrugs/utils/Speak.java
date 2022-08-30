@@ -28,4 +28,8 @@ public class Speak {
     public Speak(ItemMeta i, String text) {
     	i.setDisplayName(text);
     }
+    public Speak() {}
+	public String format(String text) {
+    	return ChatColor.translateAlternateColorCodes('&', text);
+	}
 }

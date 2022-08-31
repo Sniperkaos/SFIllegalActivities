@@ -3,11 +3,12 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 
 import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
@@ -20,7 +21,6 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.handlers.WeaponUseHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.dot.Burning;
 import me.cworldstar.sfdrugs.implementations.dot.Decay;
@@ -87,19 +87,22 @@ public class LaserSword extends SlimefunItem implements Radioactive,Rechargeable
 	
 	public void getRightClickHandler(PlayerRightClickEvent e) {
 		ItemStack Sword = e.getItem();
+		ItemMeta SwordItemMeta = Sword.getItemMeta();
+		List<String> Lore = SwordItemMeta.getLore();
+		e.getPlayer().getWorld().playSound(e.getPlayer().getLocation(), Sound.ENTITY_VILLAGER_CELEBRATE, 0.5F, 0.5F);
 		switch(Sword.getType()) {
 		case STONE_SWORD:
 			Sword.setType(Material.GOLDEN_SWORD);
-			List<String> Lore = Sword.getItemMeta().getLore();
-			Lore.set(1,new Speak().format("&eDisintegrate C")); 
-			Sword.getItemMeta().setLore(Lore);
+			Lore.set(0,new Speak().format("&eDisintegrate C")); 
+			SwordItemMeta.setLore(Lore);
+			Sword.setItemMeta(SwordItemMeta);
 			Sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 10);
 			break;
 		case GOLDEN_SWORD:
 			Sword.setType(Material.STONE_SWORD);
-			List<String> Lore2 = Sword.getItemMeta().getLore();
-			Lore2.set(1,new Speak().format("&7Decay C")); 
-			Sword.getItemMeta().setLore(Lore2);
+			Lore.set(0,new Speak().format("&7Decay C"));
+			SwordItemMeta.setLore(Lore);
+			Sword.setItemMeta(SwordItemMeta);
 			Sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
 			break;
 		default:

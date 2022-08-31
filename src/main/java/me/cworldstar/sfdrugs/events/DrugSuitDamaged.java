@@ -23,10 +23,8 @@ public class DrugSuitDamaged implements Listener {
 			if(item.getItemMeta().getDisplayName().contains("Corporate Hazmat")) {
 				DrugSuit T = (DrugSuit) SlimefunItem.getByItem(item);
 				T.Damage(e,item,e.getDamage());		
-			} else if(item.getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
-				RobotArmor T = (RobotArmor) SlimefunItem.getByItem(item);
-				T.ArmorDamaged(e,item,e.getDamage());
 			}
 		} 
+		
 	}
 }

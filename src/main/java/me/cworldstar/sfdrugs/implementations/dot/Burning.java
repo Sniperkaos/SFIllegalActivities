@@ -23,6 +23,14 @@ public class Burning {
 		PotionEffectCollection.add(new PotionEffect(PotionEffectType.GLOWING,240,1));
 		PotionEffects.addAll(PotionEffectCollection);
 	}
+	/**
+	 * Takes a LivingEntity p, and the APlugin extension.
+	 * Causes Disintegration.
+	 * 
+	 * @param p
+	 * @param sfdrugs
+	 * @author cworldstar
+	 */
 	public Burning(LivingEntity p,SFDrugs sfdrugs) {
 		for(PotionEffect potion : Burning.PotionEffects) {
 			p.addPotionEffect(potion);

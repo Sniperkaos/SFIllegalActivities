@@ -34,6 +34,8 @@ public class SFHookerEvent implements Listener {
     }
 	@EventHandler(priority = EventPriority.HIGH)
     private void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+		//TODO: Replace this with a ChestInventory.
+		
     	Player p = event.getPlayer();
     	if(!event.getRightClicked().hasMetadata("SFDRUGS_IS_HOOKER") & !(event.getHand() == EquipmentSlot.HAND)) {
     		event.setCancelled(true);

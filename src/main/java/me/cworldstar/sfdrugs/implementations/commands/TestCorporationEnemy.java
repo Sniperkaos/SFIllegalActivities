@@ -9,7 +9,9 @@ import org.bukkit.entity.Zombie;
 
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.bosses.CorporationMobZone;
+import me.cworldstar.sfdrugs.implementations.bosses.entities.EscapedTestSubject;
 import me.cworldstar.sfdrugs.implementations.bosses.entities.GangMember;
+import me.cworldstar.sfdrugs.implementations.bosses.entities.SmallerGangMember;
 
 public class TestCorporationEnemy implements CommandExecutor  {
 	private SFDrugs plugin;
@@ -26,6 +28,10 @@ public class TestCorporationEnemy implements CommandExecutor  {
 				break;
 			case "gangMember":
 				new GangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
+			case "escapedTestSubject":
+				new EscapedTestSubject(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
+			case "smallerGangMember":
+				new SmallerGangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
 			default:
 				return false;
 			}

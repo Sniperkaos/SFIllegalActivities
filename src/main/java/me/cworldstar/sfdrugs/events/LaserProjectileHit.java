@@ -27,9 +27,8 @@ public class LaserProjectileHit implements Listener {
 	}
     @EventHandler
     public void onProjectileHitBlock(ProjectileHitEvent e) {
-        if (e.getEntity().hasMetadata("SFDRUGS_IS_LASER_PROJECTILE")) {
-            e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 4F, true, false);
-            e.getEntity().remove();
+        if (e.getEntity().hasMetadata("SFDRUGS_IS_LASER_PROJECTILE") && e.getHitBlock() != null) {
+            e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 4F, true, true);
         }
     }
 }

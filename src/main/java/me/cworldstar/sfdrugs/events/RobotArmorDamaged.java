@@ -9,6 +9,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -81,5 +82,16 @@ public class RobotArmorDamaged implements Listener {
 
 		}
 
+	}
+	@EventHandler
+	private void onPlayerItemDamage(PlayerItemDamageEvent e) {
+		ItemStack item = e.getItem();
+		if (SlimefunItem.getByItem(item) != null) {
+			if(item.getItemMeta().getDisplayName().contains("Corporate Security Robot")) {
+				RobotArmor T = (RobotArmor) SlimefunItem.getByItem(item);
+				T.ArmorDamaged(e, item, e.getDamage());		
+			}
+		} 
+		
 	}
 }

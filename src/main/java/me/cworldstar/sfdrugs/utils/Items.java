@@ -45,8 +45,11 @@ import me.cworldstar.sfdrugs.implementations.items.Hook;
 import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
 import me.cworldstar.sfdrugs.implementations.items.LaserSword;
 import me.cworldstar.sfdrugs.implementations.items.MoneyStamp;
+import me.cworldstar.sfdrugs.implementations.items.PlatedHazmat;
 import me.cworldstar.sfdrugs.implementations.items.RobotArmorSet;
 import me.cworldstar.sfdrugs.implementations.items.Snaids;
+import me.cworldstar.sfdrugs.implementations.items.UnstableObject;
+import me.cworldstar.sfdrugs.implementations.items.UnstableObject.Unstable;
 import net.md_5.bungee.api.ChatColor;
 
 public class Items {
@@ -78,6 +81,11 @@ public class Items {
 	public static final SlimefunItemStack MONEY_PRINTER = new SlimefunItemStack("SFDRUGS_MACHINES_MONEY_PRINTER",Material.ANCIENT_DEBRIS,"&7Money Printer","","&7Prints corporation money.","",LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE));
 	public static final SlimefunItemStack DRYER = new SlimefunItemStack("SFDRUGS_MACHINES_DRYER",Material.BLAST_FURNACE,"&dDryer","","&d - Dries drug compounds.", "",LoreBuilder.machine(MachineTier.MEDIUM,MachineType.MACHINE));
 	public static final SlimefunItemStack CENTRIFUGE = new SlimefunItemStack("SFDRUGS_MACHINES_CENTRIFUGE",Material.BREWING_STAND,"&dCentrifuge","","&d - Creates drug compounds.", "",LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE));
+	
+	// LootChests
+	public static final ItemStack RARE_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU3ZWY0ZTNmYmFhMGJmNzk5ZGQxMzY5N2UyYzBmMzM5NTVhNGEwZGFiMmYyOTkyZGExN2FhMjllODFhZGY4NyJ9fX0=");
+	public static final ItemStack UNCOMMON_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWE5OGEzMjVmMGIzN2NkMjcwZjU4YmIwOWNiOWQ3M2UxYmIwODdjYWM2MzJkZjJhNWYwNzIzMjUzMzRjNTQwIn19fQ==");
+	
 	
 	// Tools and the like
 	
@@ -326,6 +334,30 @@ public class Items {
 		RecipeType MYSTERIOUS_TRADER = new RecipeType(new NamespacedKey(this.plugin,"MYSTERIOUS_TRADER"),Items.MYSTEROUS_TRADER);
 		RecipeType SECURITY_ROBOT_DROP = new RecipeType(new NamespacedKey(this.plugin,"SECURITY_ROBOT_DROP"),Items.ROBOT_HEAD);
 		
+		new SlimefunItem(this.group,new SlimefunItemStack("SFDRUGS_UNCOMMON_LOOT_CHEST",Items.UNCOMMON_LOOT_CHEST_HEAD,"&aUncommon Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE),SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
+		new SlimefunItem(this.group,new SlimefunItemStack("SFDRUGS_RARE_LOOT_CHEST",Items.RARE_LOOT_CHEST_HEAD,"&bRare Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE),SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
+
+		
+		new PlatedHazmat(this.plugin,this.group,PlatedHazmat.getByInteger(0),RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
+				null,new ItemStack(Material.NETHERITE_INGOT),null,
+					new ItemStack(Material.NETHERITE_INGOT),SlimefunItems.SCUBA_HELMET,new ItemStack(Material.NETHERITE_INGOT),
+					null,new ItemStack(Material.NETHERITE_INGOT),null
+		}, new PotionEffect[] {}).register(this.plugin);
+		new PlatedHazmat(this.plugin,this.group,PlatedHazmat.getByInteger(1),RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
+				null,new ItemStack(Material.NETHERITE_INGOT),null,
+					new ItemStack(Material.NETHERITE_INGOT),SlimefunItems.HAZMAT_CHESTPLATE,new ItemStack(Material.NETHERITE_INGOT),
+					null,new ItemStack(Material.NETHERITE_INGOT),null
+		}, new PotionEffect[] {}).register(this.plugin);
+		new PlatedHazmat(this.plugin,this.group,PlatedHazmat.getByInteger(2),RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
+				null,new ItemStack(Material.NETHERITE_INGOT),null,
+					new ItemStack(Material.NETHERITE_INGOT),SlimefunItems.HAZMAT_LEGGINGS,new ItemStack(Material.NETHERITE_INGOT),
+					null,new ItemStack(Material.NETHERITE_INGOT),null
+		}, new PotionEffect[] {}).register(this.plugin);
+		new PlatedHazmat(this.plugin,this.group,PlatedHazmat.getByInteger(3),RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
+				null,new ItemStack(Material.NETHERITE_INGOT),null,
+					new ItemStack(Material.NETHERITE_INGOT),SlimefunItems.HAZMAT_BOOTS,new ItemStack(Material.NETHERITE_INGOT),
+					null,new ItemStack(Material.NETHERITE_INGOT),null
+		}, new PotionEffect[] {}).register(this.plugin);
 		new ArmorSet(this.plugin,this.invisibleItems,new SlimefunItemStack[] {
 				Items.GANGSTER_CHESTPLATE,
 				Items.GANGSTER_LEGGINGS,
@@ -367,11 +399,9 @@ public class Items {
 				null,Items.CORPORATE_ANDROID_CORE,null
 				
 		},this.plugin).register(this.plugin);
-		
-		
-		new SlimefunItem(this.invisibleItems,Items.CORPORATE_ANDROID_CORE,SECURITY_ROBOT_DROP,new ItemStack[] {
+		new UnstableObject(this.invisibleItems,Items.CORPORATE_ANDROID_CORE,SECURITY_ROBOT_DROP,new ItemStack[] {
 				
-		}).register(this.plugin);
+		},Unstable.UNSTABLE,this.plugin).register(this.plugin);
 		new SlimefunItem(this.group,Items.DRUG_PIPE,HOOKER_TRADE,new ItemStack[] {
 				new CustomItemStack(Items.METH,10)
 		}).register(this.plugin);

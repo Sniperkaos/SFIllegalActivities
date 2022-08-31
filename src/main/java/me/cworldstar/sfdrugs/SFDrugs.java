@@ -15,12 +15,16 @@ import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
 import me.cworldstar.sfdrugs.events.GangMemberSpawnEvent;
 import me.cworldstar.sfdrugs.events.LaserProjectileHit;
 import me.cworldstar.sfdrugs.events.MysteriousTraderEvent;
+import me.cworldstar.sfdrugs.events.PlayerAddedEvent;
 import me.cworldstar.sfdrugs.events.RobotArmorDamaged;
 import me.cworldstar.sfdrugs.events.RobotArmorPieceEquipped;
 import me.cworldstar.sfdrugs.events.SFHookerEvent;
+import me.cworldstar.sfdrugs.events.UnstableObjectEvent;
 import me.cworldstar.sfdrugs.implementations.commands.TestCorporationEnemy;
 import me.cworldstar.sfdrugs.implementations.events.ArmorListener;
+import me.cworldstar.sfdrugs.implementations.events.InventoryTickHandler;
 import me.cworldstar.sfdrugs.utils.Items;
+import me.cworldstar.sfdrugs.utils.RandomUtils;
 import me.cworldstar.sfdrugs.utils.Trading;
 
 public class SFDrugs extends AbstractAddon implements SlimefunAddon {
@@ -37,11 +41,22 @@ public class SFDrugs extends AbstractAddon implements SlimefunAddon {
         // Give your Category a unique id.
     	Items ItemRegistry = new Items(this);
 		getServer().getPluginManager().registerEvents(new ArmorListener(new ArrayList<String>()), this);
+		
     	DrugSuitDamaged DamageEvent = new DrugSuitDamaged(this);
     	DrugSuitWearerDamaged DamageEvent2 = new DrugSuitWearerDamaged(this);
     	ItemRegistry.register();
     	Trading TradingRegistry = new Trading(this);
     	TradingRegistry.register();
+    	RandomUtils ThisIsSoStupid = new RandomUtils();
+    	
+    	/**
+    	 * 
+    	 * Implementation for UnstableObjects.
+    	 * 
+    	 */
+    	PlayerAddedEvent WhoEvenReadsThese = new PlayerAddedEvent(this);
+    	UnstableObjectEvent IDont = new UnstableObjectEvent(this);
+    	
     	SFHookerEvent HookerEvent = new SFHookerEvent(this,TradingRegistry);
     	CorporationTraderEvent TraderEvent = new CorporationTraderEvent(this,TradingRegistry);
     	MysteriousTraderEvent TraderEvent2 = new MysteriousTraderEvent(this,TradingRegistry);

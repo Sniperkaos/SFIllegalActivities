@@ -38,6 +38,8 @@ public class CorporationEnemy {
 		z.setCanPickupItems(false);
 		z.setMaxHealth(300.0);
 		z.setHealth(300.0);
+		z.setAdult();
+		z.setCanPickupItems(false);
 		z.setAbsorptionAmount(200.0);
 		z.setLootTable(new CorporationEnemyLootTable(Plugin));
 		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&a&lCorporate Security Robot"),BarColor.WHITE, BarStyle.SEGMENTED_12,BarFlag.DARKEN_SKY,BarFlag.CREATE_FOG);

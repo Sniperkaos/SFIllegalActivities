@@ -26,6 +26,14 @@ public class Decay {
 
 		DecayPotionEffects.addAll(PotionEffectCollection);
 	}
+	/**
+	 * Takes a LivingEntity p, and the APlugin extension.
+	 * Causes Decay.
+	 * 
+	 * @param p
+	 * @param sfdrugs
+	 * @author cworldstar
+	 */
 	public Decay(LivingEntity p,SFDrugs sfdrugs) {
 		for(PotionEffect potion : Decay.DecayPotionEffects) {
 			p.addPotionEffect(potion);

@@ -1,17 +1,21 @@
 package me.cworldstar.sfdrugs.events;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.events.ArmorEquipEvent;
+import me.cworldstar.sfdrugs.implementations.events.ArmorType;
+import me.cworldstar.sfdrugs.implementations.events.ArmorEquipEvent.EquipMethod;
 import me.cworldstar.sfdrugs.implementations.items.RobotArmorSet;
 import me.cworldstar.sfdrugs.utils.ParticleUtils;
 
@@ -21,6 +25,21 @@ public class RobotArmorPieceEquipped implements Listener {
 	public RobotArmorPieceEquipped(SFDrugs plugin) {
 		this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e) {
+		/**
+		* 
+		* Really dogshit fix for auto-replenishing set effects
+		* on player rejoin. Sometimes, the set will not work
+		* after player leaves and rejoins.
+		*
+		*@author cworldstar
+		*/
+		if(e.getPlayer().getEquipment().getHelmet() != null) {
+			Bukkit.getServer().getPluginManager().callEvent(new ArmorEquipEvent(e.getPlayer(), EquipMethod.PICK_DROP, ArmorType.matchType(e.getPlayer().getEquipment().getHelmet()),e.getPlayer().getEquipment().getHelmet(),e.getPlayer().getEquipment().getHelmet()));
+		}
 	}
 	@EventHandler
 	public void onPlayerEquip(ArmorEquipEvent e) {

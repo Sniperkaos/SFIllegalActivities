@@ -55,8 +55,7 @@ public class CorporationTradingTerminal extends CraftingBlock implements Radioac
 	public void setup(BlockMenuPreset preset) {
         preset.drawBackground(OUTPUT_BORDER, layout.outputBorder());
         preset.drawBackground(INPUT_BORDER, layout.inputBorder());
-        preset.drawBackground(BACKGROUND_ITEM, layout.background());
-        preset.drawBackground((ItemStack) new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE,""),new int[] {
+        preset.drawBackground(new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE,""),new int[] {
         		0,7,8,9,10,16,17,18,19,25,26,27,28,34,35,36,37,43,44,45,46,48,49,50,52,53
         });
         preset.addMenuClickHandler(40,ChestMenuUtils.getEmptyClickHandler());

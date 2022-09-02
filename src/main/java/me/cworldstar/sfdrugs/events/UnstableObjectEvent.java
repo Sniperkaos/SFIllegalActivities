@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -14,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.DamageType;
 import me.cworldstar.sfdrugs.implementations.events.PlayerInventoryItemAddedEvent;
+import me.cworldstar.sfdrugs.implementations.events.PlayerInventoryItemRemovingEvent;
 import me.cworldstar.sfdrugs.implementations.items.UnstableObject;
 import me.cworldstar.sfdrugs.utils.LoreHandler;
 import me.cworldstar.sfdrugs.utils.Speak;
@@ -25,6 +25,22 @@ public class UnstableObjectEvent implements Listener {
 		this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
+	@EventHandler
+	public void onPlayerInventoryItemRemoved(PlayerInventoryItemRemovingEvent e) {
+		for(ItemStack item : e.getItem()) {
+			if(SlimefunItem.getByItem(item) != null && SlimefunItem.getByItem(item) instanceof UnstableObject) {
+				ItemMeta meta = item.getItemMeta();
+				List<String> oldLore = meta.getLore();
+				if(oldLore.get(oldLore.size()-1).contains("Cooldown:")) {
+					oldLore.remove(oldLore.size()-1);
+					meta.setLore(oldLore);
+					item.setItemMeta(meta);
+				}
+			}
+		}
+	}
+	
+	
 	@EventHandler
 	public void onPlayerInventoryItemAdded(PlayerInventoryItemAddedEvent e) {
 		for(ItemStack item : e.getItem()) {
@@ -43,21 +59,23 @@ public class UnstableObjectEvent implements Listener {
 				new BukkitRunnable() {
 					@Override
 					public void run() {
-						ItemMeta meta = item.getItemMeta();
-						List<String> oldLore = meta.getLore();
-						if(!oldLore.get(oldLore.size()-1).contains("Cooldown Timer")) {
-							oldLore.add("");
-							oldLore.add(LoreHandler.UnstableObjectCooldownTimer(15.0));
-							meta.setLore(oldLore);
-							item.setItemMeta(meta);
-						} else {
-							Scanner doubleScanner = new Scanner(oldLore.get(oldLore.size()-1));
-							double CooldownTimerAmount = doubleScanner.nextDouble();
-							doubleScanner.close();
-							if(CooldownTimerAmount != 0) {
-								oldLore.add(oldLore.size()-1,LoreHandler.UnstableObjectCooldownTimer(CooldownTimerAmount - 0.25));
+						if(!e.isCancelled()) {
+							ItemMeta meta = item.getItemMeta();
+							List<String> oldLore = meta.getLore();
+							if(!oldLore.get(oldLore.size()-1).contains("Cooldown:")) {
+								oldLore.add("");
+								oldLore.add(LoreHandler.UnstableObjectCooldownTimer(item2.getUnstableAmount()));
 								meta.setLore(oldLore);
 								item.setItemMeta(meta);
+							} else {
+								Scanner doubleScanner = new Scanner(oldLore.get(oldLore.size()-1));
+								double CooldownTimerAmount = doubleScanner.nextDouble();
+								doubleScanner.close();
+								if(CooldownTimerAmount != 0) {
+									oldLore.add(oldLore.size()-1,LoreHandler.UnstableObjectCooldownTimer(CooldownTimerAmount - 0.25));
+									meta.setLore(oldLore);
+									item.setItemMeta(meta);
+								}
 							}
 						}
 					}
@@ -84,7 +102,7 @@ public class UnstableObjectEvent implements Listener {
 							if(e.getPlayer().getInventory().contains(item) && !e.isCancelled() && e.getPlayer().isOnline()) {
 								new Speak(e.getPlayer(),"&e&lYou took too long to dispose of an unstable object. It blew up.");
 								item.setAmount(0);
-								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),2F);
+								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),4F);
 								e.getPlayer().damage(15.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
 							}
 						}
@@ -98,12 +116,12 @@ public class UnstableObjectEvent implements Listener {
 							if(e.getPlayer().getInventory().contains(item) && !e.isCancelled() && e.getPlayer().isOnline()) {
 								new Speak(e.getPlayer(),"&c&lYou took too long to dispose of a highly unstable object.");
 								item.setAmount(0);
-								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),6F);
+								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),10F);
 								e.getPlayer().damage(30.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
 							}
 						}
 						
-					}.runTaskLater(plugin, 140L);
+					}.runTaskLater(plugin, 200L);
 					break;
 				default:
 					break;

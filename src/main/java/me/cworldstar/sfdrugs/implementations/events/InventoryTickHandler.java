@@ -14,7 +14,6 @@ import me.cworldstar.sfdrugs.SFDrugs;
 public class InventoryTickHandler {
 	private SFDrugs plugin;
 	private Player player;
-	private BukkitTask runnable;
 	private List<ItemStack> oldInventory;
 	private BukkitTask itemAddedRunnable;
 	private BukkitTask itemRemovingRunnable;
@@ -50,17 +49,19 @@ public class InventoryTickHandler {
 			}
 			
 		}.runTaskTimer(plugin, 0, 1L);
-		/*this.itemRemovingRunnable = new BukkitRunnable() {
+		this.itemRemovingRunnable = new BukkitRunnable() {
 			@Override
 			public void run() {
-				if(!oldInventory.equals(p.getInventory().getContents())) {
-					if(NewItems.size() > 1) {
-						p.sendMessage("Attempt to fire PlayerInventoryItemRemovingEvent.");
-						plugin.getServer().getPluginManager().callEvent(new PlayerInventoryItemAddedEvent(p, p.getInventory(),NewItems,runnable));
+				if(!new ArrayList<>(Arrays.asList(p.getInventory().getStorageContents())).containsAll(oldInventory)) {
+					List<ItemStack> NewItems = oldInventory;
+					NewItems.removeAll(new ArrayList<>(Arrays.asList(p.getInventory().getStorageContents())));
+					if(NewItems.size() > 0) {
+						Bukkit.getServer().getPluginManager().callEvent(new PlayerInventoryItemRemovingEvent(p, p.getInventory(),NewItems));
+						oldInventory = new ArrayList<>(Arrays.asList(p.getInventory().getContents()));
 					}
 				}
 			}
-		}.runTaskTimer(plugin, 0, 5L);*/
+		}.runTaskTimer(plugin, 0, 1L);
 	}	
 	public BukkitTask getItemAddedRunnable() {
 		return this.itemAddedRunnable;

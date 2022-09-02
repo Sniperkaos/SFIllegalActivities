@@ -8,7 +8,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitTask;
 
 public class PlayerInventoryItemRemovingEvent extends PlayerEvent implements Cancellable {
 
@@ -16,13 +15,11 @@ public class PlayerInventoryItemRemovingEvent extends PlayerEvent implements Can
 	private List<ItemStack> item;
 	private boolean cancelled;
 	private Inventory inventory;
-	private BukkitTask runnable;
 	
-	public PlayerInventoryItemRemovingEvent(Player who,Inventory i,List<ItemStack> items,BukkitTask runnable) {
+	public PlayerInventoryItemRemovingEvent(Player who,Inventory i,List<ItemStack> items) {
 		super(who);
 		this.item = items;
 		this.inventory = i;
-		this.runnable = runnable;
 	}
 
 	@Override
@@ -32,7 +29,10 @@ public class PlayerInventoryItemRemovingEvent extends PlayerEvent implements Can
 	}
 
 	public void cancel() {
-		this.runnable.cancel();
+		this.cancelled = true;
+	}
+	public static HandlerList getHandlerList(){
+		return handlers;
 	}
 	@Override
 	public HandlerList getHandlers() {
@@ -45,6 +45,7 @@ public class PlayerInventoryItemRemovingEvent extends PlayerEvent implements Can
 	public Inventory getInventory() {
 		return this.inventory;
 	}
+
 	@Override
 	public void setCancelled(boolean cancel) {
 		// TODO Auto-generated method stub

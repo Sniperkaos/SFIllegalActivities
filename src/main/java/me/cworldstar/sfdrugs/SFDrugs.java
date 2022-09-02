@@ -11,6 +11,7 @@ import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import me.cworldstar.sfdrugs.events.CorporationTraderEvent;
+import me.cworldstar.sfdrugs.events.CustomMobDeathEvent;
 import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
 import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
 import me.cworldstar.sfdrugs.events.GangMemberSpawnEvent;
@@ -44,7 +45,7 @@ public class SFDrugs extends AbstractAddon implements SlimefunAddon {
         // Give your Category a unique id.
     	Items ItemRegistry = new Items(this);
 		getServer().getPluginManager().registerEvents(new ArmorListener(new ArrayList<String>()), this);
-		
+		CustomMobDeathEvent DeathEvent = new CustomMobDeathEvent(this);
     	DrugSuitDamaged DamageEvent = new DrugSuitDamaged(this);
     	DrugSuitWearerDamaged DamageEvent2 = new DrugSuitWearerDamaged(this);
     	ItemRegistry.register();

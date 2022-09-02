@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
@@ -29,9 +30,9 @@ public class EscapedTestSubject {
 		z.setMaxHealth(2500.0);
 		z.setHealth(2500.0);
 		z.setAdult();
+		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"escaped_corporate_test_subject"));
 		z.setCanPickupItems(false);		
-		z.setLootTable(new SmallerGangMemberLootTable(plugin));
-		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&c&l&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r"),BarColor.RED, BarStyle.SEGMENTED_12);
+		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&a&l|||&r &2&l⚠ Escaped Corporate Test Subject ⚠&r &a&l|||&r"),BarColor.GREEN, BarStyle.SEGMENTED_12);
 		EnemyBossBar.setVisible(true);
 		EnemyBossBar.setProgress(1.0);
 		List<Player> Players = new ArrayList<Player>();

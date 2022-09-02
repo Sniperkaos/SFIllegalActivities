@@ -20,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -38,6 +39,7 @@ public class CorporationEnemy {
 		z.setCanPickupItems(false);
 		z.setMaxHealth(300.0);
 		z.setHealth(300.0);
+		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(Plugin,"corporate_security_robot"));
 		z.setAdult();
 		z.setCanPickupItems(false);
 		z.setAbsorptionAmount(200.0);

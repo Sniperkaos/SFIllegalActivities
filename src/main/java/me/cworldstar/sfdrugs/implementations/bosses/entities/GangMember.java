@@ -26,6 +26,7 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.cworldstar.sfdrugs.SFDrugs;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -43,6 +44,7 @@ public class GangMember {
 		z.setMaxHealth(750.0);
 		z.setHealth(750.0);
 		z.setAdult();
+		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"red_wolves_gangster"));
 		z.setCanPickupItems(false);		
 		z.setLootTable(new CorporationEnemyLootTable(plugin));
 		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&c&l&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r"),BarColor.RED, BarStyle.SEGMENTED_12);

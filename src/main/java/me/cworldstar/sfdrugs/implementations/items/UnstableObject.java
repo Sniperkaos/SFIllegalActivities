@@ -25,6 +25,7 @@ public class UnstableObject extends SlimefunItem {
 		super(itemGroup,item,recipeType, recipe);
 		this.unstable = unstable;
 		UnstableObject.plugin = plugin;
+		item.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(this.plugin,"Unstable"), PersistentDataType.INTEGER,unstable.UNSTABLE_VALUE);
 		// TODO Auto-generated constructor stub
 	}
 	public Unstable getUnstableAmount() {

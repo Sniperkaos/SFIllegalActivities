@@ -136,7 +136,7 @@ public class Items {
 	}
 
 	
-	public static final SlimefunItemStack GANGSTER_CHESTPLATE = new SlimefunItemStack("SFDRUGS_GANGSTER_BOOTS",Material.LEATHER_CHESTPLATE,"&cRed Wolves' Vest","",LoreBuilder.material("Woven Micro Sirthium Alloy"));
+	public static final SlimefunItemStack GANGSTER_CHESTPLATE = new SlimefunItemStack("SFDRUGS_GANGSTER_CHESTPLATE",Material.LEATHER_CHESTPLATE,"&cRed Wolves' Vest","",LoreBuilder.material("Woven Micro Sirthium Alloy"));
 	static {
 		GANGSTER_CHESTPLATE.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10);
 		LeatherArmorMeta ChestplateMeta = (LeatherArmorMeta) GANGSTER_CHESTPLATE.getItemMeta();
@@ -515,7 +515,7 @@ public class Items {
 		Snaids NSNAIDS = new Snaids(this.plugin,this.group,Items.SNAIDS,RECIPE_DRYER,new ItemStack[] { new ItemStack(Material.STICK,64),Items.TRAY});
 		NSNAIDS.register(this.plugin);
 		
-		SlimefunItem NMONEY = new SlimefunItem(this.group,Items.MONEY,RecipeType.MOB_DROP,new ItemStack[] {});
+		SlimefunItem NMONEY = new SlimefunItem(this.group,Items.MONEY,SECURITY_ROBOT_DROP,new ItemStack[] {});
 		NMONEY.register(this.plugin);
 		SFDrugsHoe NHOE = new SFDrugsHoe(this.group,Items.HOE,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 			null,null,null,

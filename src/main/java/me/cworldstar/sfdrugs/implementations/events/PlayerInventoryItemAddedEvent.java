@@ -8,21 +8,18 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitTask;
 
 public class PlayerInventoryItemAddedEvent extends PlayerEvent implements Cancellable {
 
-	public static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 	private List<ItemStack> item;
 	private boolean cancelled;
 	private Inventory inventory;
-	private BukkitTask runnable;
 	
-	public PlayerInventoryItemAddedEvent(Player who,Inventory i,List<ItemStack> items,BukkitTask runnable) {
+	public PlayerInventoryItemAddedEvent(Player who,Inventory i,List<ItemStack> items) {
 		super(who);
 		this.item = items;
 		this.inventory = i;
-		this.runnable = runnable;
 	}
 
 	@Override
@@ -32,7 +29,10 @@ public class PlayerInventoryItemAddedEvent extends PlayerEvent implements Cancel
 	}
 
 	public void cancel() {
-		this.runnable.cancel();
+		this.cancelled = true;
+	}
+	public static HandlerList getHandlerList(){
+		return handlers;
 	}
 	@Override
 	public HandlerList getHandlers() {
@@ -49,6 +49,7 @@ public class PlayerInventoryItemAddedEvent extends PlayerEvent implements Cancel
 	@Override
 	public void setCancelled(boolean cancel) {
 		// TODO Auto-generated method stub
+		this.cancelled = true;
 		this.cancel();
 	}
 

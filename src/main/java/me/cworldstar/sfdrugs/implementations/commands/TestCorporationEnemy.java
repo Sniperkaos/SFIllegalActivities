@@ -22,18 +22,24 @@ public class TestCorporationEnemy implements CommandExecutor  {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof Player) {
 			Player p = sender.getServer().getPlayer(sender.getName());
-			switch(args[0]) {
-			case "corporationEnemy":
-				new CorporationMobZone(plugin,p.getWorld(),p.getLocation());
-				break;
-			case "gangMember":
-				new GangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
-			case "escapedTestSubject":
-				new EscapedTestSubject(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
-			case "smallerGangMember":
-				new SmallerGangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
-			default:
-				return false;
+			sender.sendMessage(args[0]);
+			switch(args[0].toLowerCase()) {
+				case "corporationenemy":
+					new CorporationMobZone(plugin,p.getWorld(),p.getLocation());
+					break;
+				case "gangmember":
+					new GangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
+					break;
+				case "escapedtestsubject":
+					new EscapedTestSubject(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
+					break;
+	
+				case "smallergangmember":
+					new SmallerGangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
+					break;
+				default:
+					sender.sendMessage("Invalid test parameter.");
+					break;
 			}
 			return true;
 		}

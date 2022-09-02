@@ -21,6 +21,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -39,7 +40,8 @@ public class SmallerGangMember {
 		z.setMaxHealth(100.0);
 		z.setHealth(100.0);
 		z.setAdult();
-		z.setCanPickupItems(false);		
+		z.setCanPickupItems(false);	
+		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"red_wolves_trainee"));
 		z.setLootTable(new SmallerGangMemberLootTable(plugin));
 		ItemStack ZombieHead = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgxOWM5OTY2ZmQ4OWI0YjM4MTJlMmRmMTdkODk4NzliZTVmMjNmZGU5ZmQ3MTQ2NWQzZjAwMjM2ZGJkMjZmOCJ9fX0=");
 		ItemStack Boots = new ItemStack(Material.LEATHER_BOOTS);

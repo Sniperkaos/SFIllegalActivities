@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPluginLoader;
 
 import io.github.mooy1.infinitylib.core.AbstractAddon;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import me.cworldstar.sfdrugs.events.CorporationTraderEvent;
 import me.cworldstar.sfdrugs.events.DrugSuitDamaged;
 import me.cworldstar.sfdrugs.events.DrugSuitWearerDamaged;
@@ -35,7 +36,9 @@ public class SFDrugs extends AbstractAddon implements SlimefunAddon {
     public SFDrugs() {
     	super("Sniperkaos","SFIllegalActivities","master","auto-update");
     }
-	@SuppressWarnings("unused")
+    
+    
+    @SuppressWarnings("unused")
 	@Override
 	protected void enable() {
         // Give your Category a unique id.
@@ -56,7 +59,6 @@ public class SFDrugs extends AbstractAddon implements SlimefunAddon {
     	 */
     	PlayerAddedEvent WhoEvenReadsThese = new PlayerAddedEvent(this);
     	UnstableObjectEvent IDont = new UnstableObjectEvent(this);
-    	
     	SFHookerEvent HookerEvent = new SFHookerEvent(this,TradingRegistry);
     	CorporationTraderEvent TraderEvent = new CorporationTraderEvent(this,TradingRegistry);
     	MysteriousTraderEvent TraderEvent2 = new MysteriousTraderEvent(this,TradingRegistry);

@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 public class PlayerInventoryItemRemovingEvent extends PlayerEvent implements Cancellable {
 
-	public static final HandlerList handlers = new HandlerList();
+	private static final HandlerList handlers = new HandlerList();
 	private List<ItemStack> item;
 	private boolean cancelled;
 	private Inventory inventory;
@@ -37,7 +37,7 @@ public class PlayerInventoryItemRemovingEvent extends PlayerEvent implements Can
 	@Override
 	public HandlerList getHandlers() {
 		// TODO Auto-generated method stub
-		return PlayerInventoryItemAddedEvent.handlers;
+		return PlayerInventoryItemRemovingEvent.handlers;
 	}
 	public List<ItemStack> getItem() {
 		return this.item;

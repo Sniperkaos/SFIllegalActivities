@@ -31,18 +31,44 @@ public class SmallerGangMemberLootTable implements LootTable {
 
 	@Override
 	public Collection<ItemStack> populateLoot(Random random, LootContext context) {
-		// TODO Auto-generated method stub
-		if(random.nextInt(5) == 3) {
-			this.lootTable.add(new CustomItemStack(Items.MONEY,8));
-		}
-		if(random.nextInt(5) == 2) {
-			this.lootTable.add(new CustomItemStack(Items.MONEY,2));
-		}
-		if(random.nextInt(5) == 1) {
-			this.lootTable.add(new CustomItemStack(Items.MONEY,3));
-		}
-		if(random.nextInt(5) == 4) {
-			this.lootTable.add(new CustomItemStack(Items.MONEY,5));
+		int num = random.nextInt(12);
+		int items = random.nextInt(3);
+		for(int i=0;i<items;i++) {
+			switch(num) {
+				case 1:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
+				case 7:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
+					break;
+				case 8:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
+					break;
+				case 9:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
+					break;
+				case 10:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,5));
+					break;
+				case 11:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,5));
+					break;
+				case 12:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,8));
+					break;
+				default:
+					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
+			}
 		}
 		return this.lootTable;
 	}

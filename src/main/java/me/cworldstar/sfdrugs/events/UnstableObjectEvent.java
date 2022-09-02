@@ -68,18 +68,22 @@ public class UnstableObjectEvent implements Listener {
 								meta.setLore(oldLore);
 								item.setItemMeta(meta);
 							} else {
-								Scanner doubleScanner = new Scanner(oldLore.get(oldLore.size()-1));
-								double CooldownTimerAmount = doubleScanner.nextDouble();
-								doubleScanner.close();
-								if(CooldownTimerAmount != 0) {
-									oldLore.add(oldLore.size()-1,LoreHandler.UnstableObjectCooldownTimer(CooldownTimerAmount - 0.25));
-									meta.setLore(oldLore);
-									item.setItemMeta(meta);
+								Scanner doubleScanner = new Scanner((String) (oldLore.get(oldLore.size()-1)));
+								if (doubleScanner.hasNextDouble()) {
+									double CooldownTimerAmount = doubleScanner.nextDouble();
+									if(CooldownTimerAmount != 0) {
+										oldLore.add(oldLore.size()-1,LoreHandler.UnstableObjectCooldownTimer(CooldownTimerAmount - 0.1));
+										meta.setLore(oldLore);
+										item.setItemMeta(meta);
+									}
+								} else {
+									e.getPlayer().sendMessage("Could not extract double.");
 								}
+								doubleScanner.close();
 							}
 						}
 					}
-				}.runTaskTimer(plugin, 0, 5L);
+				}.runTaskTimer(plugin, 0, 2L);
 				switch(item2.getUnstableAmount()) {
 				case STABLE:
 					break;
@@ -102,8 +106,8 @@ public class UnstableObjectEvent implements Listener {
 							if(e.getPlayer().getInventory().contains(item) && !e.isCancelled() && e.getPlayer().isOnline()) {
 								new Speak(e.getPlayer(),"&e&lYou took too long to dispose of an unstable object. It blew up.");
 								item.setAmount(0);
-								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),4F);
-								e.getPlayer().damage(15.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
+								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),4F,true,true,DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
+								e.getPlayer().damage(30.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
 							}
 						}
 						
@@ -116,8 +120,8 @@ public class UnstableObjectEvent implements Listener {
 							if(e.getPlayer().getInventory().contains(item) && !e.isCancelled() && e.getPlayer().isOnline()) {
 								new Speak(e.getPlayer(),"&c&lYou took too long to dispose of a highly unstable object.");
 								item.setAmount(0);
-								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),10F);
-								e.getPlayer().damage(30.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
+								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),10F,true,true,DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
+								e.getPlayer().damage(45.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
 							}
 						}
 						

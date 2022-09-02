@@ -46,8 +46,10 @@ import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
 import me.cworldstar.sfdrugs.implementations.items.LaserSword;
 import me.cworldstar.sfdrugs.implementations.items.MoneyStamp;
 import me.cworldstar.sfdrugs.implementations.items.PlatedHazmat;
+import me.cworldstar.sfdrugs.implementations.items.RareChest;
 import me.cworldstar.sfdrugs.implementations.items.RobotArmorSet;
 import me.cworldstar.sfdrugs.implementations.items.Snaids;
+import me.cworldstar.sfdrugs.implementations.items.UncommonChest;
 import me.cworldstar.sfdrugs.implementations.items.UnstableObject;
 import me.cworldstar.sfdrugs.implementations.items.UnstableObject.Unstable;
 import net.md_5.bungee.api.ChatColor;
@@ -86,12 +88,11 @@ public class Items {
 	public static final ItemStack RARE_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU3ZWY0ZTNmYmFhMGJmNzk5ZGQxMzY5N2UyYzBmMzM5NTVhNGEwZGFiMmYyOTkyZGExN2FhMjllODFhZGY4NyJ9fX0=");
 	public static final ItemStack UNCOMMON_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWE5OGEzMjVmMGIzN2NkMjcwZjU4YmIwOWNiOWQ3M2UxYmIwODdjYWM2MzJkZjJhNWYwNzIzMjUzMzRjNTQwIn19fQ==");
 	
-	
 	// Tools and the like
 	
-	public static final SlimefunItemStack DRUG_PICKAXE = new SlimefunItemStack("SFDRUGS_DRUG_PICKAXE",Material.NETHERITE_PICKAXE,"&a&l&k|||&r &7&lCorporate Mining Drill&r &a&l&k|||&r","&7Efficiency XV","&7Fortune XV","&7Unbreaking XX","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack DRUG_SHOVEL = new SlimefunItemStack("SFDRUGS_DRUG_SHOVEL",Material.NETHERITE_SHOVEL,"&a&l&k|||&r &7&lCorporate Ground Smasher&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-	public static final SlimefunItemStack DRUG_AXE = new SlimefunItemStack("SFDRUGS_DRUG_AXE",Material.NETHERITE_AXE,"&a&l&k|||&r &7&lCorporate Chainsaw&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Shift to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack DRUG_PICKAXE = new SlimefunItemStack("SFDRUGS_DRUG_PICKAXE",Material.NETHERITE_PICKAXE,"&a&l&k|||&r &7&lCorporate Mining Drill&r &a&l&k|||&r","&7Efficiency XV","&7Fortune XV","&7Unbreaking XX","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Right-Click to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack DRUG_SHOVEL = new SlimefunItemStack("SFDRUGS_DRUG_SHOVEL",Material.NETHERITE_SHOVEL,"&a&l&k|||&r &7&lCorporate Ground Smasher&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Right-Click to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
+	public static final SlimefunItemStack DRUG_AXE = new SlimefunItemStack("SFDRUGS_DRUG_AXE",Material.NETHERITE_AXE,"&a&l&k|||&r &7&lCorporate Chainsaw&r &a&l&k|||&r","",LoreBuilder.material("Irradiated Sirthium"), ""," &7- Right-Click to enable Silk Touch.","",LoreBuilder.powerCharged(0, 12000), "",LoreBuilder.radioactive(Radioactivity.VERY_DEADLY),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 
 	public static final SlimefunItemStack HOE = new SlimefunItemStack("SFDRUGS_HOE",Material.WOODEN_HOE,"&dSmall Town Hoe", "","&d&lSPAWNER");
 	public static final SlimefunItemStack MYSTERIOUS_TRADER_SUMMONER  = new SlimefunItemStack("SFDRUGS_MYSTERIOUS_TRADER_SUMMONER",Material.CRYING_OBSIDIAN,"&cMysterious Trader's Callsign","",LoreBuilder.RIGHT_CLICK_TO_USE);
@@ -194,7 +195,8 @@ public class Items {
 	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from re&5&ka&r&5l &5&kdark&r &5m&5&katter&r!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
 	public static final MachineRecipeType CORPORATION_TRADE = new MachineRecipeType("CORPORATION_TRADER",Items.CORPORATE_GROUP);
 	public static final SlimefunItemStack ELECTRIC_SHEARS = new SlimefunItemStack("SFDRUGS_ELECTRIC_SHEARS",Material.SHEARS,"&7Electric Shears","",LoreBuilder.powerCharged(0, 1280),"",LoreBuilder.radioactive(Radioactivity.LOW));
-	
+	public static final SlimefunItemStack UNCOMMON_CHEST = new SlimefunItemStack("SFDRUGS_UNCOMMON_LOOT_CHEST",Items.UNCOMMON_LOOT_CHEST_HEAD,"&aUncommon Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE);
+	public static final SlimefunItemStack RARE_CHEST = new SlimefunItemStack("SFDRUGS_RARE_LOOT_CHEST",Items.RARE_LOOT_CHEST_HEAD,"&bRare Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE);
 	public static final SlimefunItemStack MYSTEROUS_TRADER = new SlimefunItemStack("MYSTERIOUS_TRADER_GROUJP",MYSTEROUS_TRADER_HEAD,"&cMysterious Trader");
 	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Boss Drops");;
 	static {
@@ -227,13 +229,14 @@ public class Items {
 		
 		CORPORATION_LASER_SWORD.setItemMeta(CORPORATION_LASER_SWORD_META);
 	
+		
 		ItemMeta ROBOT_HELMET_META = CORPORATION_ROBOT_HELMET.getItemMeta();
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",9,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_ARMOR_TOUGHNESS, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",6,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addAttributeModifier(Attribute.GENERIC_KNOCKBACK_RESISTANCE, new AttributeModifier(UUID.randomUUID(),"SFDRUGS_ROBOT_ARMOR",1,Operation.ADD_NUMBER,EquipmentSlot.HEAD));
 		ROBOT_HELMET_META.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
-
+		
 		CORPORATION_ROBOT_HELMET.setItemMeta(ROBOT_HELMET_META);
 		
 		ItemMeta ROBOT_CHESTPLATE_META = CORPORATION_ROBOT_CHESTPLATE.getItemMeta();
@@ -334,8 +337,8 @@ public class Items {
 		RecipeType MYSTERIOUS_TRADER = new RecipeType(new NamespacedKey(this.plugin,"MYSTERIOUS_TRADER"),Items.MYSTEROUS_TRADER);
 		RecipeType SECURITY_ROBOT_DROP = new RecipeType(new NamespacedKey(this.plugin,"SECURITY_ROBOT_DROP"),Items.ROBOT_HEAD);
 		
-		new SlimefunItem(this.group,new SlimefunItemStack("SFDRUGS_UNCOMMON_LOOT_CHEST",Items.UNCOMMON_LOOT_CHEST_HEAD,"&aUncommon Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE),SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
-		new SlimefunItem(this.group,new SlimefunItemStack("SFDRUGS_RARE_LOOT_CHEST",Items.RARE_LOOT_CHEST_HEAD,"&bRare Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE),SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
+		new UncommonChest(this.plugin,this.group,UNCOMMON_CHEST,SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
+		new RareChest(this.plugin,this.group,RARE_CHEST,SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
 
 		
 		new PlatedHazmat(this.plugin,this.group,PlatedHazmat.getByInteger(0),RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {

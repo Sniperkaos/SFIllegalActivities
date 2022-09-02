@@ -10,8 +10,10 @@ import org.bukkit.entity.LivingEntity;
 import me.cworldstar.sfdrugs.utils.Speak;
 
 public enum DamageType {
-	UNSTABLE_OBJECT("&f&l&k|||&r &f&lUnstable Object &k|||&r");
-
+	UNSTABLE_OBJECT("&f&l&k|||&r &f&lUnstable Object &k|||&r"),
+	LASER_PROJECTILE("&6&l&k|||&r &e&lLaser Projectile &k|||&r"), 
+	ANTIMATTER_DETONATION("&d&l&k|||&r &5&lAntimatter Detonation&r &d&l&k|||&r");
+	
 	private final String DAMAGETYPE_DISPLAY_NAME;
 	
 	DamageType(String name) {

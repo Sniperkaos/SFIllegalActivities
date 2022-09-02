@@ -10,4 +10,8 @@ public class RandomUtils {
 	public static Random getRandom() {
 		return RandomUtils.random;
 	}
+	public static Integer nextInt(int i) {
+		return RandomUtils.random.nextInt(i);
+		
+	}
 }

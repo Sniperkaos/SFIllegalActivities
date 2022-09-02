@@ -1,36 +1,16 @@
 package me.cworldstar.sfdrugs.implementations.bosses.entities;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.LlamaSpit;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.util.Vector;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.cworldstar.sfdrugs.SFDrugs;
-import me.cworldstar.sfdrugs.implementations.loot.CorporationEnemyLootTable;
 import me.cworldstar.sfdrugs.implementations.loot.SmallerGangMemberLootTable;
-import me.cworldstar.sfdrugs.utils.ParticleUtils;
 import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
@@ -39,6 +19,8 @@ public class SmallerGangMember {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&c&lRed Wolves Trainee"));
 		z.setMaxHealth(100.0);
 		z.setHealth(100.0);
+		z.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,999999, 2));
+		z.setAbsorptionAmount(25);
 		z.setAdult();
 		z.setCanPickupItems(false);	
 		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"red_wolves_trainee"));
@@ -46,7 +28,7 @@ public class SmallerGangMember {
 		ItemStack ZombieHead = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgxOWM5OTY2ZmQ4OWI0YjM4MTJlMmRmMTdkODk4NzliZTVmMjNmZGU5ZmQ3MTQ2NWQzZjAwMjM2ZGJkMjZmOCJ9fX0=");
 		ItemStack Boots = new ItemStack(Material.LEATHER_BOOTS);
 		LeatherArmorMeta BootsMeta = (LeatherArmorMeta) Boots.getItemMeta();
-		new Speak(BootsMeta,"&c Red Wolves Vest");
+		new Speak(BootsMeta,"&c Red Wolves Boots");
 		BootsMeta.setColor(Color.RED);
 		BootsMeta.setUnbreakable(true);
 		Boots.setItemMeta(BootsMeta);

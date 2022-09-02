@@ -24,17 +24,17 @@ public class TestCorporationEnemy implements CommandExecutor  {
 			Player p = sender.getServer().getPlayer(sender.getName());
 			sender.sendMessage(args[0]);
 			switch(args[0].toLowerCase()) {
-				case "corporationenemy":
+				case "corporate_security_robot":
 					new CorporationMobZone(plugin,p.getWorld(),p.getLocation());
 					break;
-				case "gangmember":
+				case "red_wolves_gangster":
 					new GangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
 					break;
-				case "escapedtestsubject":
+				case "escaped_test_subject":
 					new EscapedTestSubject(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
 					break;
 	
-				case "smallergangmember":
+				case "red_wolves_trainee":
 					new SmallerGangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
 					break;
 				default:

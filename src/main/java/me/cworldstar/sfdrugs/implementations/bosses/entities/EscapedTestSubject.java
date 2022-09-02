@@ -20,22 +20,37 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.cworldstar.sfdrugs.SFDrugs;
-import me.cworldstar.sfdrugs.implementations.loot.SmallerGangMemberLootTable;
+import me.cworldstar.sfdrugs.implementations.bosses.deathsequences.EscapedTestSubjectDeathSequence;
 import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
 public class EscapedTestSubject {
 	public EscapedTestSubject(SFDrugs plugin, Zombie z) {
-		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&a&l|||&r &2&l⚠ Escaped Corporate Test Subject ⚠&r &a&l|||&r"));
-		z.setMaxHealth(2500.0);
-		z.setHealth(2500.0);
+		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&a&l&k|||&r &2&l⚠ Escaped Corporate Test Subject ⚠&r &a&l&k|||&r"));
+		z.setMaxHealth(2000.0);
+		z.setHealth(2000.0);
 		z.setAdult();
-		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"escaped_corporate_test_subject"));
+		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"escaped_test_subject"));
 		z.setCanPickupItems(false);		
-		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&a&l|||&r &2&l⚠ Escaped Corporate Test Subject ⚠&r &a&l|||&r"),BarColor.GREEN, BarStyle.SEGMENTED_12);
+		BossBar EnemyBossBar = Bukkit.getServer().createBossBar(ChatColor.translateAlternateColorCodes('&',"&a&l&k|||&r &2&l⚠ Escaped Corporate Test Subject ⚠&r &a&l&k|||&r"),BarColor.GREEN, BarStyle.SEGMENTED_12);
 		EnemyBossBar.setVisible(true);
 		EnemyBossBar.setProgress(1.0);
 		List<Player> Players = new ArrayList<Player>();
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				if(z.isDead()) {
+					this.cancel();
+				}
+				if(Double.parseDouble(new DecimalFormat("#.#").format(z.getHealth() / z.getMaxHealth())) <= 0.1) {
+					z.setInvulnerable(true);
+					z.setAI(false);
+					z.setGravity(false);
+					new EscapedTestSubjectDeathSequence(plugin, z);
+					this.cancel();
+				}
+ 			}
+		}.runTaskTimer(plugin, 0, 1L);
 		new BukkitRunnable() {
 			@Override
 			public void run() {

@@ -35,6 +35,7 @@ import org.bukkit.util.Vector;
 
 import me.cworldstar.sfdrugs.implementations.loot.CorporationEnemyLootTable;
 import me.cworldstar.sfdrugs.utils.ParticleUtils;
+import me.cworldstar.sfdrugs.utils.RandomUtils;
 import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
@@ -147,8 +148,9 @@ public class GangMember {
 							}
 						case 2:
 							new Speak(z,z.getNearbyEntities(15.0, 15.0, 15.0),"&c&l[&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r&c&l]:&r &cJust die!");
-							for(int i=0;i<4;i++) {
+							for(int i=0;i<=2;i++) {
 								LlamaSpit LaserProjectile = z.launchProjectile(LlamaSpit.class);
+								LaserProjectile.setMetadata("SFDRUGS_IS_LASER_PROJECTILE", new FixedMetadataValue(plugin,RandomUtils.nextInt(10).floatValue()));
 								Vector source = z.getLocation().getDirection().normalize().multiply(50);
 								Vector v = z.getTarget().getLocation().toVector().subtract(source);
 								BukkitTask LaserProjectileVelocityTask = new BukkitRunnable() {
@@ -174,7 +176,7 @@ public class GangMember {
 										}
 										this.cancel();
 									}
-								}.runTaskLater(plugin, 100L); // Remove after 10 seconds
+								}.runTaskLater(plugin, 100L); // Remove after 5 seconds
 								break;
 							}
 						default:

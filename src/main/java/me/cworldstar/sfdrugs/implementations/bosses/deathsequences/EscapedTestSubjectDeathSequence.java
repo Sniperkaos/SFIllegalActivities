@@ -23,7 +23,7 @@ public class EscapedTestSubjectDeathSequence {
 						if(mob.getLocation().getYaw() < 360 && !this.isCancelled()) {
 							mob.setRotation(mob.getLocation().getYaw() + 1.0F,mob.getLocation().getPitch());
 						} else {
-							mob.setRotation(0.0F,mob.getEyeLocation().getPitch());
+							mob.setRotation(0.0F,mob.getLocation().getPitch());
 						}
 					}
 				}.runTaskTimer(plugin, 0, 2L); // Rotate
@@ -31,7 +31,7 @@ public class EscapedTestSubjectDeathSequence {
 					@Override
 					public void run() {
 						mob.getWorld().createExplosion(mob.getLocation(), 20.0F,true,true,DamageType.ANTIMATTER_DETONATION.damager(mob));
-						for(Entity e2 : mob.getNearbyEntities(15.0, 15.0, 15.0)) {
+						for(Entity e2 : mob.getNearbyEntities(7.0, 7.0, 7.0)) {
 							if(e2 instanceof LivingEntity) {
 								((LivingEntity)e2).damage(50.0,DamageType.ANTIMATTER_DETONATION.damager((LivingEntity) e2));
 								mob.setInvulnerable(false);

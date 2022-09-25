@@ -11,7 +11,6 @@ import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.enchantments.Enchantment;
@@ -19,7 +18,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.LlamaSpit;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Snowball;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 
@@ -27,8 +25,6 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.cworldstar.sfdrugs.SFDrugs;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
@@ -40,10 +36,12 @@ import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
 public class GangMember {
+	@SuppressWarnings("deprecation")
 	public GangMember(SFDrugs plugin,Zombie z) {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&c&l&k|||&r &4&l⚠ Red Wolves Gangster ⚠&r &c&l&k|||&r"));
 		z.setMaxHealth(750.0);
 		z.setHealth(750.0);
+		z.setRemoveWhenFarAway(false);
 		z.setAdult();
 		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"red_wolves_gangster"));
 		z.setCanPickupItems(false);		

@@ -2,12 +2,10 @@ package me.cworldstar.sfdrugs.implementations.dot;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Particle;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -17,7 +15,7 @@ import me.cworldstar.sfdrugs.utils.Speak;
 
 public class Decay {
 	private static List<PotionEffect> DecayPotionEffects = new ArrayList<PotionEffect>();
-	private static boolean ShouldEnd = false;
+	private boolean ShouldEnd = false;
 	static {
 		Collection<PotionEffect> PotionEffectCollection = new ArrayList<PotionEffect>();
 		PotionEffectCollection.add(new PotionEffect(PotionEffectType.WITHER,120,2));
@@ -42,7 +40,7 @@ public class Decay {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				if(Decay.ShouldEnd == true) {
+				if(ShouldEnd == true) {
 					this.cancel();
 				}
 				p.getWorld().spawnParticle(Particle.SMOKE_NORMAL,p.getLocation(),10,1.0,2.0,1.0);
@@ -54,7 +52,7 @@ public class Decay {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				Decay.ShouldEnd = true;
+				ShouldEnd = true;
 				this.cancel();
 			}
 		}.runTaskLater(sfdrugs, 120);

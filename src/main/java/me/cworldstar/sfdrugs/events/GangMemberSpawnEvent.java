@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntitySpawnEvent;
 
 import me.cworldstar.sfdrugs.SFDrugs;
+import me.cworldstar.sfdrugs.implementations.bosses.entities.CorporateScout;
 import me.cworldstar.sfdrugs.implementations.bosses.entities.SmallerGangMember;
 import me.cworldstar.sfdrugs.utils.RandomUtils;
 
@@ -38,8 +39,8 @@ public class GangMemberSpawnEvent implements Listener {
 					new SmallerGangMember(plugin,(Zombie) e.getEntity());
 					break;
 				case 2:
-					new SmallerGangMember(plugin,(Zombie) e.getEntity());
-					break;								
+					new CorporateScout(plugin,(Zombie) e.getEntity());
+					break;	
 				default:
 					break;
 			}

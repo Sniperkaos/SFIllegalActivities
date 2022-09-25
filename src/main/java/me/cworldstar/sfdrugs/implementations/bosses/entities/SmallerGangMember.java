@@ -15,6 +15,7 @@ import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
 public class SmallerGangMember {
+	@SuppressWarnings("deprecation")
 	public SmallerGangMember(SFDrugs plugin,Zombie z) {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&c&lRed Wolves Trainee"));
 		z.setMaxHealth(100.0);

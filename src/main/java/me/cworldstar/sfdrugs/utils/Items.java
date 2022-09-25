@@ -76,7 +76,7 @@ public class Items {
 	// Drugs
 	public static final SlimefunItemStack SNAIDS = new SlimefunItemStack("SFDRUGS_SNAIDS",Material.HONEY_BOTTLE,"&d&lSnaids","","&d - You might blow up.");
 	public static final SlimefunItemStack CYANIDE = new SlimefunItemStack("SFDRUGS_CYANIDE",Material.CLAY_BALL,"&1Cyanide", "" , "&1 - Eating this will kill you.", "&1 - Why did you even make it?");
-	public static final SlimefunItemStack METH = new SlimefunItemStack("SFDRUGS_METH",Material.SUGAR,"&9Methamphetamine", "" , "&9 - Walter, I won't have sex with you right now Walter.");
+	public static final SlimefunItemStack METH = new SlimefunItemStack("SFDRUGS_METH",Material.SUGAR,"&9Methamphetamine", "" , "&9 - Breaking bad reference.");
 	
 	// Machines
 	public static final SlimefunItemStack CIRCUIT_FABRICATOR = new SlimefunItemStack("SFDRUGS_MACHINES_CIRCUIT_FABRICATOR",Material.WEATHERED_COPPER,"&7Circuit Fabricator","","&7Automates the production of Basic Circuits.","",LoreBuilder.machine(MachineTier.END_GAME, MachineType.MACHINE));
@@ -405,6 +405,9 @@ public class Items {
 		new UnstableObject(this.invisibleItems,Items.CORPORATE_ANDROID_CORE,SECURITY_ROBOT_DROP,new ItemStack[] {
 				
 		},Unstable.UNSTABLE,this.plugin).register(this.plugin);
+		new UnstableObject(this.invisibleItems,new SlimefunItemStack("SFDRUGS_UNSTABLE_INGOT",new ItemStack(Material.IRON_INGOT),"&f&lUnstable Ingot","", "&e&l⚠ Warning! Extremely Unstable! ⚠"),SECURITY_ROBOT_DROP,new ItemStack[] {
+				
+		},Unstable.HIGHLY_UNSTABLE,this.plugin).register(this.plugin);
 		new SlimefunItem(this.group,Items.DRUG_PIPE,HOOKER_TRADE,new ItemStack[] {
 				new CustomItemStack(Items.METH,10)
 		}).register(this.plugin);
@@ -501,17 +504,17 @@ public class Items {
 		NDRUG_HELMET.register(this.plugin);		
 
 		DrugSuit NDRUG_CHESTPLATE = new DrugSuit(plugin, group, Items.DRUG_CHESTPLATE,CORPORATION_TRADE, new ItemStack[] {
-				new CustomItemStack(Items.MONEY,8),Items.DRUG_CHESTPLATE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
+				new CustomItemStack(Items.MONEY,9),Items.DRUG_CHESTPLATE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.FIRE_RESISTANCE,1200,0)});
 		NDRUG_CHESTPLATE.register(this.plugin);	
 		
 		DrugSuit NDRUG_LEGGINGS = new DrugSuit(plugin, group, Items.DRUG_LEGGINGS,CORPORATION_TRADE, new ItemStack[] {
-				new CustomItemStack(Items.MONEY,8),Items.DRUG_LEGGINGS_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
+				new CustomItemStack(Items.MONEY,10),Items.DRUG_LEGGINGS_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,1200,0), new PotionEffect(PotionEffectType.JUMP,1200,0)});
 		NDRUG_LEGGINGS.register(this.plugin);	
 		
 		DrugSuit NDRUG_BOOTS = new DrugSuit(plugin, group, Items.DRUG_BOOTS,CORPORATION_TRADE, new ItemStack[] {
-				new CustomItemStack(Items.MONEY,8),Items.DRUG_BOOTS_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
+				new CustomItemStack(Items.MONEY,7),Items.DRUG_BOOTS_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,3)
 		}, new PotionEffect[] { new PotionEffect(PotionEffectType.SPEED,1200,1)});
 		NDRUG_BOOTS.register(this.plugin);	
 		
@@ -529,16 +532,16 @@ public class Items {
 		NGAY_PANTS.register(this.plugin);
 		NHOE.register(this.plugin);
 		WorldEater NWORLDEATER = new WorldEater(this.group,Items.DRUG_PICKAXE,CORPORATION_TRADE,new ItemStack[] {
-				new CustomItemStack(Items.MONEY,18),Items.PICKAXE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
+				new CustomItemStack(Items.MONEY,33),Items.PICKAXE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
 			});
 
 		NWORLDEATER.register(this.plugin);
 		WorldEater NDRUG_AXE = new WorldEater(this.group,Items.DRUG_AXE,CORPORATION_TRADE,new ItemStack[] {
-				new CustomItemStack(Items.MONEY,18),Items.AXE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
+				new CustomItemStack(Items.MONEY,34),Items.AXE_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
 			});
 		NDRUG_AXE.register(this.plugin);
 		WorldEater NDRUG_SHOVEL= new WorldEater(this.group,Items.DRUG_SHOVEL,CORPORATION_TRADE,new ItemStack[] {
-				new CustomItemStack(Items.MONEY,18),Items.SHOVEL_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
+				new CustomItemStack(Items.MONEY,35),Items.SHOVEL_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
 			});
 		NDRUG_SHOVEL.register(this.plugin);
 		Drug NCYANIDE = new Drug(this.group,Items.CYANIDE,RECIPE_DRYER,new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,64),Items.TRAY },new PotionEffect[] { new PotionEffect(PotionEffectType.HARM,240,100) });

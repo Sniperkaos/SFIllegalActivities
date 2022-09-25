@@ -2,9 +2,11 @@ package me.cworldstar.sfdrugs.events;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.generator.WorldInfo;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -68,7 +70,7 @@ public class UnstableObjectEvent implements Listener {
 								meta.setLore(oldLore);
 								item.setItemMeta(meta);
 							} else {
-								Scanner doubleScanner = new Scanner((String) (oldLore.get(oldLore.size()-1)));
+								Scanner doubleScanner = new Scanner((String) (oldLore.get(oldLore.size()-1))).useDelimiter(Pattern.compile("(\\d+)?\\.(\\d+)?"));
 								if (doubleScanner.hasNextDouble()) {
 									double CooldownTimerAmount = doubleScanner.nextDouble();
 									if(CooldownTimerAmount != 0) {
@@ -118,7 +120,7 @@ public class UnstableObjectEvent implements Listener {
 						@Override
 						public void run() {
 							if(e.getPlayer().getInventory().contains(item) && !e.isCancelled() && e.getPlayer().isOnline()) {
-								new Speak(e.getPlayer(),"&c&lYou took too long to dispose of a highly unstable object.");
+								new Speak(e.getPlayer(),"&c&lYou took too long to dispose of a highly unstable object. It blew up.");
 								item.setAmount(0);
 								e.getPlayer().getWorld().createExplosion(e.getPlayer().getLocation(),10F,true,true,DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));
 								e.getPlayer().damage(45.0, DamageType.UNSTABLE_OBJECT.damager(e.getPlayer()));

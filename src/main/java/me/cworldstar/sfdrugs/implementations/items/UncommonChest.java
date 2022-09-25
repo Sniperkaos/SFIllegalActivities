@@ -34,6 +34,10 @@ public class UncommonChest extends SimpleSlimefunItem<ItemUseHandler> implements
 			List<ItemStack> drops = new ArrayList<>();
 			drops.addAll(this.lootTable.populateLoot(RandomUtils.getRandom(),new LootContext.Builder(e.getPlayer().getLocation()).build()));
 			for(ItemStack drop : drops) {
+				if(e.getPlayer().getInventory().firstEmpty() == -1) {
+					e.cancel();
+					return;
+				}
 				e.getPlayer().getInventory().addItem(drop);
 			}
 			e.getPlayer().getWorld().playEffect(e.getPlayer().getLocation(), Effect.EXTINGUISH, 0);

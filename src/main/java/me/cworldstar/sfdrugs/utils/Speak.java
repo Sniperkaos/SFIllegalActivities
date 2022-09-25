@@ -21,6 +21,12 @@ public class Speak {
     		e.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
     	}
     }
+    public Speak(Entity Origin,String text,int Surrounding) {
+    	for(Entity e : Origin.getNearbyEntities(Surrounding, 100, Surrounding)) {
+    		Origin.getWorld().playSound(Origin.getLocation(), Sound.ENTITY_VILLAGER_TRADE, 0.6F, 0.2F);
+    		e.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
+    	}
+    }
     public Speak(LivingEntity e, String text) {
     	e.getWorld().playSound(e.getLocation(), Sound.ENTITY_VILLAGER_TRADE, 0.6F, 0.2F);
     	e.sendMessage(ChatColor.translateAlternateColorCodes('&', text));

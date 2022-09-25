@@ -9,6 +9,7 @@ import org.bukkit.entity.Zombie;
 
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.bosses.CorporationMobZone;
+import me.cworldstar.sfdrugs.implementations.bosses.entities.CorporateWorker;
 import me.cworldstar.sfdrugs.implementations.bosses.entities.EscapedTestSubject;
 import me.cworldstar.sfdrugs.implementations.bosses.entities.GangMember;
 import me.cworldstar.sfdrugs.implementations.bosses.entities.SmallerGangMember;
@@ -37,6 +38,8 @@ public class TestCorporationEnemy implements CommandExecutor  {
 				case "red_wolves_trainee":
 					new SmallerGangMember(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
 					break;
+				case "corporate_worker":
+					new CorporateWorker(plugin,(Zombie) p.getWorld().spawnEntity(p.getLocation(),EntityType.ZOMBIE));
 				default:
 					sender.sendMessage("Invalid test parameter.");
 					break;

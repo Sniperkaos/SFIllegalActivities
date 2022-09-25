@@ -29,6 +29,7 @@ public class EscapedTestSubject {
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&a&l&k|||&r &2&l⚠ Escaped Corporate Test Subject ⚠&r &a&l&k|||&r"));
 		z.setMaxHealth(2000.0);
 		z.setHealth(2000.0);
+		z.setRemoveWhenFarAway(false);
 		z.setAdult();
 		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"escaped_test_subject"));
 		z.setCanPickupItems(false);		
@@ -60,7 +61,7 @@ public class EscapedTestSubject {
 				} else {
 					double Health = Double.parseDouble(new DecimalFormat("#.###").format(z.getHealth() / z.getMaxHealth()));
 					EnemyBossBar.setProgress(Health);
-					for(Entity e : z.getNearbyEntities(20.0, 20.0, 20.0)) {
+					for(Entity e : z.getNearbyEntities(30.0, 30.0, 30.0)) {
 						if (e instanceof Player) {
 							if(!Players.contains((Player) e)) {
 								Players.add((Player) e);

@@ -41,7 +41,14 @@ public class RobotArmorDamaged implements Listener {
 					 }
 				}
 			}
-    	} Old Implementation */
+    	}  */
+    	/**
+    	 * 
+    	 * New Implementation of RobotArmorSet.
+    	 * Still bugs w/ security robot.
+    	 * 
+    	 * @author cworldstar
+    	 */
 		if (RobotArmorSet.WearingMostArmorSet(p)) {
 			RobotArmorSet.RemoveSetItemCharge(RobotArmorSet.ToRobotArmor(p.getEquipment().getArmorContents()),e.getDamage(),e);
 			for(ItemStack ArmorPiece : p.getEquipment().getArmorContents()) {

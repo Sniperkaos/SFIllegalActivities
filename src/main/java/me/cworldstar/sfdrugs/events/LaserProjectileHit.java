@@ -23,7 +23,7 @@ public class LaserProjectileHit implements Listener {
         if(e.getDamager() instanceof Projectile & e.getDamager().hasMetadata("SFDRUGS_IS_LASER_PROJECTILE")) {
             if(e.getEntity() instanceof LivingEntity) {
             	LivingEntity Entity = (LivingEntity) e.getEntity();
-            	Entity.damage(10, e.getDamager());
+            	Entity.damage(10,DamageType.LASER_PROJECTILE.damager(Entity));
             	new Decay(Entity, plugin);
             }
         }

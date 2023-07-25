@@ -67,7 +67,7 @@ public class TestCorporationEnemy implements CommandExecutor  {
 						break;
 					case "generate":
 						Chunk ChunkToGenerate = p.getWorld().getChunkAt(RandomUtils.RandomLocation(p.getWorld(), 5000, 0, 5000));
-						if (ChunkToGenerate.getInhabitedTime() == 0 && ChunkToGenerate.getPersistentDataContainer().get(SFDrugs.createKey("spawn_corporate_building"), PersistentDataType.STRING).equals(null)) {
+						if (ChunkToGenerate.getInhabitedTime() == 0 && ChunkToGenerate.getPersistentDataContainer().get(SFDrugs.createKey("spawn_corporate_building"), PersistentDataType.STRING) == null) {
 							ChunkToGenerate.getPersistentDataContainer().set(SFDrugs.createKey("spawn_corporate_building"), PersistentDataType.STRING, args[0]);
 							p.sendMessage("Chunk inhabited at " + Integer.toString(ChunkToGenerate.getX()).concat("X, ") + Integer.toString(ChunkToGenerate.getZ()) + "Y.");
 						} else {

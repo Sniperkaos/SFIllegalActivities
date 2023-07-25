@@ -45,14 +45,14 @@ public class PowerArmorListener implements Listener {
 	public void onPlayerRightClick(PlayerInteractEvent e) {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			if(SlimefunItem.getByItem(e.getPlayer().getInventory().getItemInMainHand()) instanceof PowerArmor) {
-				
+				e.setCancelled(true);
 				//TODO: power armor core UI
 				ATradingInterface TestInterface = new ATradingInterface(InventorySize.LARGE, (ItemStack) Items.MYTHICAL_CHEST, ATrader.TraderFromString("hooker_zombie"));
 				TestInterface.Display(e.getPlayer());
 				
 			}
 			
-			e.setCancelled(true);
+
 		}
 	}
 

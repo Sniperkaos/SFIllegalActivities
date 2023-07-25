@@ -1,5 +1,8 @@
 # SFDrugs
-This is a Slimefun addon, for 1.19.2. There is a progressive
+This is a Slimefun addon, for 1.19.2+.
+I've added support for 1.20.1.
+
+There is a progressive
 story line to this plugin. This plugin will occassionally
 spawn incredibly difficult bosses at a 1/20 chance each spawn.
 If you feel like this is too high, too bad, because I can't
@@ -29,5 +32,5 @@ than the Hazmat set, while much rarer.
 
 
 # Where can I go to suggest new additions?
-A: Either create a pull request, or
-go to my discord at https://discord.gg/R4TPSvs2ZP.
+A: Either create a pull request, or shoot me a DM. My discord "key" thing is sniperkaos, just let me know you're
+talking to me about the plugin.

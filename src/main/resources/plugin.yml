@@ -31,3 +31,11 @@ commands:
       description: Test boss fights.
       usage: /<command>
       permission: sfdrugs.dev.test
+   give_upgrade:
+      description: give upgrade
+      usage: /<command>
+      permission: sfdrugs.dev.give_upgrade
+   refresh_trader:
+      description: refreshes trader
+      usage: /<command> <trader/all>
+      permission: sfdrugs.dev.refresh_trader

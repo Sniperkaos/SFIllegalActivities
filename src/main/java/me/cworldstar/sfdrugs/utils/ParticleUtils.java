@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
+import org.bukkit.entity.LivingEntity;
 
 public class ParticleUtils {
 	public ParticleUtils() {}
@@ -34,4 +35,12 @@ public class ParticleUtils {
     		L.getWorld().spawnParticle(p,L,ParticlesPerPoint,0.0,0.0,0.0,0.0);
     	}
     }
+	public static void DripFromHead(LivingEntity e, Particle crimsonSpore) {
+		// TODO Auto-generated method stub
+		Location L = e.getEyeLocation();
+		for(int i = 0; i<=10; i++) {
+			L.getWorld().spawnParticle(crimsonSpore, L, 4,0.2,0.2,0.2);
+		}
+		
+	}
 }

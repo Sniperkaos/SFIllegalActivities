@@ -43,6 +43,8 @@ public class Trading {
 		Hooker.RegisterTradingRecipe(GStringRecipe);
 		TradingRecipe DrugPipeRecipe = new TradingRecipe(Items.METH,10,Items.DRUG_PIPE,1);
 		Hooker.RegisterTradingRecipe(DrugPipeRecipe);
+		TradingRecipe SnaidsRecipe = new TradingRecipe(Items.METH, 30, Items.SNAIDS, 1);
+		Hooker.RegisterTradingRecipe(SnaidsRecipe);
 		TradingRecipe CircuitBoard = new TradingRecipe(Items.MONEY,1,SlimefunItems.BASIC_CIRCUIT_BOARD,64);
 		Trader.RegisterTradingRecipe(CircuitBoard);
 		TradingRecipe CorporationMoneyStampRecipe = new TradingRecipe(Items.MONEY,30,Items.MONEY_STAMP,1);

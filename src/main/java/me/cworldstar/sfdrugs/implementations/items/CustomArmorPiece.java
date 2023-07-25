@@ -1,5 +1,7 @@
 package me.cworldstar.sfdrugs.implementations.items;
 
+import java.util.ArrayList;
+
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 

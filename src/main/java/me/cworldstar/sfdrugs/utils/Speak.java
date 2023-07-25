@@ -2,15 +2,21 @@ package me.cworldstar.sfdrugs.utils;
 
 import java.util.List;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.cworldstar.sfdrugs.SFDrugs;
 import net.md_5.bungee.api.ChatColor;
 
 public class Speak {
+	public static SFDrugs plugin;
+	public Speak(SFDrugs plugin) {
+		Speak.plugin = plugin;
+	}
     public Speak(Player p, String text) {
     	p.getWorld().playSound(p.getLocation(), Sound.ENTITY_VILLAGER_TRADE, 0.6F, 0.2F);
     	p.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
@@ -35,7 +41,16 @@ public class Speak {
     	i.setDisplayName(text);
     }
     public Speak() {}
-	public String format(String text) {
+	public static String format(String text) {
     	return ChatColor.translateAlternateColorCodes('&', text);
+	}
+	
+	public static NamespacedKey key;
+	public static NamespacedKey NamespacedKey(String str) {
+		return new NamespacedKey(plugin, str);
+	}
+	public static void AOEMessage(Entity Origin, String text, int Surrounding) {
+		// TODO Auto-generated method stub
+		new Speak(Origin, text, Surrounding);		
 	}
 }

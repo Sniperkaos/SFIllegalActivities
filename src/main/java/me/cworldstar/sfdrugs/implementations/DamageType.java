@@ -17,13 +17,13 @@ public enum DamageType {
 	private final String DAMAGETYPE_DISPLAY_NAME;
 	
 	DamageType(String name) {
-		this.DAMAGETYPE_DISPLAY_NAME = new Speak().format(name);
+		this.DAMAGETYPE_DISPLAY_NAME = Speak.format(name);
 		
 	}
 	public Entity damager(LivingEntity toDamage) {
 		World thisWorld = toDamage.getWorld();
 		ArmorStand thisDamager = ((ArmorStand) thisWorld.spawnEntity(toDamage.getLocation().add(new Location(thisWorld,0,20,0)),EntityType.ARMOR_STAND));
-		thisDamager.setCustomName(new Speak().format(this.DAMAGETYPE_DISPLAY_NAME));
+		thisDamager.setCustomName(Speak.format(this.DAMAGETYPE_DISPLAY_NAME));
 		thisDamager.setVisible(false);
 		thisDamager.setCustomNameVisible(false);
 		thisDamager.setAI(false);

@@ -83,6 +83,7 @@ public class UncommonChestLootTable implements LootTable {
 					this.lootTable.add(
 						new CustomItemStack(Items.IRRADIATED_SIRTHIUM_RAW,1)	
 					);
+					break;
 				default:
 					this.lootTable.add(new CustomItemStack(Items.CYANIDE,2));
 			}

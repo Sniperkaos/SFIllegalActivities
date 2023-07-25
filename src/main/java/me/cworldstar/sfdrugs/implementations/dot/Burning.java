@@ -14,7 +14,6 @@ import me.cworldstar.sfdrugs.utils.Speak;
 
 public class Burning {
 	private static List<PotionEffect> PotionEffects = new ArrayList<PotionEffect>();
-	private boolean ShouldEnd = false;
 	static {
 		Collection<PotionEffect> PotionEffectCollection = new ArrayList<PotionEffect>();
 		PotionEffectCollection.add(new PotionEffect(PotionEffectType.WITHER,120,2));
@@ -36,23 +35,18 @@ public class Burning {
 		p.setFireTicks(60);
 		new Speak(p,"&e&lYou are disintegrating. Consider running away.");
 		new BukkitRunnable() {
+			int ticks = 0;
 			@Override
 			public void run() {
-				if(ShouldEnd == true) {
+				if(ticks >= 240) {
 					this.cancel();
 				}
 				p.getWorld().spawnParticle(Particle.SMOKE_NORMAL,p.getLocation(),10,1.0,2.0,1.0);
 				for(PotionEffect potion : Burning.PotionEffects) {
 					p.addPotionEffect(potion);
 				}
+				ticks += 20;
 			}
 		}.runTaskTimer(sfdrugs, 0, 20);
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				ShouldEnd = true;
-				this.cancel();
-			}
-		}.runTaskLater(sfdrugs, 240);
 	}
 }

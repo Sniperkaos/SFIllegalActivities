@@ -1,4 +1,6 @@
 package me.cworldstar.sfdrugs.utils;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Color;
@@ -37,13 +39,16 @@ import me.cworldstar.sfdrugs.implementations.CircuitFabricator;
 import me.cworldstar.sfdrugs.implementations.CorporationTradingTerminal;
 import me.cworldstar.sfdrugs.implementations.Dryer;
 import me.cworldstar.sfdrugs.implementations.MoneyPrinter;
+import me.cworldstar.sfdrugs.implementations.NaniteSynthesizer;
 import me.cworldstar.sfdrugs.implementations.items.ArmorSet;
 import me.cworldstar.sfdrugs.implementations.items.Blueprint;
 import me.cworldstar.sfdrugs.implementations.items.DrugBaton;
 import me.cworldstar.sfdrugs.implementations.items.DrugSuit;
+import me.cworldstar.sfdrugs.implementations.items.EpicChest;
 import me.cworldstar.sfdrugs.implementations.items.Hook;
 import me.cworldstar.sfdrugs.implementations.items.IrradiatedItem;
 import me.cworldstar.sfdrugs.implementations.items.LaserSword;
+import me.cworldstar.sfdrugs.implementations.items.LegendaryChest;
 import me.cworldstar.sfdrugs.implementations.items.MoneyStamp;
 import me.cworldstar.sfdrugs.implementations.items.PlatedHazmat;
 import me.cworldstar.sfdrugs.implementations.items.RareChest;
@@ -52,6 +57,8 @@ import me.cworldstar.sfdrugs.implementations.items.Snaids;
 import me.cworldstar.sfdrugs.implementations.items.UncommonChest;
 import me.cworldstar.sfdrugs.implementations.items.UnstableObject;
 import me.cworldstar.sfdrugs.implementations.items.UnstableObject.Unstable;
+import me.cworldstar.sfdrugs.implementations.items.armorupgrades.ArmorUpgrade;
+import me.cworldstar.sfdrugs.implementations.items.armorupgrades.ExplosiveReactivePlating;
 import net.md_5.bungee.api.ChatColor;
 
 public class Items {
@@ -71,7 +78,94 @@ public class Items {
 	public static final SlimefunItemStack IRRADIATED_SIRTHIUM_PROCESSED = new SlimefunItemStack("SFDRUGS_SIRTHIUM",Material.EMERALD,"&aSirthium Crystal", "",LoreBuilder.radioactive(Radioactivity.HIGH),LoreBuilder.HAZMAT_SUIT_REQUIRED);
 	public static final ItemStack SIRTHIUM_ALLOY_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTkwNzkzZjU2NjE2ZjEwMTUwMmRlMWQzNGViMjU0NGY2MDdkOTg5MDBlMzY5OTM2OTI5NTMxOWU2MzBkY2Y2ZCJ9fX0=");
 	public static final SlimefunItemStack IRRADIATED_SIRTHIUM_ALLOY = new SlimefunItemStack("SFDRUGS_SIRTHIUM_ALLOY",SIRTHIUM_ALLOY_HEAD,"&aSirthium Alloy", "",LoreBuilder.radioactive(Radioactivity.VERY_HIGH),LoreBuilder.HAZMAT_SUIT_REQUIRED);
-
+	public static final SlimefunItemStack HEMP = new SlimefunItemStack("SFDRUGS_HEMP",Material.DEAD_BUSH,"&6Hemp Fiber","&e=> Used for making cloth.");
+	public static final SlimefunItemStack NANO_PARTICLES = new SlimefunItemStack("SFDRUGS_NANOPARTICLE", 
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzU5NTI2MGRiMmIyOGRlYTcyYzJiNDI1MmExODZkNDFkNjk0YjBkN2M4NTliMmFhN2I4OTFjMzFmNTk4OWRiOCJ9fX0="),
+			"&fNano Particle",
+			"&e=>Moving your way up in the world."
+			
+	);
+	
+	
+	public static final SlimefunItemStack POWER_ARMOR = new SlimefunItemStack("SFDRUGS_POWER_ARMOR", new ItemStack(Material.IRON_CHESTPLATE), "&6Power Armor", "", "&6Installed Core: {CORE}", LoreBuilder.powerCharged(0, 0));
+	
+	// power armor sheeit
+	public static final SlimefunItemStack POWER_ARMOR_CORPORATE_CORE = new SlimefunItemStack("SFDRUGS_POWER_ARMOR_CORE_CORPORATE",
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzQ5Zjg2ZGZhOTM4YTI3MDNjNzYzYTcwNmU5OTVkMDc0NTBiZWQ4ZjdmNDUwMTY4NjI2NDM2YzJiNTJjNWE5NSJ9fX0="),
+			"&4&lExecutive Power Armor Core",
+			"",
+			"&4&lCore Bonus: ",
+			"&4&l=> Sirthium-Infused Armor Base",
+			"&4&l=> +20 Armor",
+			"&4&l=> +20 Health",
+			"&4&l=> 30% Damage Reduction",
+			LoreBuilder.powerCharged(0, 200000)
+			
+	);
+	
+	public static final SlimefunItemStack POWER_ARMOR_NUCLEAR_CORE = new SlimefunItemStack("SFDRUGS_POWER_ARMOR_CORE_NUCLEAR",
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Q0YTdmY2U2Zjg4OGU4MDQyZDYzNGM3OTczYjNjYmM3ZTkzMjBmMTc0NDYwOGU2YzVjZGQ1ZjRlZjljYTM5MyJ9fX0="),
+			"&c&lGeothermal Power Armor Core",
+			"",
+			"&c&lCore Bonus: ",
+			"&c&l=> Reinforced Alloy Armor Base",
+			"&c&l=> +5 Armor",
+			"&c&l=> + 20% reduced fire damage"
+			
+	);
+	
+	public static final SlimefunItemStack POWER_ARMOR_NANITE_CORE = new SlimefunItemStack("SFDRUGS_POWER_ARMOR_CORE_NANITE", 
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzc0MDBlYTE5ZGJkODRmNzVjMzlhZDY4MjNhYzRlZjc4NmYzOWY0OGZjNmY4NDYwMjM2NmFjMjliODM3NDIyIn19fQ=="),
+			"&0&lNanite Power Armor Core",
+			"",
+			"&0&lCore Bonus: ",
+			"&0&l=> Nanofiber Alloy Armor Base",
+			"&0&l=> +10 Armor",
+			"&0&l=> 50% less power usage"
+			
+			
+	);
+	
+	public static final SlimefunItemStack POWER_ARMOR_GRAVITATIONAL_UPGRADE	= new SlimefunItemStack("SFDRUGS_POWER_ARMOR_GRAV_UPGRADE",
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2YyNjVkMDExNDAwNzBmZjk5ZGNmYjY3NDgxMmZlMTA1NDQyNjE1NWQyMjIwNzViNGI1OWJlNzM5ZGFmMjhlOCJ9fX0="),
+			"&2Gravitational Manipulator Upgrade",
+			"",
+			"&2Upgrade Bonus: ",
+			"&2=> Allows you to fly.",
+			"&2=> &c&lDrains &n0.2%&r&c&l power every 30 seconds."
+			
+	);
+			
+	
+	public static final SlimefunItemStack POWER_ARMOR_INTEL_UPGRADE = new SlimefunItemStack("SFDRUGS_POWER_ARMOR_INTEL_UPGRADE",
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTU5MWM4MTQ0ZGIyOGU3NGM4ZTdhNDQ0NDE2MjY5ZGNlYjczZjY1ZjYwMTZjYjc3ZTRlZmI2OTg4YjA4Y2VhNiJ9fX0="),
+			"&3Intelligence Upgrade",
+			"",
+			"&3Upgrade Bonus: ",
+			"&3=> Entities in a 20 block radius are afllicted with",
+			"&3=> Glowing, allowing you to see them through blocks.",
+			"&3=> &c&lDrains &n0.1%&r&c&l power every 30 seconds."
+			
+	);
+	
+	//end game mats
+	
+	public static final SlimefunItemStack NANOFIBER_ALLOY = new SlimefunItemStack("SFDRUGS_NANOFIBER_ALLOY",Material.POLISHED_BLACKSTONE_BUTTON,"&cRadioactive Nanofiber Alloy","","&e=> Advanced crafting alloy. Precursor to sirthium.");
+	public static final SlimefunItemStack NANITES = new SlimefunItemStack("SFDRUGS_NANITE_STACK", 
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2YyNjVkMDExNDAwNzBmZjk5ZGNmYjY3NDgxMmZlMTA1NDQyNjE1NWQyMjIwNzViNGI1OWJlNzM5ZGFmMjhlOCJ9fX0="),
+			"&fNanite Stack",
+			"",
+			"&fA stack holding a finite amount of nanites."
+			
+	);
+	
 	
 	// Drugs
 	public static final SlimefunItemStack SNAIDS = new SlimefunItemStack("SFDRUGS_SNAIDS",Material.HONEY_BOTTLE,"&d&lSnaids","","&d - You might blow up.");
@@ -87,6 +181,11 @@ public class Items {
 	// LootChests
 	public static final ItemStack RARE_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU3ZWY0ZTNmYmFhMGJmNzk5ZGQxMzY5N2UyYzBmMzM5NTVhNGEwZGFiMmYyOTkyZGExN2FhMjllODFhZGY4NyJ9fX0=");
 	public static final ItemStack UNCOMMON_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWE5OGEzMjVmMGIzN2NkMjcwZjU4YmIwOWNiOWQ3M2UxYmIwODdjYWM2MzJkZjJhNWYwNzIzMjUzMzRjNTQwIn19fQ==");
+	public static final ItemStack EPIC_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDZlZTlkZDYzNTNiZjY4ZWM5OTRhNGZkOWExYmE1YzRlNDdlODg1YzdhOGJhNWEzN2IwYzgwOTkxMjJkY2UxMSJ9fX0=");
+	public static final ItemStack LEGENDARY_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODhkMzg2NGNhNzU3MTAxYThmN2Y2MGI4MDkwNjVlNWQzMGE3YWQzMjQwMGE5OGVhYTU3OWNlZjAyOGExNGRjYSJ9fX0=");
+	public static final ItemStack MYTHICAL_LOOT_CHEST_HEAD = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjQxMmRjNTQzYTRiMGUwMzM5OGY2ZjBhZjFmNjgzNDBiZjU1Zjg5OTEwYjA4Nzk0ZWQ3MjM1NGJlMDcxY2ZjMCJ9fX0=");
+	
+	
 	
 	// Tools and the like
 	
@@ -195,10 +294,57 @@ public class Items {
 	public static final SlimefunItemStack CORPORATE_ANDROID_CORE = new SlimefunItemStack("SFDRUGS_CORPORATION_ANDROID_CORE",CORPORATE_ANDROID_CORE_HEAD,"&5&lCorporate Android Core", "&5⇒ Made from re&5&ka&r&5l &5&kdark&r &5m&5&katter&r!", "", "&e&l⚠ Warning! Highly Unstable! ⚠");
 	public static final MachineRecipeType CORPORATION_TRADE = new MachineRecipeType("CORPORATION_TRADER",Items.CORPORATE_GROUP);
 	public static final SlimefunItemStack ELECTRIC_SHEARS = new SlimefunItemStack("SFDRUGS_ELECTRIC_SHEARS",Material.SHEARS,"&7Electric Shears","",LoreBuilder.powerCharged(0, 1280),"",LoreBuilder.radioactive(Radioactivity.LOW));
-	public static final SlimefunItemStack UNCOMMON_CHEST = new SlimefunItemStack("SFDRUGS_UNCOMMON_LOOT_CHEST",Items.UNCOMMON_LOOT_CHEST_HEAD,"&aUncommon Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE);
-	public static final SlimefunItemStack RARE_CHEST = new SlimefunItemStack("SFDRUGS_RARE_LOOT_CHEST",Items.RARE_LOOT_CHEST_HEAD,"&bRare Loot Chest","",LoreBuilder.RIGHT_CLICK_TO_USE);
+	public static final SlimefunItemStack UNCOMMON_CHEST = new SlimefunItemStack(
+			"SFDRUGS_UNCOMMON_LOOT_CHEST",
+			Items.UNCOMMON_LOOT_CHEST_HEAD,
+			"&aUncommon Loot Chest",
+			"",
+			"&aThe most common loot chest. Contains very common resources.",
+			"&e=>&r " + LoreBuilder.RIGHT_CLICK_TO_USE);
+	public static final SlimefunItemStack RARE_CHEST = new SlimefunItemStack("SFDRUGS_RARE_LOOT_CHEST",
+			Items.RARE_LOOT_CHEST_HEAD,
+			"&bRare Loot Chest",
+			"",
+			"&bWhile the items in this chest would be considered rare, they're quite common.",
+			"&bUse these resources to build up your strength.",
+			"&e=>&r " + LoreBuilder.RIGHT_CLICK_TO_USE);
+	public static final SlimefunItemStack EPIC_CHEST = new SlimefunItemStack("SFDRUGS_EPIC_LOOT_CHEST",
+			Items.EPIC_LOOT_CHEST_HEAD,
+			"&6Epic Loot Chest",
+			"",
+			"&6The Epic loot chest is filled with industrial-age advanced technology.",
+			"&6Warlords look at you with awe and jealousy.",
+			"&e=>&r " + LoreBuilder.RIGHT_CLICK_TO_USE);
+	public static final SlimefunItemStack LEGENDARY_CHEST = new SlimefunItemStack("SFDRUGS_LEGENDARY_LOOT_CHEST",
+			Items.LEGENDARY_LOOT_CHEST_HEAD,
+			"&cLegendary Loot Chest",
+			"",
+			"&cIt is said that not even the filled vaults of saudi princes could buy even the",
+			"&cheapest of items contained in these. Be proud of your achievement, and your newfound riches.",
+			"&e=>&r " + LoreBuilder.RIGHT_CLICK_TO_USE);
+	public static final SlimefunItemStack MYTHICAL_CHEST = new SlimefunItemStack("SFDRUGS_MYTHICAL_LOOT_CHEST",
+			Items.MYTHICAL_LOOT_CHEST_HEAD,
+			"&dMythical Loot Chest",
+			"",
+			"&dThe items contained in the Mythical chest are said to be impossible. Legends, even.",
+			"&dBut today, you prove them wrong. Claim your prize, you've earned it.",
+			"&e=>&r " + LoreBuilder.RIGHT_CLICK_TO_USE
+	);
+	public static final SlimefunItemStack CORPORATE_LOCKBOX = new SlimefunItemStack("SFDRUGS_CORPORATE_LOOT_CHEST",
+		
+			SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2E2MTAwODBiMDEyNWZjNDI3M2JhNjAzZmIzOGZlYWFkZDFhZjAwMGI1ZmM3NGFmYTE4Y2VlNDU4NzRkMTk5NyJ9fX0="),
+			"&4&lCorporate Lockbox",
+			"",
+			"&4Nobody knows how these are distributed. But to those lucky few who are able to decode them,",
+			"&4not even the universe is safe from your newfound ambition and power.",
+			"&e=>&r " + LoreBuilder.RIGHT_CLICK_TO_OPEN
+			
+	);
+	
 	public static final SlimefunItemStack MYSTEROUS_TRADER = new SlimefunItemStack("MYSTERIOUS_TRADER_GROUJP",MYSTEROUS_TRADER_HEAD,"&cMysterious Trader");
-	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Boss Drops");;
+	private static final SlimefunItemStack ROBOT_HEAD = new SlimefunItemStack("ROBOT_HEAD_GROUP",ROBOT_HELMET_HEAD,"&7Boss Drops");
+
+
 	static {
 		
 		CORPORATION_ROBOT_HELMET.addUnsafeEnchantment(Enchantment.DURABILITY, 100);
@@ -336,10 +482,14 @@ public class Items {
 		RecipeType HOOKER_TRADE = new RecipeType(new NamespacedKey(this.plugin,"HOOKER_TRADER"),Items.HOOKER_GROUP);
 		RecipeType MYSTERIOUS_TRADER = new RecipeType(new NamespacedKey(this.plugin,"MYSTERIOUS_TRADER"),Items.MYSTEROUS_TRADER);
 		RecipeType SECURITY_ROBOT_DROP = new RecipeType(new NamespacedKey(this.plugin,"SECURITY_ROBOT_DROP"),Items.ROBOT_HEAD);
-		
 		new UncommonChest(this.plugin,this.group,UNCOMMON_CHEST,SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
 		new RareChest(this.plugin,this.group,RARE_CHEST,SECURITY_ROBOT_DROP,new ItemStack[]{}).register(this.plugin);
-
+		new EpicChest(this.plugin,this.group,EPIC_CHEST,SECURITY_ROBOT_DROP,new ItemStack[] {}).register(this.plugin);
+		new LegendaryChest(this.plugin,this.group,LEGENDARY_CHEST,SECURITY_ROBOT_DROP,new ItemStack[] {}).register(this.plugin);
+		
+		new SlimefunItem(this.group,Items.HEMP,RecipeType.NULL, new ItemStack[] {});
+		//new MythicalChest(this.plugin,this.group,MYTHICAL_CHEST,SECURITY_ROBOT_DROP,new ItemStack[] {}).register(this.plugin);
+		//new CorporateChest(this.plugin,this.group,CORPORATE_LOCKBOX,SECURITY_ROBOT_DROP,new ItemStack[] {}).register(this.plugin);
 		
 		new PlatedHazmat(this.plugin,this.group,PlatedHazmat.getByInteger(0),RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 				null,new ItemStack(Material.NETHERITE_INGOT),null,
@@ -374,10 +524,29 @@ public class Items {
 				new PotionEffect(PotionEffectType.JUMP,60,1)
 		});
 		
+		
+		NaniteSynthesizer Synth = new NaniteSynthesizer(this.group, new SlimefunItemStack(
+		
+				"SFDRUGS_NANITE_SYNTHESIZER",SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzgyZDU4ZTg5M2JmOWI4MjQzMzYyNmQwZTQ4MGU5Mzc1YjU4ZjNjMmRkZWY0NTBmNjE3YjYwZGJmNTA2Y2JiOSJ9fX0="),"&6&lNanite Synthesizer", "", "&6=> Place this anywhere 5,000 blocks away from spawn.", "&6=> RATE: 1 NANITE/15 MINUTE"
+				
+		),RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+				
+		});
+		Synth.energyPerTick(100);
+		Synth.register(this.plugin);
 		new Hook(this.plugin,this.group,new SlimefunItemStack("SFDRUGS_GANGSTER_HOOK",Material.CHAIN,"&cRed Wolves' Hook & Chain","",LoreBuilder.RIGHT_CLICK_TO_USE),SECURITY_ROBOT_DROP,new ItemStack[] {}).register(this.plugin);
 		new SlimefunItem(this.group,Items.ELECTRIC_SHEARS,RecipeType.ENHANCED_CRAFTING_TABLE,new ItemStack[] {
 				new ItemStack(Material.SHEARS),new CustomItemStack(SlimefunItems.BATTERY)
 		}).register(this.plugin);
+		
+		new SlimefunItem(this.group,Items.NANOFIBER_ALLOY,RecipeType.HEATED_PRESSURE_CHAMBER, new ItemStack[] {
+				new CustomItemStack(SlimefunItems.PLUTONIUM, 6), new CustomItemStack(SlimefunItems.BLISTERING_INGOT_3, 2), new CustomItemStack(SlimefunItems.REINFORCED_ALLOY_INGOT, 16), new CustomItemStack(Items.HEMP, 32), new CustomItemStack(Items.NANITES, 2)
+		}).register(this.plugin);
+		
+		new SlimefunItem(this.group,Items.NANO_PARTICLES, RecipeType.COMPRESSOR, new ItemStack[] {
+				new CustomItemStack(Items.NANITES, 16)
+		}).register(this.plugin);
+		
 		
 		new SlimefunItem(this.group,Items.DRUG_HELMET_BLUEPRINT,MYSTERIOUS_TRADER,new ItemStack[] {
 				new CustomItemStack(Items.MONEY,22)
@@ -404,7 +573,7 @@ public class Items {
 		},this.plugin).register(this.plugin);
 		new UnstableObject(this.invisibleItems,Items.CORPORATE_ANDROID_CORE,SECURITY_ROBOT_DROP,new ItemStack[] {
 				
-		},Unstable.UNSTABLE,this.plugin).register(this.plugin);
+		},Unstable.HIGHLY_UNSTABLE,this.plugin).register(this.plugin);
 		new UnstableObject(this.invisibleItems,new SlimefunItemStack("SFDRUGS_UNSTABLE_INGOT",new ItemStack(Material.IRON_INGOT),"&f&lUnstable Ingot","", "&e&l⚠ Warning! Extremely Unstable! ⚠"),SECURITY_ROBOT_DROP,new ItemStack[] {
 				
 		},Unstable.HIGHLY_UNSTABLE,this.plugin).register(this.plugin);
@@ -477,6 +646,8 @@ public class Items {
 		});
 		NBATON_BLUEPRINT.register(this.plugin);
 		
+		
+		
 		SlimefunItem NSHOVEL_BLUEPRINT = new SlimefunItem(this.group,Items.SHOVEL_BLUEPRINT,HOOKER_TRADE,new ItemStack[] {
 				new CustomItemStack(Items.METH,24)
 		});
@@ -544,16 +715,22 @@ public class Items {
 				new CustomItemStack(Items.MONEY,35),Items.SHOVEL_BLUEPRINT,new CustomItemStack(Items.IRRADIATED_SIRTHIUM_ALLOY,2)
 			});
 		NDRUG_SHOVEL.register(this.plugin);
-		Drug NCYANIDE = new Drug(this.group,Items.CYANIDE,RECIPE_DRYER,new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,64),Items.TRAY },new PotionEffect[] { new PotionEffect(PotionEffectType.HARM,240,100) });
+		Drug NCYANIDE = new Drug("cyanide", this.group,Items.CYANIDE,RECIPE_DRYER,new ItemStack[] { new CustomItemStack(Items.DRIED_PLANT,64),Items.TRAY },new PotionEffect[] { new PotionEffect(PotionEffectType.HARM,240,100) });
     	NCYANIDE.register(this.plugin);
 		METH.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(this.plugin,"METH"), PersistentDataType.STRING, "lmao");
-    	Drug N_METH = new Drug(this.group,Items.METH,RECIPE_DRYER,new ItemStack[] { Items.METH_COMPOUND, Items.TRAY },
+    	Drug N_METH = new Drug("methamphetamine", this.group,Items.METH,RECIPE_DRYER,new ItemStack[] { Items.METH_COMPOUND, Items.TRAY },
     			new PotionEffect[] { 
     			  new PotionEffect(PotionEffectType.CONFUSION,120,5), 
     			  new PotionEffect(PotionEffectType.SATURATION,600,10),
     			  new PotionEffect(PotionEffectType.FAST_DIGGING,480,5),
     			  new PotionEffect(PotionEffectType.POISON,10,5) 
+    			}, 5, 200, new PotionEffect[] {
+    					new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 999999, 2),
+    					new PotionEffect(PotionEffectType.BLINDNESS, 999999, 2),
+    					new PotionEffect(PotionEffectType.HUNGER, 999999, 2),
+    					new PotionEffect(PotionEffectType.WEAKNESS, 999999, 2)
     			}
+    			
     	);
     	N_METH.register(this.plugin);
     	SlimefunItem NDRIED_PLANT = new SlimefunItem(this.group,Items.DRIED_PLANT,RECIPE_DRYER,new ItemStack[] { new ItemStack(Material.OAK_SAPLING,64), Items.TRAY });
@@ -563,7 +740,7 @@ public class Items {
 		});
 		NRED_PHOSPHORUS.register(this.plugin);
 		SlimefunItem NPSEUDOEPHEDRINE = new SlimefunItem(this.group,Items.PSEUDOEPHEDRINE,RECIPE_CENTRIFUGE,new ItemStack[] {
-				new CustomItemStack(Items.DRIED_PLANT,32),new CustomItemStack(Items.PSEUDOEPHEDRINE)
+				new CustomItemStack(Items.DRIED_PLANT,32),new CustomItemStack(Items.PSEUDOEPHEDRINE)	
 		});
 		NPSEUDOEPHEDRINE.register(this.plugin);
 		SlimefunItem NTWELVE = new SlimefunItem(this.group,Items.TWELVE,RECIPE_CENTRIFUGE,new ItemStack[] {

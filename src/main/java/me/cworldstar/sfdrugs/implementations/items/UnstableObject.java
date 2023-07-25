@@ -12,12 +12,13 @@ import me.cworldstar.sfdrugs.SFDrugs;
 
 public class UnstableObject extends SlimefunItem {
 	private static SFDrugs plugin;
-	private Unstable unstable;
+	public Unstable unstable;
 	public UnstableObject(ItemGroup itemGroup, ItemStack item,String id,RecipeType recipeType,
 			ItemStack[] recipe, Unstable unstable,SFDrugs plugin) {
 		super(itemGroup, item,id,recipeType, recipe);
 		this.unstable = unstable;
 		UnstableObject.plugin = plugin;
+		item.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(this.plugin,"Unstable"), PersistentDataType.DOUBLE, UnstableObject.getCooldown(this.unstable));
 		// TODO Auto-generated constructor stub
 	}
 	public UnstableObject(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType,
@@ -25,7 +26,7 @@ public class UnstableObject extends SlimefunItem {
 		super(itemGroup,item,recipeType, recipe);
 		this.unstable = unstable;
 		UnstableObject.plugin = plugin;
-		item.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(this.plugin,"Unstable"), PersistentDataType.INTEGER,unstable.UNSTABLE_VALUE);
+		item.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(this.plugin,"Unstable"), PersistentDataType.DOUBLE, UnstableObject.getCooldown(this.unstable));
 		// TODO Auto-generated constructor stub
 	}
 	public Unstable getUnstableAmount() {
@@ -68,25 +69,26 @@ public class UnstableObject extends SlimefunItem {
 			return STABLE;
 		}
 		
-		public static double getCooldown(Unstable unstable) {
-			
-			switch(unstable) {
-				case STABLE:
-					return 0.0;
-				case SLIGHTLY_UNSTABLE:
-					return 15.0;
-				case UNSTABLE:
-					return 15.0;
-				case HIGHLY_UNSTABLE:
-					return 10.0;
-				default:
-					break;
-				
-			}
-			
-			return 0.0;
+
+		
+	}
+	public static double getCooldown(Unstable unstable) {
+		
+		switch(unstable) {
+			case STABLE:
+				return 0.0;
+			case SLIGHTLY_UNSTABLE:
+				return 15.0;
+			case UNSTABLE:
+				return 15.0;
+			case HIGHLY_UNSTABLE:
+				return 10.0;
+			default:
+				break;
 			
 		}
+		
+		return 0.0;
 		
 	}
 }

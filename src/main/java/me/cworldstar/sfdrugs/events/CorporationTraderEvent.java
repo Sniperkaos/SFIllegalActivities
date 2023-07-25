@@ -1,4 +1,5 @@
 package me.cworldstar.sfdrugs.events;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.TradingRecipe;
+import me.cworldstar.sfdrugs.implementations.gui.ATradingInterface;
+import me.cworldstar.sfdrugs.implementations.gui.ATradingInterface.InventorySize;
+import me.cworldstar.sfdrugs.implementations.traders.ATrader;
 import me.cworldstar.sfdrugs.implementations.traders.CorporationTrader;
 import me.cworldstar.sfdrugs.implementations.traders.HookerZombie;
 import me.cworldstar.sfdrugs.utils.Items;
@@ -47,19 +51,10 @@ public class CorporationTraderEvent implements Listener {
                 	p.removeMetadata("SFDRUGS_PLAYER_IS_RIGHTCLICKING_TRADER", plugin);
                }
             }.runTaskLater(plugin, 20L);
+            
         	PlayerInventory I = p.getInventory();
-        	if(I.getItemInMainHand() != null & CorporationTrader.ItemIsRecipe(I.getItemInMainHand(),I.getItemInMainHand().getAmount()) == true) {
-        		Speak(p,"&7&l[ Corporation Trader ]: &r&7Pleasure doing business with you.");
-        		TradingRecipe T = CorporationTrader.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
-        		if(T != null) {
-        			I.getItemInMainHand().setAmount(0);
-            		I.addItem(T.getFor());
-        		}
-        	} else if(I.getItem(I.getHeldItemSlot()) != null) {
-    			Speak(p,"&7&l[ Corporation Trader ]: &r&7That item has no value to us.");
-            } else {
-                Speak(p,"&7&l[ Corporation Trader]: &r&7Can I help you with something?");
-            }
+        	ATradingInterface TheTrading = new ATradingInterface(InventorySize.LARGE, new ItemStack(Material.BLACK_STAINED_GLASS_PANE), ATrader.TraderFromEntity(event.getRightClicked()));
+        	TheTrading.Display(p);
     	}
 
     }

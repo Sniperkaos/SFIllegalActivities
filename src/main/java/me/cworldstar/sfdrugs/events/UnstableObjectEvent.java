@@ -1,14 +1,17 @@
 package me.cworldstar.sfdrugs.events;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.generator.WorldInfo;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
@@ -41,19 +44,22 @@ public class UnstableObjectEvent implements Listener {
 			}
 		}
 	}
-	
+		
 	
 	@EventHandler
 	public void onPlayerInventoryItemAdded(PlayerInventoryItemAddedEvent e) {
 		for(ItemStack item : e.getItem()) {
 			if(SlimefunItem.getByItem(item) != null && SlimefunItem.getByItem(item) instanceof UnstableObject) {
 				new Speak(e.getPlayer(),"&e&l ⚠ You have picked up an unstable object. Either dispose of it or use it. ⚠");
+				UnstableObject TheUnstableObject = (UnstableObject) SlimefunItem.getByItem(item);
+				plugin.getLogger().warning(TheUnstableObject.unstable.toString());
+				item.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(plugin,"Unstable"), PersistentDataType.DOUBLE, UnstableObject.getCooldown(TheUnstableObject.unstable));
 				UnstableObject item2 = ((UnstableObject) SlimefunItem.getByItem(item));
 				
 				new BukkitRunnable() {
 					@Override
 					public void run() {
-						if(!e.getPlayer().getInventory().contains(item)) {
+						if(!e.getPlayer().getInventory().contains(item) || !e.getPlayer().isOnline()) {
 							e.cancel();
 						}
 					}
@@ -63,26 +69,20 @@ public class UnstableObjectEvent implements Listener {
 					public void run() {
 						if(!e.isCancelled()) {
 							ItemMeta meta = item.getItemMeta();
+							double cooldown = item.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(plugin,"Unstable"), PersistentDataType.DOUBLE);
+							
 							List<String> oldLore = meta.getLore();
 							if(!oldLore.get(oldLore.size()-1).contains("Cooldown:")) {
 								oldLore.add("");
-								oldLore.add(LoreHandler.UnstableObjectCooldownTimer(item2.getUnstableAmount()));
+								oldLore.add(LoreHandler.UnstableObjectCooldownTimer(cooldown));
 								meta.setLore(oldLore);
 								item.setItemMeta(meta);
 							} else {
-								Scanner doubleScanner = new Scanner((String) (oldLore.get(oldLore.size()-1))).useDelimiter(Pattern.compile("(\\d+)?\\.(\\d+)?"));
-								if (doubleScanner.hasNextDouble()) {
-									double CooldownTimerAmount = doubleScanner.nextDouble();
-									if(CooldownTimerAmount != 0) {
-										oldLore.add(oldLore.size()-1,LoreHandler.UnstableObjectCooldownTimer(CooldownTimerAmount - 0.1));
-										meta.setLore(oldLore);
-										item.setItemMeta(meta);
-									}
-								} else {
-									e.getPlayer().sendMessage("Could not extract double.");
-								}
-								doubleScanner.close();
-							}
+									oldLore.add(oldLore.size()-1,LoreHandler.UnstableObjectCooldownTimer(cooldown - 0.1));
+									meta.setLore(oldLore);
+									item.setItemMeta(meta);
+								} 
+							item.getItemMeta().getPersistentDataContainer().set(new NamespacedKey(plugin,"Unstable"), PersistentDataType.DOUBLE,(double) cooldown-0.1);
 						}
 					}
 				}.runTaskTimer(plugin, 0, 2L);

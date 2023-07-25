@@ -3,10 +3,15 @@ package me.cworldstar.sfdrugs.implementations.bosses.entities;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -17,30 +22,114 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.cworldstar.sfdrugs.SFDrugs;
+import me.cworldstar.sfdrugs.implementations.bosses.entities.EntityDialog.Personality;
 import me.cworldstar.sfdrugs.implementations.loot.SmallerGangMemberLootTable;
 import me.cworldstar.sfdrugs.utils.RandomUtils;
 import me.cworldstar.sfdrugs.utils.Speak;
 import net.md_5.bungee.api.ChatColor;
 
-public class CorporateScout {
-	public CorporateScout(SFDrugs plugin,Zombie z) {
+public class CorporateScout extends BossEntity {
+	
+	
+	@Override
+	public EntityDialog registerDialogs() {
+		EntityDialog DialogManager = new EntityDialog("&7Corporate Scout", Personality.RANDOM);
+		// Neutral personality dialog
+		DialogManager.registerAllDialogs(Personality.NEUTRAL, new String[] {
+				"&7This is really boring.",
+				"&7I can't see anything.",
+				"&7I haven't found anything yet."
+		});
+		// Aggressive personality dialog
+		DialogManager.registerAllDialogs(Personality.AGGRESSIVE, new String[] {
+				"&7Where is everything???",
+				"&7ARGH! This is so frustrating! I could be at home right now!",
+				"&7SOMEONE, COME OUT!"
+		});
+		// Sad personality dialog 
+		DialogManager.registerAllDialogs(Personality.SAD, new String[] {
+				"&7Does anything even exist...",
+				"&7*sighs*",
+				"&7And I get stuck with the boring job..."
+		});
+		// Happy personality dialog
+		DialogManager.registerAllDialogs(Personality.HAPPY, new String[] {
+				"&7The sights are so nice out here!",
+				"&7I hope I find something!",
+				"&7I can't wait to get promoted once I find something!"
+		});
+		return DialogManager;
+	}
+	
+	
+	public CorporateScout(SFDrugs plugin, World w, Location l) {
+		
+		super(EntityType.ZOMBIE, w, l, "corporate_scout");
+		EntityDialog DialogManager = this.registerDialogs();
+		
+		
+		
+		// CorporateScout skills
+		
+		CorporateScout scout = this;
+
+		//Dialog handler
+		
+		new BukkitRunnable() {
+			
+			Zombie z = (Zombie) scout.getEntity();
+			
+			@Override
+			public void run() {
+				if(scout.getEntity().isDead()) {
+					this.cancel();
+				} else if(z.getTarget() == null) {
+					SFDrugs.log(Level.WARNING, DialogManager.toString());
+					new Speak(z,z.getNearbyEntities(20, 20, 20),DialogManager.randomDialog());
+				}
+			}
+		}.runTaskTimer(plugin, 0, 200L);
+
+	}
+	/**
+	 * duplicate class for spawning based on normal mob spawning
+	 * 
+	 * @see me.cworldstar.sfdrugs.events.GangMemberSpawnEvent
+	 */
+	public CorporateScout(SFDrugs plugin, Zombie entity) {
+		
+		super(entity, "corporate_scout");
+		EntityDialog DialogManager = this.registerDialogs();
+		CorporateScout scout = this;
+
+		//Dialog handler
+		
+		new BukkitRunnable() {
+			
+			Zombie z = (Zombie) scout.getEntity();
+			
+			@Override
+			public void run() {
+				if(scout.getEntity().isDead()) {
+					this.cancel();
+				} else if(z.getTarget() == null) {
+					SFDrugs.log(Level.WARNING, DialogManager.toString());
+					new Speak(z,z.getNearbyEntities(20, 20, 20),DialogManager.randomDialog());
+				}
+			}
+		}.runTaskTimer(plugin, 0, 200L);
+	}
+
+	@Override
+	public void applyEntityEdits(SFDrugs plugin, Zombie z) {
+		// TODO Auto-generated method stub
 		z.setCustomName(ChatColor.translateAlternateColorCodes('&', "&7Corporate Scout"));
-		z.setMaxHealth(75.0);
+		z.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(75);
 		z.setHealth(75.0);
 		z.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,999999, 0));
 		z.setAbsorptionAmount(100);
 		z.setAdult();
 		z.setCanPickupItems(false);	
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				if(z.isDead()) {
-					this.cancel();
-				} else if(z.getTarget() == null) {
-					new Speak(z,z.getNearbyEntities(20, 20, 20),CorporateScout.randomDialog());
-				}
-			}
-		}.runTaskTimer(plugin, 0, 200L);
 		z.setMetadata("SFDRUGS_CUSTOM_MOB",new FixedMetadataValue(plugin,"corporate_scout"));
 		z.setLootTable(new SmallerGangMemberLootTable(plugin));
 		ItemStack ZombieHead = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgxOWM5OTY2ZmQ4OWI0YjM4MTJlMmRmMTdkODk4NzliZTVmMjNmZGU5ZmQ3MTQ2NWQzZjAwMjM2ZGJkMjZmOCJ9fX0=");
@@ -56,26 +145,18 @@ public class CorporateScout {
 		ItemMeta ChestplateMeta = (ItemMeta) Chestplate.getItemMeta();
 		ChestplateMeta.setUnbreakable(true);
 		Chestplate.setItemMeta(ChestplateMeta);
-		z.getEquipment().setArmorContents(new ItemStack[] {
-				Boots,
-				Leggings,
+		this.setArmor(
+				ZombieHead,
 				Chestplate,
-				ZombieHead
-		});
+				Leggings,
+				Boots
+		);
 	}
 
-	private static String randomDialog() {
-		// TODO: Create "Personalities" with different dialog.
+
+	@Override
+	public void addDialog(String dialog) {
+		// TODO Auto-generated method stub
 		
-		String[] list = new String[] {
-				"&7This is really boring.",
-				"&7I can't remember the last time I saw someone.",
-				"&7Is anyone there?",
-		};
-		List<String> dialogs = new ArrayList<>(Arrays.asList(list));
-		if(dialogs.get(RandomUtils.nextInt(dialogs.size()-1)) != null) {
-			return "&7[ Corporate Scout ]:&r ".concat(dialogs.get(RandomUtils.nextInt(dialogs.size()-1)));
-		}
-		return "&cSomething went wrong. If you see this, please report it.";
 	}
 }

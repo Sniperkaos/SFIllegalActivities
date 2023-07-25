@@ -14,7 +14,7 @@ import me.cworldstar.sfdrugs.utils.Items;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import net.md_5.bungee.api.ChatColor;
 
-public class MoneyPrinter extends AContainer implements NotHopperable,RecipeDisplayItem  {
+public class MoneyPrinter extends AContainer implements RecipeDisplayItem  {
 	public MoneyPrinter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
 		super(itemGroup, item, recipeType, recipe);
 		// TODO Auto-generated constructor stub

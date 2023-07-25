@@ -52,31 +52,7 @@ public class EscapedTestSubject {
 				}
  			}
 		}.runTaskTimer(plugin, 0, 1L);
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				if(z.isDead()) {
-					EnemyBossBar.setVisible(false);
-					this.cancel();
-				} else {
-					double Health = Double.parseDouble(new DecimalFormat("#.###").format(z.getHealth() / z.getMaxHealth()));
-					EnemyBossBar.setProgress(Health);
-					for(Entity e : z.getNearbyEntities(30.0, 30.0, 30.0)) {
-						if (e instanceof Player) {
-							if(!Players.contains((Player) e)) {
-								Players.add((Player) e);
-								EnemyBossBar.addPlayer((Player) e);
-							}
-						}
-					}
-					for(Player p : EnemyBossBar.getPlayers()) {
-						if(!Players.contains(p)) {
-							EnemyBossBar.removePlayer(p);
-						}
-					}
-				}
-			}
-		}.runTaskTimer(plugin, 0L, 10L);
+		
 		ItemStack ZombieHead = SlimefunUtils.getCustomHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWNjNGI1YjdmNjE2OTQyOGNlZTcyZDFkZTNlYjkzNTc5M2I3ZDZmNGI2YzFhMjNjMzRhMjZkZGE2MDYwMWNjOSJ9fX0=");
 		ItemStack Boots = new ItemStack(Material.LEATHER_BOOTS);
 		LeatherArmorMeta BootsMeta = (LeatherArmorMeta) Boots.getItemMeta();

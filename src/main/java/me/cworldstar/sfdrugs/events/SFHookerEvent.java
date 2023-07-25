@@ -16,6 +16,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.cworldstar.sfdrugs.SFDrugs;
 import me.cworldstar.sfdrugs.implementations.TradingRecipe;
+import me.cworldstar.sfdrugs.implementations.traders.ATrader;
 import me.cworldstar.sfdrugs.implementations.traders.HookerZombie;
 import me.cworldstar.sfdrugs.utils.Items;
 import me.cworldstar.sfdrugs.utils.Trading;
@@ -48,19 +49,7 @@ public class SFHookerEvent implements Listener {
                 	p.removeMetadata("SFDRUGS_PLAYER_IS_RIGHTCLICKING_TRADER", plugin);
                }
             }.runTaskLater(plugin, 20L);
-        	PlayerInventory I = p.getInventory();
-        	if(I.getItemInMainHand() != null & HookerZombie.ItemIsRecipe(I.getItemInMainHand(),I.getItemInMainHand().getAmount()) == true) {
-        		Speak(p,"&d&l[ Hooker Zombie ]: &r&dOh here, take this.");
-        		TradingRecipe T = HookerZombie.GetRecipeFromItem(SlimefunItem.getByItem(I.getItemInMainHand()).getItem(),I.getItemInMainHand().getAmount());
-        		if(T != null) {
-        			I.getItemInMainHand().setAmount(0);
-            		I.addItem(T.getFor());
-        		}
-        	} else if(I.getItem(I.getHeldItemSlot()) != null) {
-    			Speak(p,"&d&l[ Hooker Zombie ]: &r&dWhat makes you think I'd like that? Go away, loser.");
-            } else {
-                Speak(p,"&d&l[ Hooker Zombie ]: &r&dWhat are you trying to do? Handshake me? What a weirdo.");
-            }
+            ATrader.Traders.get("hooker_zombie").newTradingInterface().Display(p);
     	}
     }
 }

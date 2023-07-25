@@ -11,7 +11,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import me.cworldstar.sfdrugs.SFDrugs;
@@ -59,6 +62,18 @@ public class RobotArmorDamaged implements Listener {
 							if(RobotArmor.IsNotAffected((LivingEntity) enemies) && (!enemies.equals(p))) {
 								enemies.getWorld().playEffect(enemies.getLocation(), Effect.BONE_MEAL_USE, 12);
 								((LivingEntity) enemies).damage(new Double(e.getDamage() / 2),p);
+								if(!enemies.hasMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR")) { 
+									enemies.setMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR", new FixedMetadataValue(plugin, true));
+									new BukkitRunnable() {
+
+										@Override
+										public void run() {
+											// TODO Auto-generated method stub
+											enemies.removeMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR", plugin);
+										}
+										
+									}.runTaskLater(plugin, 60L);
+								}
 							}
 						}
 					}
@@ -92,17 +107,18 @@ public class RobotArmorDamaged implements Listener {
     }
 	@EventHandler
 	private void onEntityDamage(EntityDamageByEntityEvent e) {
-		if (!e.getEntity().hasMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR") && (e.getEntity() instanceof Player || e.getEntity() instanceof Mob)) {
-			if(e.getEntity() instanceof Player) {
-				Player p = (Player) e.getEntity(); 
-				this.HandlePlayer(e, p);
-			} else {
-				Mob p = (Mob) e.getEntity();
-				this.HandleZombie(e, p);
+		if(e.getEntity() != null) {
+			if (!e.getEntity().hasMetadata("AFFLICTED_BY_SFDRUGS_ROBOT_ARMOR") && (e.getEntity() instanceof Player || e.getEntity() instanceof Mob)) {
+				if(e.getEntity() instanceof Player) {
+					Player p = (Player) e.getEntity(); 
+					this.HandlePlayer(e, p);
+				} else {
+					Mob p = (Mob) e.getEntity();
+					this.HandleZombie(e, p);
+				}
+	
 			}
-
 		}
-
 	}
 	@EventHandler
 	private void onPlayerItemDamage(PlayerItemDamageEvent e) {

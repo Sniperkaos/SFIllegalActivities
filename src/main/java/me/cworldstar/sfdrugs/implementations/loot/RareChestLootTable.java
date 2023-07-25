@@ -38,19 +38,19 @@ public class RareChestLootTable implements LootTable {
 		for(int i=0;i<items;i++) {
 			switch(num) {
 				case 1:
-					this.lootTable.add(new CustomItemStack(Items.CORPORATION_ROBOT_HELMET));
+					this.lootTable.add(new CustomItemStack(SlimefunItems.RAINBOW_RUNE, 4));
 					break;
 				case 2:
-					this.lootTable.add(new CustomItemStack(Items.CORPORATION_ROBOT_LEGGINGS));
+					this.lootTable.add(new CustomItemStack(SlimefunItems.LIGHTNING_RUNE, 8));
 					break;
 				case 3:
-					this.lootTable.add(new CustomItemStack(Items.CORPORATION_ROBOT_CHESTPLATE));
+					this.lootTable.add(new CustomItemStack(SlimefunItems.FIRE_RUNE, 8));
 					break;
 				case 4:
-					this.lootTable.add(new CustomItemStack(Items.CORPORATION_ROBOT_BOOTS));
+					this.lootTable.add(new CustomItemStack(SlimefunItems.EARTH_RUNE, 8));
 					break;
 				case 5:
-					this.lootTable.add(new CustomItemStack(Items.CORPORATE_ANDROID_CORE,1));	
+					this.lootTable.add(new CustomItemStack(SlimefunItems.AIR_RUNE, 8));	
 					break;
 				case 6:
 					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
@@ -77,16 +77,16 @@ public class RareChestLootTable implements LootTable {
 					this.lootTable.add(new CustomItemStack(SlimefunItems.BASIC_CIRCUIT_BOARD,64));
 					break;
 				case 14:
-					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,9));
+					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,2));
 					break;
 				case 15:
-					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,9));
+					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,2));
 					break;
 				case 16:
-					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,9));
+					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,2));
 					break;
 				case 17:
-					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,9));
+					this.lootTable.add(new ItemStack(Material.DIAMOND_BLOCK,2));
 					break;
 				case 18:
 					this.lootTable.add(new ItemStack(Material.NETHERITE_INGOT,4));
@@ -119,15 +119,16 @@ public class RareChestLootTable implements LootTable {
 					this.lootTable.add(new CustomItemStack(SlimefunItems.BLISTERING_INGOT,4));
 					break;
 				case 28:
-					this.lootTable.add(new ItemStack(Material.NETHER_STAR,2));
+					this.lootTable.add(new ItemStack(Material.NETHER_STAR,1));
 					break;
 				case 29:
-					this.lootTable.add(new ItemStack(Material.NETHER_STAR,2));
+					this.lootTable.add(new ItemStack(Material.NETHER_STAR,1));
 					break;
 				case 30:
 					this.lootTable.add(
 						new CustomItemStack(Items.MONEY_STAMP,1)	
 					);
+					break;
 				default:
 					this.lootTable.add(new CustomItemStack(Items.MONEY,2));
 			}
